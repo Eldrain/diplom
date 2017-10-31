@@ -90,9 +90,11 @@
   <ItemGroup>
     <ClCompile Include="AMethod.cpp" />
     <ClCompile Include="BB.cpp" />
+    <ClCompile Include="BBMarks.cpp" />
     <ClCompile Include="BBreal.cpp" />
     <ClCompile Include="FrontAlg.cpp" />
     <ClCompile Include="Jobs.cpp" />
+    <ClCompile Include="Marks.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Procs.cpp" />
     <ClCompile Include="SortOut.cpp" />

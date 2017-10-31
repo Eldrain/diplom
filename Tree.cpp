@@ -1,6 +1,7 @@
+#pragma once
 #include "stdafx.h"
 #include "Stack.cpp"
-#include "BBreal.cpp"
+#include "BBMarks.cpp"
 
 class Tree {
 private:
@@ -62,7 +63,7 @@ private:
 	Stack<leaf> pool, tree, wave;
 	Stack<leaf>::elem *prsp;
 	leaf *best;
-
+	
 public:
 	Tree() {
 		count = 0;
@@ -83,7 +84,7 @@ public:
 		this->n = n;
 		delete best;
 		best = new leaf(n, 0);
-
+		
 		count = 0;
 		best->min = 0;
 		pool.clear();
@@ -132,14 +133,14 @@ public:
 		}
 	}
 
-	void marks(BBreal &bb, Task &task) {
+	void marks(BBMarks &mark, Task &task) {
 		Stack<leaf>::elem *l = wave.first;
 		if (!l)
 			return;
 
 		while (l) {
-			l->info.max = bb.max(l->info.arr, l->info.set, task);
-			l->info.min = bb.min(l->info.arr, l->info.set, task);
+			l->info.max = mark.max(l->info.arr, l->info.set, task);
+			l->info.min = mark.min(l->info.arr, l->info.set, task);
 			l = l->next;
 		}
 	}
@@ -170,7 +171,8 @@ public:
 			l->info.setData(arr, n, max, min, set);
 		}
 		else {
-			l = new Stack<leaf>::elem(leaf(arr, n, max, min, set));
+			leaf *newElem = new leaf(arr, n, max, min, set);
+			l = new Stack<leaf>::elem(*newElem);
 			count++;
 		}
 
@@ -196,6 +198,10 @@ public:
 		tree.getAll(wave);
 	}
 
+	Stack<leaf>::elem *getFirstInWave() {
+		return wave.first;
+	}
+	
 	int getMin() {
 		return best->min;
 	}
@@ -205,7 +211,23 @@ public:
 	}
 
 	void printPrsp() {
+		printLeaf(&prsp->info);
+	}
 
+	void printLeaf(leaf *l) {
+		std::cout << "\nPerspective:";
+		for (int i = 0; i < l->set; i++)
+			std::cout << l->arr[i] << ", ";
+		std::cout << "\nmin = " << l->min << ";max = " << l->max;
+	}
+
+	void printTree() {
+		Stack<leaf>::elem *l = tree.first;
+
+		while (l) {
+			printLeaf(&l->info);
+			l = l->next;
+		}
 	}
 
 	/*void store(Stack<leaf>::elem *l) {

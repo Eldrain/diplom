@@ -2,16 +2,19 @@
 #include "stdafx.h"
 #include "AMethod.cpp"
 #include "Tree.cpp"
+#include "BBMarks.cpp"
 
 class BBreal : public AMethod {
 public:
 	int countVar, *buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Tree tree;
+	BBMarks mark;
 
 	void update() {
 		AMethod::update();
 		tree.init(n);
+		mark.init(n);
 
 		delete[] buf;
 		buf = new int[n];
@@ -58,10 +61,13 @@ public:
 		while (!tree.isEmpty()) {
 			tree.findPrsp();
 			tree.produce(task);
-			tree.marks(*this, task);
+			tree.marks(mark, task);
 			tree.cut(maximum);
 			tree.addWave();
 		}
+
+		minF = tree.getMin();
+		return tree.getMin();
 	}
 
 	int min(int *var, int set, Task &task) {
