@@ -55,11 +55,13 @@ public:
 		}
 		timeCheck += (clock() - bufTime) / 1000;*/
 
-		tree.findPrsp();
-		tree.produce(task);
-		tree.marks(*this, task);
-		tree.cut(maximum);
-		tree.addWave();
+		while (!tree.isEmpty()) {
+			tree.findPrsp();
+			tree.produce(task);
+			tree.marks(*this, task);
+			tree.cut(maximum);
+			tree.addWave();
+		}
 	}
 
 	int min(int *var, int set, Task &task) {

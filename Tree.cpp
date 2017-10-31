@@ -154,7 +154,6 @@ public:
 				maximum = l->info.max;
 				setBest(l);
 			}
-
 			if (l->info.set == n || l->info.min > maximum) {
 				help = l->next;
 				pool.push(wave.pop(l->info));
@@ -201,7 +200,15 @@ public:
 		return best->min;
 	}
 
-	void store(Stack<leaf>::elem *l) {
+	bool isEmpty() {
+		return tree.count == 0 ? true : false;
+	}
+
+	void printPrsp() {
+
+	}
+
+	/*void store(Stack<leaf>::elem *l) {
 		pool.push(l);
 	}
 
