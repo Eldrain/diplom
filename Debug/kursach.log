@@ -1,0 +1,44 @@
+﻿Сборка начата 27.10.2017 22:37:27.
+     1>Проект "C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" в узле 2 (целевые объекты Rebuild).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AMethod.cpp BB.cpp BBreal.cpp FrontAlg.cpp Jobs.cpp Stack.cpp Procs.cpp SortOut.cpp Task.cpp IOFile.cpp multSch.cpp test.cpp Tree.cpp
+         Tree.cpp
+         test.cpp
+     1>c:\users\артём\documents\visual studio 2013\projects\kursach\kursach\test.cpp(14): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+         multSch.cpp
+     1>c:\users\артём\documents\visual studio 2013\projects\kursach\kursach\test.cpp(14): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+         IOFile.cpp
+         Task.cpp
+         SortOut.cpp
+         Procs.cpp
+         Stack.cpp
+         Jobs.cpp
+         FrontAlg.cpp
+         BBreal.cpp
+         BB.cpp
+         AMethod.cpp
+         Создание кода...
+     1>c:\users\артём\documents\visual studio 2013\projects\kursach\kursach\bbreal.cpp(119): warning C4715: BBreal::clip: значение возвращается не при всех путях выполнения
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.lib" /MACHINE:X86 Debug\AMethod.obj
+         Debug\BB.obj
+         Debug\BBreal.obj
+         Debug\FrontAlg.obj
+         Debug\Jobs.obj
+         Debug\Stack.obj
+         Debug\Procs.obj
+         Debug\SortOut.obj
+         Debug\Task.obj
+         Debug\IOFile.obj
+         Debug\multSch.obj
+         Debug\stdafx.obj
+         Debug\test.obj
+         Debug\Tree.obj
+         kursach.vcxproj -> C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.exe
+     1>Сборка проекта "C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" завершена (целевые объекты Rebuild).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:23.14

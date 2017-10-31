@@ -1,0 +1,71 @@
+#include "stdafx.h"
+#include "AMethod.cpp"
+
+class SortOut : public AMethod {
+public:
+	int countVar;
+	double timeSO, timeCrit, timeCheck, buf;
+
+	int AMethod::solve(Task &task) {
+		n = task.n;
+		update();
+		minF = 0;
+		countVar = 0;
+		for (int i = 0; i < n; i++)
+			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает время выполнения работы.
+		clearArr(var, n);
+		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
+
+		timeCrit = timeCheck = buf = 0;
+		timeSO = clock();
+		minF = sortOut(0, task);
+		timeSO = (clock() - timeSO) / 1000;
+
+		return minF;
+	}
+
+	int sortOut(int set, Task &task) {
+		buf = clock();
+		if (!task.jobs.checkVar(var, set)) {
+			timeCheck += (clock() - buf) / 1000;
+			return minF;
+		}
+		timeCheck += (clock() - buf) / 1000;
+		//std::cout << std::endl;
+		//printArr(var, jobs->count);
+		//std::cout << "| min = " << min(var, set) << "; max =  " << max(var, set);
+
+		countVar++;
+		if (set < n) {
+			int j = 0;
+			for (int i = 0; i < n; i++) {
+				j = 0;
+				while (var[j] != 0)
+					if (var[j] == i + 1)
+						break;
+					else
+						j++;
+				if (j == set) {
+					var[set] = i + 1;
+					sortOut(set + 1,task);
+					var[set] = 0;
+				}
+			}
+		}
+		else {
+			int f = 0;
+			//jobs->print();
+
+			buf = clock();
+			f = task.procs.crit(var, task.jobs, set);
+			timeCrit += (clock() - buf) / 1000;
+
+			if (f < minF) {
+				minF = f;
+				for (int i = 0; i < n; i++)
+					best[i] = var[i];
+			}
+		}
+		return minF;
+	}
+};

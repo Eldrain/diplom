@@ -1,0 +1,140 @@
+#pragma once
+#include "stdafx.h"
+#include "Jobs.cpp"
+
+class Procs {
+private:
+	int count;
+public:
+	class processor {
+	public:
+		int workTime, job, bufTime, allTime;
+
+		processor() {
+			prepare();
+		}
+		
+		void prepare() {
+			workTime = allTime = bufTime = 0;
+			job = 0;
+		}
+	};
+
+	processor *procs;
+
+	Procs() {
+		count = 0;
+		procs = NULL;
+	}
+
+	Procs(int m) {
+		this->count = m;
+		procs = new processor[m];
+	}
+
+	void create(int m) {
+		this->count = m;
+		delete procs;
+		procs = new processor[m];
+	}
+
+	int crit(int *arr, Jobs &jobs, int set) {
+		prepare();
+		//for (int i = 0; i < set; i++)
+		//	std::cout << arr[i] << ", ";
+		//	procs[i].prepare();
+		if (set == 0)
+			return 0;
+		int workTime = 0, minWork = 0, f = 0, completeJob = 0;
+
+		jobs.refresh();
+		int nextJob = 0;
+		while (true) {
+			for (int i = 0; i < count; i++)
+				if (jobs.front.find(arr[nextJob]) && procs[i].workTime == 0) {
+					procs[i].workTime = jobs[arr[nextJob] - 1];//[]
+					procs[i].job = arr[nextJob];
+					nextJob++;
+				}
+				
+
+			minWork = jobs[0];//[]
+
+			for (int i = 0; i < count; i++)
+				if (procs[i].workTime > 0 && minWork > procs[i].workTime)
+					minWork = procs[i].workTime;
+
+			for (int i = 0; i < count; i++) {
+				procs[i].bufTime += minWork;
+
+				if (procs[i].workTime > 0) {
+					procs[i].workTime -= minWork;
+					procs[i].allTime += procs[i].bufTime;
+					procs[i].bufTime = 0;
+
+					if (procs[i].workTime == 0) {
+						jobs.complete(procs[i].job);
+						
+						completeJob++;
+						if (completeJob == set)
+							return procs[i].allTime;
+						
+					}
+				}
+				else if (procs[i].workTime < 0)
+					std::cout << "\nProcNum Error!";
+			}
+		}
+	}
+
+	//Досчет(adjustment - подгонка). Функция используется для подсчета нижней оценки: прибавляет к общему
+	//времени выполнения еще k работ с минимальной длительностью
+	int adjustment(int jobTime, int count) {
+		int minNum = 0, maxNum = 0;
+
+		while (count != 0) {
+			for (int i = 0; i < count; i++)
+				if (procs[i].allTime < procs[minNum].allTime)
+					minNum = i;
+			procs[minNum].allTime += jobTime;
+			count--;
+		}
+
+		for (int i = 0; i < count; i++)
+			if (procs[i].allTime > procs[maxNum].allTime)
+				maxNum = i;
+		return procs[maxNum].allTime;
+	}
+
+	//индекс процессора с минимальной занятостью
+	int minTime() {
+		int min = 0;
+		for (int i = 0; i < count; i++)
+			if (procs[min].allTime > procs[i].allTime)
+				min = i;
+		return min;
+	}
+
+	//индекс процессора с максимальной занятостью
+	int maxTime() {
+		int max = 0;
+		for (int i = 0; i < count; i++)
+			if (procs[max].allTime < procs[i].allTime)
+				max = i;
+		return max;
+	}
+	
+	void prepare() {
+		for (int i = 0; i < count; i++)
+			procs[i].prepare();
+	}
+
+	int getCount() {
+		return count;
+	}
+
+	~Procs() {
+		delete procs;
+		procs = NULL;
+	}
+};
