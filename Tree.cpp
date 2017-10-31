@@ -145,16 +145,22 @@ public:
 	}
 
 	void cut(int &maximum) {
-		Stack<leaf>::elem *l = wave.first;
+		Stack<leaf>::elem *l = wave.first, *help = NULL;
 		if (!l)
 			return;
 
 		while (l) {
-			if (l->info.max < maximum)
+			if (l->info.max < maximum){
 				maximum = l->info.max;
-			if (l->info.min > maximum)
+				setBest(l);
+			}
+
+			if (l->info.set == n || l->info.min > maximum) {
+				help = l->next;
 				pool.push(wave.pop(l->info));
-			l = l->next;
+				l = help;
+			} else
+				l = l->next;
 		}
 	}
 
