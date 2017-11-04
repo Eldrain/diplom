@@ -15,13 +15,17 @@ public:
 	}
 
 	void TreeTest() {
-		testLeaf();
-	}
-
-	void testLeaf() {
 		int arr[] = { 1, 2, 3 };
 		Tree::leaf lf(arr, 3, 0, 0, 3), lf2(new int[]{2, 3, 0}, 3, 1, 1, 2), lf3(arr, 3, 1, 2, 3);
+		Tree tree(3);
 
+		log("Tree test");
+		testLeaf(lf, lf2, lf3, arr);
+		tree.addInWave(&lf);
+
+	}
+
+	void testLeaf(Tree::leaf &lf, Tree::leaf &lf2, Tree::leaf &lf3, int *arr) {		
 		res("Create leaf and copyArr", compare(lf.arr, arr, 3));
 		res("operator == 1", !(lf == lf2));
 		res("operator == 2", lf == lf3);
@@ -45,5 +49,9 @@ public:
 			std::cout << testName << ": - Error\n";
 		}
 		SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 7));
+	}
+
+	void log(string str) {
+		std::cout << std::endl << str << ":";
 	}
 };
