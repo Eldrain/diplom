@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "test.cpp"
 #include <conio.h>
+#include "UnitTests.cpp"
 
 using namespace std;
 
@@ -23,9 +24,14 @@ int main()
 	
 	Task task("data3.txt");
 	int n = 0, m = 0;
+
+	UnitTests t;
+
+	t.TreeTest();
+
 	
-	task.jobs.print();
-	cout << endl << task.procs.getCount();
+	//task.jobs.print();
+	//cout << endl << task.procs.getCount();
 
 	
 	//SortOut sOut(&jobs, &procs);
