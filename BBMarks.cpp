@@ -1,8 +1,9 @@
 #pragma once
 #include "stdafx.h"
 #include "Marks.cpp"
+#include "Task.cpp"
 
-class BBMarks : public Marks {
+class BBMarks {
 	int n, *buf;
 public:
 	BBMarks() {
@@ -20,7 +21,8 @@ public:
 		delete[] buf;
 		buf = new int[n];
 	}
-	int min(int *var, int set, Task &task) {
+
+	int minB(int *var, int set, Task &task) {
 		task.procs.crit(var, task.jobs, set);
 
 		int value = task.procs.adjustment(task.jobs.jobs[task.jobs.minTime()].time, n - set);
@@ -28,7 +30,7 @@ public:
 		return value;
 	}
 
-	int max(int *var, int set, Task &task) {
+	int maxB(int *var, int set, Task &task) {
 		int i = 0;
 		task.jobs.refresh();
 

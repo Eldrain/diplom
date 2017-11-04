@@ -4,7 +4,7 @@
 #include "BBMarks.cpp"
 
 class Tree {
-private:
+public:
 	class leaf {
 	public:
 		//static int nextId;
@@ -63,8 +63,7 @@ private:
 	Stack<leaf> pool, tree, wave;
 	Stack<leaf>::elem *prsp;
 	leaf *best;
-	
-public:
+
 	Tree() {
 		count = 0;
 		this->n = 0;
@@ -139,8 +138,8 @@ public:
 			return;
 
 		while (l) {
-			l->info.max = mark.max(l->info.arr, l->info.set, task);
-			l->info.min = mark.min(l->info.arr, l->info.set, task);
+			l->info.max = mark.maxB(l->info.arr, l->info.set, task);
+			l->info.min = mark.minB(l->info.arr, l->info.set, task);
 			l = l->next;
 		}
 	}

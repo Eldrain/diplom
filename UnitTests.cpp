@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <iostream>
 #include "Windows.h"
+#include "Tree.cpp"
+#include <string>
 
 class UnitTests {
 private:
@@ -13,18 +15,35 @@ public:
 	}
 
 	void TreeTest() {
-		res(true);
-		res(false);
+		testLeaf();
 	}
 
-	void res(bool result) {
+	void testLeaf() {
+		int arr[] = { 1, 2, 3 };
+		Tree::leaf lf(arr, 3, 0, 0, 3), lf2(new int[]{2, 3, 0}, 3, 1, 1, 2), lf3(arr, 3, 1, 2, 3);
+
+		res("Create leaf and copyArr", compare(lf.arr, arr, 3));
+		res("operator == 1", !(lf == lf2));
+		res("operator == 2", lf == lf3);
+	}
+
+	bool compare(int *arr1, int *arr2, int n) {
+		for (int i = 0; i < n; i++)
+			if (arr1[i] != arr2[i])
+				return false;
+		return true;
+	}
+
+	void res(string testName, bool result) {
+
 		if (result) {
 			SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 10));
-			std::cout << "Matrix has you\n";
+			std::cout << testName << ": + Success\n";
 		}
 		else {
 			SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 12));
-			std::cout << "Matrix has you\n";
+			std::cout << testName << ": - Error\n";
 		}
+		SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 7));
 	}
 };

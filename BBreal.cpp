@@ -70,7 +70,7 @@ public:
 		return tree.getMin();
 	}
 
-	int min(int *var, int set, Task &task) {
+	int minB(int *var, int set, Task &task) {
 		task.procs.crit(var, task.jobs, set);
 
 		int value = task.procs.adjustment(task.jobs.jobs[task.jobs.minTime()].time, n - set);
