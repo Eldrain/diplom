@@ -4,6 +4,23 @@
 #include "SortOut.cpp"
 #include "BB.cpp"
 #include "FrontAlg.cpp"
+<<<<<<< HEAD
+#include <ctime>
+
+#define M 3
+using namespace std;
+class test {
+private:
+	AMethod **mtds;
+public:
+	test() {
+		srand(time(0));
+		mtds = new AMethod*[M];
+		mtds[0] = new SortOut();
+		mtds[1] = new BB();
+		mtds[2] = new FrontAlg();
+
+=======
 #include "BBreal.cpp"
 #include <ctime>
 
@@ -13,14 +30,19 @@ public:
 	test() {
 		srand(time(0));
 		
+>>>>>>> 89c9be00fc87e7ab81ff6ea0da222dd0ccd5c4e5
 	}
 
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry, Task &task) {
 		task.createProcs(m);
+<<<<<<< HEAD
+
+=======
 		AMethod *a = new BBreal;
 		SortOut sOut;
 		BB clip;
 		FrontAlg front;
+>>>>>>> 89c9be00fc87e7ab81ff6ea0da222dd0ccd5c4e5
 		int opt = 0;
 
 		for (int i = startN; i < finishN + 1; i++) {		
@@ -31,6 +53,20 @@ public:
 			for (int j = 0; j < i; j++)
 				cout << task.jobs[j] << ", ";
 			
+<<<<<<< HEAD
+			for (int i = 0; i < M; i++) {
+				opt = mtds[i]->solve(task);
+				cout << endl << mtds[i]->getName().c_str() << ": f = " << opt;
+				mtds[i]->printRes();
+				//cout << "\ncountVar = " << mtds[i]->countVar << "; time: " << mtds[i]->time << " s.";
+			}
+			
+/*
+			cout << endl << "Clip: f = " << clip.solve(task);
+			clip.printBest();
+			cout << "\ncountVar = " << clip.countVar << "; time: " << clip.timeClip << " s.";
+			cout << "\nРазличий в перестановках: " << compare(sOut.best, clip.best, i + 1);
+=======
 
 			opt = sOut.solve(task);
 			cout << endl << "SortOut: f = " << opt;
@@ -45,13 +81,18 @@ public:
 			cout << endl << "BB: f = " << a->solve(task);
 			a->printRes();
 			//cout << "\ncountVar = " << a->countVar << "; time: " << clip.timeClip << " s.";
+>>>>>>> 89c9be00fc87e7ab81ff6ea0da222dd0ccd5c4e5
 
 			front.solve(task);
 			cout << endl << "FrontAlg: ";
 			cout << endl << "f1 = " << front.f1 << "\nОценка1 = " << ((double)front.f1 - opt)/opt * 100 << " %.";
 			front.printBest1();
 			cout << endl << "f2 = " << front.f2 << "\nОценка2 = " << ((double)front.f2 - opt) / opt * 100 << " %.";
+<<<<<<< HEAD
+			front.printBest2();*/
+=======
 			front.printBest2();
+>>>>>>> 89c9be00fc87e7ab81ff6ea0da222dd0ccd5c4e5
 			/*cout << endl << "f3 = " << front.f3 << "\nОценка3 = " << ((double)front.f3 - opt) / opt * 100 << " %.";
 			front.printBest3();*/
 		}
