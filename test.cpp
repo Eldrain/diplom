@@ -7,7 +7,7 @@
 #include "BBreal.cpp"
 #include <ctime>
 
-#define CM 3
+#define CM 2
 using namespace std;
 class test {
 private:
@@ -18,7 +18,7 @@ public:
 		mtds = new AMethod*[CM];
 		mtds[0] = new SortOut();
 		mtds[1] = new BB();
-		mtds[2] = new FrontAlg();
+		//mtds[2] = new FrontAlg();
 		//mtds[3] = new FrontAlg();
 	}
 
@@ -28,7 +28,7 @@ public:
 
 		for (int i = startN; i < finishN + 1; i++) {		
 			generateTree(task.jobs, i, maxTime, retry);
-			task.n = task.jobs.getCount();
+			task.n = i;
 			task.jobs.print();
 			cout << endl << endl << i << " JOBS:\nTimes: ";
 			for (int j = 0; j < i; j++)
@@ -121,5 +121,12 @@ public:
 	void printArr(int *arr, int n) {
 		for (int i = 0; i < n; i++)
 			std::cout << arr[i] << ", ";
+	}
+
+	~test() {
+		for (int i = 0; i < CM; i++)
+			delete mtds[i];
+		delete mtds;
+		mtds = NULL;
 	}
 };

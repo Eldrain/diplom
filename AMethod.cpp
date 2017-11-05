@@ -37,7 +37,7 @@ public:
 		printArr(best, n);
 	}
 
-	~AMethod() {
+	virtual ~AMethod() {
 		delete[] var;
 		delete[] best;
 	}

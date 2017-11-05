@@ -25,9 +25,9 @@ int main()
 	
 	Task task("data3.txt");
 	int n = 0, m = 0;
-	UnitTests t;
+	//UnitTests t;
 
-	t.TreeTest();
+	//t.TreeTest();
 
 	test test1;
 	test1.timeTest(5, 20, 3, 50, 8, task);

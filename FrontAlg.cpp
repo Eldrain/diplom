@@ -118,6 +118,7 @@ public:
 	~FrontAlg() {
 		delete[] sol2;
 		delete[] sol3;
+		sol1 = NULL;
 		sol2 = NULL;
 		sol3 = NULL;
 	}

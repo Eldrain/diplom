@@ -13,7 +13,7 @@ public:
 		buf = new int[n];
 	}
 
-	int solve(Task &task) {
+	int AMethod::solve(Task &task) {
 		minF = 0;
 		countVar = 0;
 
