@@ -7,7 +7,6 @@ public:
 	int *sol1, *sol2, *sol3, f1, f2, f3;
 
 	FrontAlg() {
-		sol1 = best;
 		f1 = 0;
 		f2 = 0;
 		f3 = 0;
@@ -15,6 +14,7 @@ public:
 
 	void update() {
 		AMethod::update();
+		sol1 = best;
 		delete[] sol2;
 		delete[] sol3;
 		sol2 = new int[n];

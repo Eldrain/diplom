@@ -7,19 +7,19 @@
 #include "BBreal.cpp"
 #include <ctime>
 
-#define CM 4
+#define CM 3
 using namespace std;
 class test {
 private:
 	AMethod **mtds;
 public:
 	test() {
-		srand(time(0));
+		//srand(time(0));
 		mtds = new AMethod*[CM];
 		mtds[0] = new SortOut();
 		mtds[1] = new BB();
-		mtds[2] = new BBreal();
-		mtds[3] = new FrontAlg();
+		mtds[2] = new FrontAlg();
+		//mtds[3] = new FrontAlg();
 	}
 
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry, Task &task) {

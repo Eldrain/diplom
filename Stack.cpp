@@ -3,7 +3,7 @@
 #include <iostream>
 
 template <typename T>
-class Stack { //“олько дл€ примитивных типов, указатели на классы использовать нельз€
+class Stack {//“олько дл€ примитивных типов
 public:
 	class elem {
 	public:

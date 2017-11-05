@@ -1,9 +1,8 @@
 #pragma once
 #include "stdafx.h"
 #include "Marks.cpp"
-#include "Task.cpp"
 
-class BBMarks {
+class BBMarks : public Marks {
 	int n, *buf;
 public:
 	BBMarks() {

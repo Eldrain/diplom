@@ -1,4 +1,4 @@
-﻿Сборка начата 05.11.2017 14:36:19.
+﻿Сборка начата 05.11.2017 18:18:18.
      1>Проект "C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" в узле 2 (целевые объекты Rebuild).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (kursach.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
@@ -8,9 +8,7 @@
          UnitTests.cpp
          Tree.cpp
          test.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\test.cpp(17): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
          multSch.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\test.cpp(17): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
          IOFile.cpp
          Task.cpp
          SortOut.cpp
@@ -49,4 +47,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:07.30
+Затраченное время: 00:00:07.59

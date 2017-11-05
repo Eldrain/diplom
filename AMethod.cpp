@@ -7,6 +7,11 @@ class AMethod {
 protected:
 	int *var, *best, n, m, minF;
 
+	void copyArr(int *arr1, int *arr2, int n) {
+		for (int i = 0; i < n; i++)
+			arr1[i] = arr2[i];
+	}
+
 	void printArr(int *arr, int n) {
 		for (int i = 0; i < n; i++)
 			std::cout << arr[i] << ", ";
@@ -28,7 +33,7 @@ public:
 	virtual int solve(Task &task) = 0;
 
 	void printRes() {
-		std::cout << std::endl << "Best sort out: ";
+		std::cout << std::endl << "Best resulst: ";
 		printArr(best, n);
 	}
 

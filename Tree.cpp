@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "ObjectStack.cpp"
-#include "BBMarks.cpp"
+#include "Marks.cpp"
 
 class Tree {
 public:
@@ -134,7 +134,7 @@ public:
 		prsp = NULL;
 	}
 
-	void marks(BBMarks &mark, Task &task) {
+	void marks(Marks &mark, Task &task) {
 		ObjectStack<leaf>::elem *l = wave.first;
 		if (!l)
 			return;
@@ -184,7 +184,7 @@ public:
 	}
 
 	void setBest(leaf *l) {
-		setBest(l->arr, l->min);
+		setBest(l->arr, l->max);
 	}
 
 	void setBest(int *arr, int min) {
@@ -209,11 +209,11 @@ public:
 	}
 
 	void printPrsp() {
+		std::cout << "\nPerspective:";
 		printLeaf(prsp);
 	}
 
 	void printLeaf(leaf *l) {
-		std::cout << "\nPerspective:";
 		for (int i = 0; i < l->set; i++)
 			std::cout << l->arr[i] << ", ";
 		std::cout << "\nmin = " << l->min << ";max = " << l->max;

@@ -43,7 +43,7 @@ public:
 
 		int set = countSet(best, n);
 		if (set < n) {
-			max(best, set, task);
+			mark.maxB(best, set, task);
 			for (int i = set; i < n; i++)
 				best[i] = buf[i];
 		}
@@ -67,10 +67,12 @@ public:
 		}
 
 		minF = tree.getMin();
+		copyArr(best, tree.best->arr, n);
+
 		return tree.getMin();
 	}
 
-	int minB(int *var, int set, Task &task) {
+	/*int minB(int *var, int set, Task &task) {
 		task.procs.crit(var, task.jobs, set);
 
 		int value = task.procs.adjustment(task.jobs.jobs[task.jobs.minTime()].time, n - set);
@@ -98,7 +100,7 @@ public:
 		//std::cout << std::endl << "\nbuffer: ";
 		//printArr(buffer, n);
 		return task.procs.crit(buf, task.jobs, n);
-	}
+	}*/
 
 	int countSet(int *var, int n) {
 		int set = 0;
