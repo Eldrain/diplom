@@ -25,28 +25,12 @@ int main()
 	
 	Task task("data3.txt");
 	int n = 0, m = 0;
-	//list<Tree::leaf> pool, tree;
-	
-	/*pool.push_back(*new Tree::leaf(new int[]{1, 2}, 2, 0, 0, 2));
-	pool.push_back(*new Tree::leaf(new int[]{1, 2, 3}, 3, 0, 0, 3));
-	pool.push_back(*new Tree::leaf(new int[]{1, 2, 3}, 3, 0, 0, 3));*/
-	//Tree::leaf *get = &pool.ge;
-	/*for each(Tree::leaf var in pool) {
-		cout << var.set;
-	}
-
-
-	cout << pool.size();*/
 	UnitTests t;
 
 	t.TreeTest();
 
-	
-	//task.jobs.print();
-	//cout << endl << task.procs.getCount();
-	//SortOut sOut(&jobs, &procs);
-	//Clip clip(&jobs, &procs);
-	//test test1;
+	test test1;
+	test1.timeTest(5, 20, 3, 50, 8, task);
 	//test1.start();
 	//test1.generateTree(jobs, 10, 50, 5);
 	//test1.timeTest(5, 20, 3, 50, 5, task);

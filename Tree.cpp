@@ -129,6 +129,9 @@ public:
 				var[set] = 0;
 			}
 		}
+
+		pool.push(tree.pop(prsp));
+		prsp = NULL;
 	}
 
 	void marks(BBMarks &mark, Task &task) {

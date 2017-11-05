@@ -27,36 +27,18 @@ public:
 		int opt = 0;
 
 		for (int i = startN; i < finishN + 1; i++) {		
-			/*generateTree(task.jobs, i, maxTime, retry);
+			generateTree(task.jobs, i, maxTime, retry);
 			task.n = task.jobs.getCount();
 			task.jobs.print();
 			cout << endl << endl << i << " JOBS:\nTimes: ";
 			for (int j = 0; j < i; j++)
 				cout << task.jobs[j] << ", ";
 			
-
-			opt = sOut.solve(task);
-			cout << endl << "SortOut: f = " << opt;
-			sOut.printRes();
-			cout << "\ncountVar = " << sOut.countVar << "; timeSO: " << sOut.timeSO << " s.";
-
-			cout << endl << "Clip: f = " << clip.solve(task);
-			clip.printRes();
-			cout << "\ncountVar = " << clip.countVar << "; time: " << clip.timeClip << " s.";
-			//cout << "\nРазличий в перестановках: " << compare(sOut., clip.best, i + 1);
-
-			cout << endl << "BB: f = " << a->solve(task);
-			a->printRes();
-			//cout << "\ncountVar = " << a->countVar << "; time: " << clip.timeClip << " s.";
-
-			front.solve(task);
-			cout << endl << "FrontAlg: ";
-			cout << endl << "f1 = " << front.f1 << "\nОценка1 = " << ((double)front.f1 - opt)/opt * 100 << " %.";
-			front.printBest1();
-			cout << endl << "f2 = " << front.f2 << "\nОценка2 = " << ((double)front.f2 - opt) / opt * 100 << " %.";
-			front.printBest2();
-			/*cout << endl << "f3 = " << front.f3 << "\nОценка3 = " << ((double)front.f3 - opt) / opt * 100 << " %.";
-			front.printBest3();*/
+			for (int j = 0; j < CM; j++) {
+				opt = mtds[j]->solve(task);
+				cout << endl << "Method " << j + 1 << ": f = " << opt << "; ";
+				mtds[j]->printRes();
+			}
 		}
 	}
 

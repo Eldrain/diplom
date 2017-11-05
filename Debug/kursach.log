@@ -1,4 +1,4 @@
-﻿Сборка начата 05.11.2017 14:08:26.
+﻿Сборка начата 05.11.2017 14:36:19.
      1>Проект "C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" в узле 2 (целевые объекты Rebuild).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (kursach.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
@@ -11,11 +11,6 @@
      1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\test.cpp(17): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
          multSch.cpp
      1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\test.cpp(17): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\multsch.cpp(34): error C2039: ge: не является членом "std::list<Tree::leaf,std::allocator<_Ty>>"
-                 with
-                 [
-                     _Ty=Tree::leaf
-                 ]
          IOFile.cpp
          Task.cpp
          SortOut.cpp
@@ -30,8 +25,28 @@
          BB.cpp
          AMethod.cpp
          Создание кода...
-     1>Сборка проекта "C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" завершена (целевые объекты Rebuild) с ошибкой.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.lib" /MACHINE:X86 Debug\AMethod.obj
+         Debug\BB.obj
+         Debug\BBMarks.obj
+         Debug\BBreal.obj
+         Debug\FrontAlg.obj
+         Debug\Jobs.obj
+         Debug\Marks.obj
+         Debug\ObjectStack.obj
+         Debug\Stack.obj
+         Debug\Procs.obj
+         Debug\SortOut.obj
+         Debug\Task.obj
+         Debug\IOFile.obj
+         Debug\multSch.obj
+         Debug\stdafx.obj
+         Debug\test.obj
+         Debug\Tree.obj
+         Debug\UnitTests.obj
+         kursach.vcxproj -> C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.exe
+     1>Сборка проекта "C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" завершена (целевые объекты Rebuild).
 
-Ошибка сборки.
+Сборка успешно завершена.
 
-Затраченное время: 00:00:06.39
+Затраченное время: 00:00:07.30
