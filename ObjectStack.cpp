@@ -3,32 +3,38 @@
 #include <iostream>
 
 template <typename T>
-class Stack { //Только для примитивных типов, указатели на классы использовать нельзя
+class ObjectStack { 
 public:
 	class elem {
 	public:
-		T info;
+		T *info;
 		elem *next;
 
 		elem() {
+			info = NULL;
 			next = NULL;
 		}
 
-		elem(T info) {
+		elem(T *info) {
 			this->info = info;
 			next = NULL;
+		}
+
+		~elem() {
+			delete info;
+			info = NULL;
 		}
 	};
 
 	elem *first;
 	int count;
 
-	Stack() {
+	ObjectStack() {
 		first = NULL;
 		count = 0;
 	}
 
-	void push(T info) {
+	void push(T *info) {
 		elem *newElem = new elem(info);
 		newElem->next = first;
 		first = newElem;
@@ -54,7 +60,7 @@ public:
 			return NULL;
 	}
 
-	elem* pop(T info) {
+	elem* pop(T *info) {
 		elem *el = first, *prev = NULL;
 
 		while (el) {
@@ -77,16 +83,6 @@ public:
 		return el;
 	}
 
-	bool find(T info) {
-		elem *el = first;
-		while (el) {
-			if (el->info == info)
-				return true;
-			el = el->next;
-		}
-		return false;
-	}
-
 	void print() {
 		elem *now = first;
 		while (now != NULL) {
@@ -103,13 +99,13 @@ public:
 		}
 	}
 
-	void getAll(Stack &stack) {
+	void getAll(ObjectStack &stack) {
 		while (stack.first) {
 			push(stack.pop());
 		}
 	}
 
-	~Stack() {
+	~ObjectStack() {
 		clear();
 	}
 };

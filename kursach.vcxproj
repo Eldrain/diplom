@@ -95,6 +95,7 @@
     <ClCompile Include="FrontAlg.cpp" />
     <ClCompile Include="Jobs.cpp" />
     <ClCompile Include="Marks.cpp" />
+    <ClCompile Include="ObjectStack.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Procs.cpp" />
     <ClCompile Include="SortOut.cpp" />

@@ -1,6 +1,6 @@
 #pragma once
 #include "stdafx.h"
-#include "Stack.cpp"
+#include "ObjectStack.cpp"
 #include "BBMarks.cpp"
 
 class Tree {
@@ -60,9 +60,8 @@ public:
 	};
 
 	int count, n;
-	Stack<leaf> pool, tree, wave;
-	Stack<leaf>::elem *prsp;
-	leaf *best;
+	ObjectStack<leaf> pool, tree, wave;
+	leaf *best, *prsp;
 
 	Tree() {
 		count = 0;
@@ -93,16 +92,16 @@ public:
 	}
 
 	void findPrsp() {
-		Stack<leaf>::elem *l = tree.first;
+		ObjectStack<leaf>::elem *l = tree.first;
 		if (!l)
 			return;
-		int min = l->info.min;
-		prsp = l;
+		int min = l->info->min;
+		prsp = l->info;
 
 		while (l) {
-			if (l->info.min < min) {
-				min = l->info.min;
-				prsp = l;
+			if (l->info->min < min) {
+				min = l->info->min;
+				prsp = l->info;
 			}
 			l = l->next;
 		}
@@ -111,12 +110,12 @@ public:
 	void produce(Task &task) {
 		bool seted = false;
 		int mx = 0, mn = 0;
-		int set = prsp->info.set, *var = prsp->info.arr;
+		int set = prsp->set, *var = prsp->arr;
 
 		for (int i = 0; i < n; i++) {
 			seted = false;
-			for (int j = 0; j < prsp->info.set; j++)
-				if (prsp->info.arr[j] == i + 1) {
+			for (int j = 0; j < prsp->set; j++)
+				if (var[j] == i + 1) {
 				seted = true;
 				break;
 				}
@@ -133,28 +132,28 @@ public:
 	}
 
 	void marks(BBMarks &mark, Task &task) {
-		Stack<leaf>::elem *l = wave.first;
+		ObjectStack<leaf>::elem *l = wave.first;
 		if (!l)
 			return;
 
 		while (l) {
-			l->info.max = mark.maxB(l->info.arr, l->info.set, task);
-			l->info.min = mark.minB(l->info.arr, l->info.set, task);
+			l->info->max = mark.maxB(l->info->arr, l->info->set, task);
+			l->info->min = mark.minB(l->info->arr, l->info->set, task);
 			l = l->next;
 		}
 	}
 
 	void cut(int &maximum) {
-		Stack<leaf>::elem *l = wave.first, *help = NULL;
+		ObjectStack<leaf>::elem *l = wave.first, *help = NULL;
 		if (!l)
 			return;
 
 		while (l) {
-			if (l->info.max < maximum){
-				maximum = l->info.max;
-				setBest(l);
+			if (l->info->max < maximum){
+				maximum = l->info->max;
+				setBest(l->info);
 			}
-			if (l->info.set == n || l->info.min > maximum) {
+			if (l->info->set == n || l->info->min > maximum) {
 				help = l->next;
 				pool.push(wave.pop(l->info));
 				l = help;
@@ -164,28 +163,25 @@ public:
 	}
 
 	void addInWave(int *arr, int max, int min, int set) {
-		Stack<leaf>::elem *l = NULL;
+		leaf *l = NULL;
 		if (pool.count > 0) {
-			l = pool.pop();
-			l->info.setData(arr, n, max, min, set);
+			l = pool.pop()->info;
+			l->setData(arr, n, max, min, set);
 		}
 		else {
-			leaf *newElem = new leaf(arr, n, max, min, set);
-			l = new Stack<leaf>::elem(*newElem);
+			l = new leaf(arr, n, max, min, set);
 			count++;
 		}
-
 		wave.push(l);
-		
 	}
 
-	void addInWave(Stack<leaf>::elem *l) {
+	void addInWave(leaf *l) {
 		wave.push(l);
 		count++;
 	}
 
-	void setBest(Stack<leaf>::elem *l) {
-		setBest(l->info.arr, l->info.min);
+	void setBest(leaf *l) {
+		setBest(l->arr, l->min);
 	}
 
 	void setBest(int *arr, int min) {
@@ -197,7 +193,7 @@ public:
 		tree.getAll(wave);
 	}
 
-	Stack<leaf>::elem *getFirstInWave() {
+	ObjectStack<leaf>::elem *getFirstInWave() {
 		return wave.first;
 	}
 	
@@ -210,7 +206,7 @@ public:
 	}
 
 	void printPrsp() {
-		printLeaf(&prsp->info);
+		printLeaf(prsp);
 	}
 
 	void printLeaf(leaf *l) {
@@ -221,10 +217,10 @@ public:
 	}
 
 	void printTree() {
-		Stack<leaf>::elem *l = tree.first;
+		ObjectStack<leaf>::elem *l = tree.first;
 
 		while (l) {
-			printLeaf(&l->info);
+			printLeaf(l->info);
 			l = l->next;
 		}
 	}

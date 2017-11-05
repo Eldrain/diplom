@@ -5,6 +5,7 @@
 #include "test.cpp"
 #include <conio.h>
 #include "UnitTests.cpp"
+#include <list>
 
 using namespace std;
 
@@ -24,7 +25,18 @@ int main()
 	
 	Task task("data3.txt");
 	int n = 0, m = 0;
+	//list<Tree::leaf> pool, tree;
+	
+	/*pool.push_back(*new Tree::leaf(new int[]{1, 2}, 2, 0, 0, 2));
+	pool.push_back(*new Tree::leaf(new int[]{1, 2, 3}, 3, 0, 0, 3));
+	pool.push_back(*new Tree::leaf(new int[]{1, 2, 3}, 3, 0, 0, 3));*/
+	//Tree::leaf *get = &pool.ge;
+	/*for each(Tree::leaf var in pool) {
+		cout << var.set;
+	}
 
+
+	cout << pool.size();*/
 	UnitTests t;
 
 	t.TreeTest();
