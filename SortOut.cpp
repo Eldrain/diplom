@@ -17,9 +17,9 @@ public:
 		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
 
 		timeCrit = timeCheck = buf = 0;
-		timeSO = clock();
+		time = clock();
 		minF = sortOut(0, task);
-		timeSO = (clock() - timeSO) / 1000;
+		time = (clock() - time) / 1000;
 
 		return minF;
 	}

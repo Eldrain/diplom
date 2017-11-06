@@ -24,8 +24,10 @@ public:
 	int solve(Task &task) {
 		n = task.n;
 		update();
+		time = clock();
 		alg1(task);
 		alg2(task);
+		time = (clock() - time) / 1000;
 		//alg3();
 		if (f1 > f2)
 			return f2;

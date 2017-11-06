@@ -3,28 +3,12 @@
 #include "Marks.cpp"
 
 class BBMarks : public Marks {
-	int n, *buf;
 public:
-	BBMarks() {
-		n = 0;
-		buf = NULL;
-	}
-
-	BBMarks(int n) {
-		this->n = n;
-		buf = new int[n];
-	}
-
-	void init(int n) {
-		this->n = n;
-		delete[] buf;
-		buf = new int[n];
-	}
 
 	int minB(int *var, int set, Task &task) {
 		task.procs.crit(var, task.jobs, set);
 
-		int value = task.procs.adjustment(task.jobs.jobs[task.jobs.minTime()].time, n - set);
+		int value = task.procs.adjustment(task.getTime(task.jobs.minTime()), n - set);
 
 		return value;
 	}
@@ -52,7 +36,5 @@ public:
 	}
 
 	~BBMarks() {
-		delete[] buf;
-		buf = NULL;
 	}
 };

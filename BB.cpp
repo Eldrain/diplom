@@ -1,14 +1,21 @@
 #include "stdafx.h"
 #include "AMethod.cpp"
+#include "BBMarks.cpp"
 
 class BB : public AMethod {
 public:
 	int countVar, *buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
+	Marks *marks;
+
+	BB() {
+		marks = new BBMarks();
+	}
 
 	void update() {
 		AMethod::update();
 
+		marks->init(n);
 		delete[] buf;
 		buf = new int[n];
 	}
@@ -27,13 +34,13 @@ public:
 		int maximum = minF;
 
 		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
-		timeClip = clock();
+		time = clock();
 		minF = clip(0, maximum, task);
-		timeClip = (clock() - timeClip) / 1000;
+		time = (clock() - time) / 1000;
 
 		int set = countSet(best, n);
 		if (set < n) {
-			max(best, set, task);
+			marks->maxB(best, set, task);
 			for (int i = set; i < n; i++)
 				best[i] = buf[i];
 		}
@@ -68,11 +75,11 @@ public:
 						continue;
 					}
 					bufTime = clock();
-					int mx = max(var, set + 1, task);
+					int mx = marks->maxB(var, set + 1, task);
 					maxTime += (clock() - bufTime) / 1000;
 					
 					bufTime = clock();
-					int mn = min(var, set + 1, task);
+					int mn = marks->minB(var, set + 1, task);
 					minTime += (clock() - bufTime) / 1000;
 
 					if (mx < maximum)
@@ -104,36 +111,6 @@ public:
 			}
 		}
 		return minF;
-	}
-
-	int min(int *var, int set, Task &task) {
-		task.procs.crit(var, task.jobs, set);
-		
-		int value = task.procs.adjustment(task.jobs.jobs[task.jobs.minTime()].time, n - set);
-		
-		return value;
-	}
-
-	int max(int *var, int set, Task &task) {
-		int i = 0;
-		task.jobs.refresh();
-
-		for (; i < set; i++) {
-			buf[i] = var[i];
-			task.jobs.complete(var[i]);
-		}
-
-		int maxNum = 0;
-		while (i < n) {
-			maxNum = task.jobs.front.findMax(task.jobs);
-			buf[i] = maxNum;
-			i++;
-			task.jobs.complete(maxNum);
-		}
-
-		//std::cout << std::endl << "\nbuffer: ";
-		//printArr(buffer, n);
-		return task.procs.crit(buf, task.jobs, n);
 	}
 
 	int countSet(int *var, int n) {

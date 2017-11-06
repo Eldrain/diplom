@@ -6,7 +6,7 @@
 class AMethod {
 protected:
 	int *var, *best, n, m, minF;
-
+	
 	void copyArr(int *arr1, int *arr2, int n) {
 		for (int i = 0; i < n; i++)
 			arr1[i] = arr2[i];
@@ -30,6 +30,7 @@ protected:
 	}
 
 public:
+	double time;
 	virtual int solve(Task &task) = 0;
 
 	void printRes() {

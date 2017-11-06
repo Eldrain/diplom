@@ -30,6 +30,10 @@ public:
 		this->m = m;
 		procs.create(m);
 	}
+
+	int getTime(int jobNum) {
+		return jobs.jobs[jobNum].time;
+	}
 };
 	/*bool checkVar(int *var, int set) {
 		helpRel = rel;

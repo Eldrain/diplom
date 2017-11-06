@@ -7,7 +7,7 @@
 #include "BBreal.cpp"
 #include <ctime>
 
-#define CM 2
+#define CM 4
 using namespace std;
 class test {
 private:
@@ -17,9 +17,9 @@ public:
 		//srand(time(0));
 		mtds = new AMethod*[CM];
 		mtds[0] = new SortOut();
-		mtds[1] = new BB();
-		//mtds[2] = new FrontAlg();
-		//mtds[3] = new FrontAlg();
+		mtds[1] = new FrontAlg();
+		mtds[2] = new BB();
+		mtds[3] = new BBreal();
 	}
 
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry, Task &task) {
@@ -36,7 +36,7 @@ public:
 			
 			for (int j = 0; j < CM; j++) {
 				opt = mtds[j]->solve(task);
-				cout << endl << "Method " << j + 1 << ": f = " << opt << "; ";
+				cout << endl << "Method " << j + 1 << ": time = " << mtds[j]->time << " s; f = " << opt << "; ";
 				mtds[j]->printRes();
 			}
 		}

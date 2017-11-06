@@ -93,14 +93,14 @@ public:
 		int minNum = 0, maxNum = 0;
 
 		while (count != 0) {
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < this->count; i++)
 				if (procs[i].allTime < procs[minNum].allTime)
 					minNum = i;
 			procs[minNum].allTime += jobTime;
 			count--;
 		}
 
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < this->count; i++)
 			if (procs[i].allTime > procs[maxNum].allTime)
 				maxNum = i;
 		return procs[maxNum].allTime;
