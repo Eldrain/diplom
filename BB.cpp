@@ -147,6 +147,6 @@ public:
 	}
 
 	~BB() {
-		delete buf;
+		delete[] buf;
 	}
 };

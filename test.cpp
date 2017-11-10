@@ -6,8 +6,9 @@
 #include "FrontAlg.cpp"
 #include "BBreal.cpp"
 #include <ctime>
+#include <vld.h>
 
-#define CM 2
+#define CM 4
 using namespace std;
 class test {
 private:
@@ -18,8 +19,8 @@ public:
 		mtds = new AMethod*[CM];
 		mtds[0] = new SortOut();
 		mtds[1] = new BB();
-		//mtds[2] = new FrontAlg();
-		//mtds[3] = new FrontAlg();
+		mtds[2] = new FrontAlg();
+		mtds[3] = new BBreal();
 	}
 
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry, Task &task) {

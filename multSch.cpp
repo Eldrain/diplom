@@ -5,7 +5,6 @@
 #include "test.cpp"
 #include <conio.h>
 #include "UnitTests.cpp"
-#include <list>
 
 using namespace std;
 
@@ -22,7 +21,7 @@ void printArr(int *arr, int n) {
 int main()
 {
 	setlocale(0, "");
-	
+
 	Task task("data3.txt");
 	int n = 0, m = 0;
 	//UnitTests t;
