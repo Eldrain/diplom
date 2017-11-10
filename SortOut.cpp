@@ -13,7 +13,7 @@ public:
 		countVar = 0;
 		for (int i = 0; i < n; i++)
 			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает время выполнения работы.
-		clearArr(var, n);
+		ArrFunctions::clearArr(var, n);
 		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
 
 		timeCrit = timeCheck = buf = 0;
@@ -31,9 +31,6 @@ public:
 			return minF;
 		}
 		timeCheck += (clock() - buf) / 1000;
-		//std::cout << std::endl;
-		//printArr(var, jobs->count);
-		//std::cout << "| min = " << min(var, set) << "; max =  " << max(var, set);
 
 		countVar++;
 		if (set < n) {

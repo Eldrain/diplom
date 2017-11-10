@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AMethod.cpp" />
+    <ClCompile Include="ArrFunctions.cpp" />
     <ClCompile Include="BB.cpp" />
     <ClCompile Include="BBMarks.cpp" />
     <ClCompile Include="BBreal.cpp" />

@@ -5,6 +5,7 @@
 #include "BB.cpp"
 #include "FrontAlg.cpp"
 #include "BBreal.cpp"
+#include "MultiSearch.h"
 #include <ctime>
 #include <vld.h>
 
@@ -26,6 +27,7 @@ public:
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry, Task &task) {
 		task.createProcs(m);
 		int opt = 0;
+		MultiSearch mSearch;
 
 		for (int i = startN; i < finishN + 1; i++) {		
 			generateTree(task.jobs, i, maxTime, retry);
