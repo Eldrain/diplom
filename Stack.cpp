@@ -103,6 +103,20 @@ public:
 		}
 	}
 
+	void swap() {
+		if (first == NULL)
+			return;
+		elem *now = first->next, *prev = first, *next;
+		while (now) {
+			next = now->next;
+			now->next = prev;
+			prev = now;
+			now = next;
+		}
+		first->next = NULL;
+		first = prev;
+	}
+
 	void getAll(Stack &stack) {
 		while (stack.first) {
 			push(stack.pop());

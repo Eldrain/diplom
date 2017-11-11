@@ -24,21 +24,21 @@ public:
 			complete = false;
 		}
 
-		/*job& operator =(const job& jb) {
+		job& operator =(const job& jb) {
 			this->time = jb.time;
 			this->countPrev = jb.countPrev;
 			nowPrev = 0;
 			complete = false;
-			fol = NULL;
 
-			follow *now = jb.fol;
+			Stack<int>::elem *now = jb.follow.first;
 			while (now) {
-				addFollow(now->n);
+				addFollow(now->info);
 				now = now->next;
 			}
+			follow.swap();
 
 			return *this;
-		}*/
+		}
 
 		void addFollow(int n) {
 			follow.push(n);
@@ -145,7 +145,7 @@ public:
 		jobs = new job[n];
 	}
 
-	/*Jobs &operator =(const Jobs &jobs) {
+	Jobs &operator =(const Jobs &jobs) {
 		count = jobs.count;
 		this->jobs = new job[count];
 
@@ -153,7 +153,7 @@ public:
 			this->jobs[i] = jobs.jobs[i];
 
 		return *this;
-	}*/
+	}
 
 	void create(int n) {
 		count = n;

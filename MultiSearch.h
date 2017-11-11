@@ -8,7 +8,7 @@ class MultiSearch
 {
 private:
 	std::list<std::thread> threads;
-	std::mutex mutexObj;
+	 std::mutex mutexObj;
 	int bestF;
 	int *best;
 	double time;
@@ -20,6 +20,10 @@ public:
 	void search(int *var, int set, Task &task, int n);
 
 	double getTime();
+
+	void PrintRes(int n);
+
+	int GetMinF();
 
 	~MultiSearch();
 };

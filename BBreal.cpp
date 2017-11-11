@@ -7,7 +7,6 @@
 class BBreal : public AMethod {
 public:
 	int countVar, *buf;
-	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Tree tree;
 	BBMarks mark;
 
@@ -28,7 +27,7 @@ public:
 		update();
 		for (int i = 0; i < n; i++)
 			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает jobs.время выполнения работы.
-		clearArr(var, n);
+		ArrFunctions::clearArr(var, n);
 		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
 
 		int maximum = minF;
@@ -36,10 +35,10 @@ public:
 		tree.addWave();
 		//Stack<Tree::leaf>::elem *prsp = new Stack<Tree::leaf>::elem(*first);
 		//tree.setBest(prsp);
-		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
-		timeClip = clock();
+
+		time = clock();
 		minF = clip(0, maximum, task);
-		timeClip = (clock() - timeClip) / 1000;
+		time = (clock() - time) / 1000;
 
 		int set = countSet(best, n);
 		if (set < n) {
@@ -67,7 +66,7 @@ public:
 		}
 
 		minF = tree.getMin();
-		copyArr(best, tree.best->arr, n);
+		ArrFunctions::copyArr(best, tree.best->arr, n);
 
 		return tree.getMin();
 	}

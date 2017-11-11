@@ -4,7 +4,6 @@
 class SortOut : public AMethod {
 public:
 	int countVar;
-	double timeSO, timeCrit, timeCheck, buf;
 
 	int AMethod::solve(Task &task) {
 		n = task.n;
@@ -16,21 +15,20 @@ public:
 		ArrFunctions::clearArr(var, n);
 		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
 
-		timeCrit = timeCheck = buf = 0;
-		timeSO = clock();
+		time = clock();
 		minF = sortOut(0, task);
-		timeSO = (clock() - timeSO) / 1000;
+		time = (clock() - time) / 1000;
 
 		return minF;
 	}
 
 	int sortOut(int set, Task &task) {
-		buf = clock();
+		//buf = clock();
 		if (!task.jobs.checkVar(var, set)) {
-			timeCheck += (clock() - buf) / 1000;
+			//timeCheck += (clock() - buf) / 1000;
 			return minF;
 		}
-		timeCheck += (clock() - buf) / 1000;
+		//timeCheck += (clock() - buf) / 1000;
 
 		countVar++;
 		if (set < n) {
@@ -53,9 +51,9 @@ public:
 			int f = 0;
 			//jobs->print();
 
-			buf = clock();
+			//buf = clock();
 			f = task.procs.crit(var, task.jobs, set);
-			timeCrit += (clock() - buf) / 1000;
+			//timeCrit += (clock() - buf) / 1000;
 
 			if (f < minF) {
 				minF = f;

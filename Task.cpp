@@ -30,6 +30,15 @@ public:
 		this->m = m;
 		procs.create(m);
 	}
+
+	Task& operator=(const Task &task) {
+		n = task.n;
+		m = task.m;
+		jobs = task.jobs;
+		createProcs(m);
+
+		return *this;
+	}
 };
 	/*bool checkVar(int *var, int set) {
 		helpRel = rel;

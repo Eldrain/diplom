@@ -39,9 +39,14 @@ public:
 			
 			for (int j = 0; j < CM; j++) {
 				opt = mtds[j]->solve(task);
-				cout << endl << "Method " << j + 1 << ": f = " << opt << "; ";
+				cout << endl << "Method " << j + 1 << ": time = " << mtds[j]->getTime() << " s.; f = " << opt << "; ";
 				mtds[j]->printRes();
 			}
+
+			mSearch.startSearch(task);
+			opt = mSearch.GetMinF();
+			cout << endl << "MultiThreading Search: time = " << mSearch.getTime() << "s; f = " << opt << "; ";
+			mSearch.PrintRes(task.n);
 		}
 	}
 

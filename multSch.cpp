@@ -18,18 +18,26 @@ void printArr(int *arr, int n) {
 		cout << arr[i] << ", ";
 }
 
+void print(int i) {
+	for (int k = 0; k < i; k++)
+		cout << endl << k + 1;
+}
+
 int main()
 {
 	setlocale(0, "");
 
 	Task task("data3.txt");
 	int n = 0, m = 0;
+
+	thread thrd(&Task::createProcs, &task, 5);
+	thrd.join();
 	//UnitTests t;
 
 	//t.TreeTest();
 
 	test test1;
-	test1.timeTest(5, 20, 3, 50, 8, task);
+	test1.timeTest(5, 30, 3, 50, 8, task);
 	//test1.start();
 	//test1.generateTree(jobs, 10, 50, 5);
 	//test1.timeTest(5, 20, 3, 50, 5, task);

@@ -4,7 +4,7 @@
 class BB : public AMethod {
 public:
 	int countVar, *buf;
-	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
+	//double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 
 	void update() {
 		AMethod::update();
@@ -26,10 +26,10 @@ public:
 
 		int maximum = minF;
 
-		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
-		timeClip = clock();
+		//timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
+		time = clock();
 		minF = clip(0, maximum, task);
-		timeClip = (clock() - timeClip) / 1000;
+		time = (clock() - time) / 1000;
 
 		int set = countSet(best, n);
 		if (set < n) {
@@ -41,12 +41,9 @@ public:
 	}
 
 	int clip(int set, int &maximum, Task &task) {
-		bufTime = clock();
 		if (!task.jobs.checkVar(var, set)) {
-			timeCheck += (clock() - bufTime) / 1000;
 			return minF;
 		}
-		timeCheck += (clock() - bufTime) / 1000;
 
 		countVar++;
 		if (set < n) {
@@ -64,13 +61,13 @@ public:
 						var[set] = 0;
 						continue;
 					}
-					bufTime = clock();
+					//bufTime = clock();
 					int mx = max(var, set + 1, task);
-					maxTime += (clock() - bufTime) / 1000;
+					//maxTime += (clock() - bufTime) / 1000;
 					
-					bufTime = clock();
+					//bufTime = clock();
 					int mn = min(var, set + 1, task);
-					minTime += (clock() - bufTime) / 1000;
+					//minTime += (clock() - bufTime) / 1000;
 
 					if (mx < maximum)
 						maximum = mx;
@@ -89,10 +86,8 @@ public:
 			}
 		} else {
 			int f = 0;
-
-			bufTime = clock();
 			f = task.procs.crit(var, task.jobs, set);
-			timeCrit += (clock() - bufTime) / 1000;
+
 			if (f < minF) {
 				minF = f;
 				for (int i = 0; i < n; i++)
