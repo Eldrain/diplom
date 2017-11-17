@@ -51,6 +51,11 @@ public:
 		return task.procs.crit(buf, task.jobs, n);
 	}
 
+	int* getBuf() 
+	{
+		return buf;
+	}
+
 	~BBMarks() {
 		delete[] buf;
 		buf = NULL;

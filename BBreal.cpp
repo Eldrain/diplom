@@ -38,13 +38,16 @@ public:
 
 		time = clock();
 		minF = clip(0, maximum, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		int set = countSet(best, n);
+		
 		if (set < n) {
 			mark.maxB(best, set, task);
+			int *buffer = mark.getBuf();
+
 			for (int i = set; i < n; i++)
-				best[i] = buf[i];
+				best[i] = buffer[i];
 		}
 		return minF;
 	}

@@ -7,7 +7,6 @@
 #include "BBreal.cpp"
 #include "MultiSearch.h"
 #include <ctime>
-#include <vld.h>
 
 #define CM 4
 using namespace std;

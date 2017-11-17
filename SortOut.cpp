@@ -17,7 +17,7 @@ public:
 
 		time = clock();
 		minF = sortOut(0, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		return minF;
 	}

@@ -17,13 +17,13 @@ public:
 	void TreeTest() {
 		int arr[] = { 1, 2, 3 };
 		int n = 3, set = 3;
-		Tree::leaf lf(arr, n, 0, 0, set), lf2(new int[]{2, 3, 0}, 3, 1, 1, 2), lf3(arr, n, 1, 2, set);
-		Tree tree(n);
+		//Tree::leaf lf(arr, n, 0, 0, set), lf2(new int[]{2, 3, 0}, 3, 1, 1, 2), lf3(arr, n, 1, 2, set);
+		/*Tree tree(n);
 
 		log("Tree test");
 		testLeaf(lf, lf2, lf3, arr);
 		tree.addInWave(arr, 3, 3, set);
-		res("Add in wave", compare(arr, tree.wave.first->info->arr, n));
+		res("Add in wave", compare(arr, tree.wave.first->info->arr, n));*/
 
 	}
 

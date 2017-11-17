@@ -8,6 +8,8 @@ public:
 
 	virtual int maxB(int *var, int set, Task &task) = 0;
 
+	virtual int* getBuf() = 0;
+
 	virtual ~Marks() {
 	}
 };

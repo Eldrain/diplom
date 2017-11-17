@@ -29,7 +29,7 @@ public:
 		//timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
 		time = clock();
 		minF = clip(0, maximum, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		int set = countSet(best, n);
 		if (set < n) {
