@@ -1,11 +1,14 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Task.cpp"
 #include "SortOut.cpp"
 #include "BB.cpp"
 #include "FrontAlg.cpp"
 #include "BBreal.cpp"
+#include "MultiSearch.cpp"
 #include <ctime>
+#include "stdlib.h"
+//#include <vld.h>
 
 #define CM 4
 using namespace std;
@@ -17,14 +20,15 @@ public:
 		//srand(time(0));
 		mtds = new AMethod*[CM];
 		mtds[0] = new SortOut();
-		mtds[1] = new FrontAlg();
-		mtds[2] = new BB();
+		mtds[1] = new BB();
+		mtds[2] = new FrontAlg();
 		mtds[3] = new BBreal();
 	}
 
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry, Task &task) {
 		task.createProcs(m);
 		int opt = 0;
+		MultiSearch mSearch;
 
 		for (int i = startN; i < finishN + 1; i++) {		
 			generateTree(task.jobs, i, maxTime, retry);
@@ -36,9 +40,14 @@ public:
 			
 			for (int j = 0; j < CM; j++) {
 				opt = mtds[j]->solve(task);
-				cout << endl << "Method " << j + 1 << ": time = " << mtds[j]->time << " s; f = " << opt << "; ";
+				cout << endl << "Method " << j + 1 << ": time = " << mtds[j]->getTime() << " s.; f = " << opt << "; countVar = " << mtds[j]->getCountVar();
 				mtds[j]->printRes();
 			}
+
+			mSearch.startSearch(task);
+			opt = mSearch.GetMinF();
+			cout << endl << "MultiThreading Search: time = " << mSearch.getTime() << "s; f = " << opt << "; ";
+			mSearch.PrintRes(task.n);
 		}
 	}
 
@@ -55,14 +64,14 @@ public:
 			cout << endl << "FrontAlg: ";
 			cout << endl << "f1 = " << front.f1;
 			//front.printBest1();
-			cout << endl << "f2 = " << front.f2 << "\nРазличий с 1-ой = " << compare(front.sol1, front.sol2, i + 1);
+			cout << endl << "f2 = " << front.f2 << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1-пїЅпїЅ = " << compare(front.sol1, front.sol2, i + 1);
 			//front.printBest2();
-			cout << endl << "f3 = " << front.f3 << "\nРазличий с 1-ой = " << compare(front.sol1, front.sol3, i + 1);
-			cout << endl << "Различий со 2-ой = " << compare(front.sol2, front.sol3, i + 1);
+			cout << endl << "f3 = " << front.f3 << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1-пїЅпїЅ = " << compare(front.sol1, front.sol3, i + 1);
+			cout << endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 2-пїЅпїЅ = " << compare(front.sol2, front.sol3, i + 1);
 			//front.printBest3();
 		}
 	}
-	//Возвращает число разных элементов в массивах
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int compare(int *arr1, int *arr2, int len) {
 		int count = 0;
 
@@ -78,11 +87,11 @@ public:
 
 		int to = 0;
 		for (int i = n - 1; i >= 0; i--) {
-			jobs.jobs[i].time = rand() % maxTime + 1;
+			jobs.jobs[i].time = random() % maxTime + 1;
 
 			if(i != 0)
 				for (int j = 0; j < retry; j++) {
-					to = rand() % i + 1;
+					to = random() % i + 1;
 					if(!jobs.jobs[i].follow.find(to))
 						jobs.jobs[i].follow.push(to);
 				}
@@ -99,7 +108,7 @@ public:
 		jobs.create(n);
 
 		for (int i = n - 1; i >= 0; i--) {
-			jobs.jobs[i].time = rand() % maxTime + 1;
+			jobs.jobs[i].time = random() % maxTime + 1;
 
 			if (i != 0)
 				jobs.jobs[i].follow.push(i);
@@ -126,7 +135,7 @@ public:
 	~test() {
 		for (int i = 0; i < CM; i++)
 			delete mtds[i];
-		delete mtds;
+		delete[] mtds;
 		mtds = NULL;
 	}
 };

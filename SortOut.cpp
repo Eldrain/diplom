@@ -1,25 +1,24 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "AMethod.cpp"
 
 class SortOut : public AMethod {
 public:
-	int countVar;
 	double timeSO, timeCrit, timeCheck, buf;
 
-	int AMethod::solve(Task &task) {
+	int solve(Task &task) {
 		n = task.n;
 		update();
 		minF = 0;
 		countVar = 0;
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает время выполнения работы.
+			minF += task.jobs.jobs[i].time; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		clearArr(var, n);
-		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
+		minF++; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ best пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 		timeCrit = timeCheck = buf = 0;
 		time = clock();
 		minF = sortOut(0, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		return minF;
 	}

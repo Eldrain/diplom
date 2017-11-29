@@ -1,10 +1,10 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "AMethod.cpp"
 #include "BBMarks.cpp"
 
 class BB : public AMethod {
 public:
-	int countVar, *buf;
+	int *buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Marks *marks;
 
@@ -20,23 +20,23 @@ public:
 		buf = new int[n];
 	}
 
-	int AMethod::solve(Task &task) {
+	int solve(Task &task) {
 		minF = 0;
 		countVar = 0;
 
 		n = task.n;
 		update();
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает jobs.время выполнения работы.
+			minF += task.jobs.jobs[i].time; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ jobs.пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		clearArr(var, n);
-		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
+		minF++; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ best пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 		int maximum = minF;
 
 		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
 		time = clock();
 		minF = clip(0, maximum, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		int set = countSet(best, n);
 		if (set < n) {
@@ -124,6 +124,8 @@ public:
 	}
 
 	~BB() {
-		delete buf;
+		delete[] buf;
+		delete marks;
+		marks = NULL;
 	}
 };

@@ -1,11 +1,12 @@
 #pragma once
-#include "stdafx.h"
-#include "IOFile.cpp"
-
+//#include "stdafx.h"
+//#include "IOFile.cpp"
+//#include "Jobs.cpp"
+#include "Procs.cpp"
 class Task {
 private:
 	
-	IOFile file;
+	//IOFile file;
 public:
 	int n, m;
 	Jobs jobs;
@@ -16,15 +17,15 @@ public:
 		n = 0;
 	}
 
-	Task(string filename) {
-		loadTask(filename);
+	Task(std::string filename) {
+		//loadTask(filename);
 	}
 
-	void loadTask(string filename) {
+	/*void loadTask(string filename) {
 		file.loadData(jobs, procs, filename);
 		n = jobs.getCount();
 		m = procs.getCount();
-	}
+	}*/
 
 	void createProcs(int m) {
 		this->m = m;
@@ -192,7 +193,7 @@ public:
 		return proc.crit(buffer);
 	}
 
-	//// рисует график Ганта на основе выходных данных procNum
+	//// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ procNum
 	//void drawGraph(bool method) { 
 	//	int *useArr = method ? bestMVG : bestSO;
 	//	procNum(useArr);

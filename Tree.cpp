@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "ObjectStack.cpp"
 #include "Marks.cpp"
 
@@ -107,9 +107,10 @@ public:
 		}
 	}
 
-	void produce(Task &task) {
+	int produce(Task &task) {
 		bool seted = false;
 		int mx = 0, mn = 0;
+		int count = 0;
 		int set = prsp->set, *var = prsp->arr;
 
 		for (int i = 0; i < n; i++) {
@@ -125,6 +126,7 @@ public:
 					var[set] = 0;
 					continue;
 				}
+				count++;
 				addInWave(var, mx, mn, set + 1);
 				var[set] = 0;
 			}
@@ -132,6 +134,7 @@ public:
 
 		pool.push(tree.pop(prsp));
 		prsp = NULL;
+		return count;
 	}
 
 	void marks(Marks &mark, Task &task) {
@@ -168,8 +171,11 @@ public:
 	void addInWave(int *arr, int max, int min, int set) {
 		leaf *l = NULL;
 		if (pool.count > 0) {
-			l = pool.pop()->info;
+			ObjectStack<leaf>::elem *el = pool.pop();
+			l = el->info;
 			l->setData(arr, n, max, min, set);
+			el->info = NULL;
+			delete el;
 		}
 		else {
 			l = new leaf(arr, n, max, min, set);
@@ -480,7 +486,7 @@ public:
 	}
 
 	void clearTree() {
-		std::cout << "\nОчистка дерева...";
+		std::cout << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ...";
 		while (deleteFirst());
 		id = 0;
 	}

@@ -1,8 +1,8 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <cstdlib>
 #include <iostream>
-#include "Windows.h"
+//#include "Windows.h"
 #include "Tree.cpp"
 #include <string>
 

@@ -1,9 +1,12 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 
 template <typename T>
-class Stack {//Только для примитивных типов
+class Stack {//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+private: 
+	int count;
+
 public:
 	class elem {
 	public:
@@ -21,7 +24,7 @@ public:
 	};
 
 	elem *first;
-	int count;
+	
 
 	Stack() {
 		first = NULL;
@@ -107,6 +110,10 @@ public:
 		while (stack.first) {
 			push(stack.pop());
 		}
+	}
+
+	int size() {
+		return count;
 	}
 
 	~Stack() {

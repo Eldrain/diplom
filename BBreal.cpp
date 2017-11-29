@@ -1,18 +1,19 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "AMethod.cpp"
 #include "Tree.cpp"
 #include "BBMarks.cpp"
+#include "MazMarks.cpp"
 
 class BBreal : public AMethod {
 public:
-	int countVar, *buf;
+	int *buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Tree tree;
 	Marks *marks;
 
 	BBreal() {
-		marks = new BBMarks();
+		marks = new MazMarks();
 	}
 
 	void update() {
@@ -26,14 +27,13 @@ public:
 
 	int solve(Task &task) {
 		minF = 0;
-		countVar = 0;
 
 		n = task.n;
 		update();
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает jobs.время выполнения работы.
+			minF += task.jobs.jobs[i].time; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ jobs.пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		clearArr(var, n);
-		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
+		minF++; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ best пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 		int maximum = minF;
 		tree.addInWave(var, maximum, maximum, 0);
@@ -43,7 +43,7 @@ public:
 		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
 		time = clock();
 		minF = clip(0, maximum, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		int set = countSet(best, n);
 		if (set < n) {
@@ -64,7 +64,7 @@ public:
 
 		while (!tree.isEmpty()) {
 			tree.findPrsp();
-			tree.produce(task);
+			countVar+=tree.produce(task);
 			tree.marks(*marks, task);
 			tree.cut(maximum);
 			tree.addWave();
@@ -87,6 +87,8 @@ public:
 	}
 
 	~BBreal() {
-		delete buf;
+		delete[] buf;
+		delete marks;
+		marks = NULL;
 	}
 };

@@ -1,11 +1,12 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Task.cpp"
 #include <ctime>
 
 class AMethod {
 protected:
-	int *var, *best, n, m, minF;
+	int *var, *best, n, m, minF, countVar;
+	double time;
 	
 	void copyArr(int *arr1, int *arr2, int n) {
 		for (int i = 0; i < n; i++)
@@ -23,6 +24,7 @@ protected:
 	}
 
 	virtual void update() {
+		countVar = 0;
 		delete[] var;
 		delete[] best;
 		var = new int[n];
@@ -30,12 +32,19 @@ protected:
 	}
 
 public:
-	double time;
 	virtual int solve(Task &task) = 0;
 
 	void printRes() {
 		std::cout << std::endl << "Best resulst: ";
 		printArr(best, n);
+	}
+
+	double getTime() {
+		return time;
+	}
+
+	int getCountVar() {
+		return countVar;
 	}
 
 	virtual ~AMethod() {

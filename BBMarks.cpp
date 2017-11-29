@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Marks.cpp"
 
 class BBMarks : public Marks {
