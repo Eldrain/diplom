@@ -1,14 +1,20 @@
 #pragma once
+#include "stdafx.h"
 #include <list>
-#include <thread>
-#include <mutex>
 #include "Task.cpp"
+#include <mutex>
 
 class MultiSearch
 {
 private:
-	std::list<std::thread> threads;
-	 std::mutex mutexObj;
+	struct trData {
+		int *var;
+		int set;
+		Task *task;
+		int n;
+	};
+	//std::list<std::thread> threads;
+	std::mutex mutexObj;
 	int bestF;
 	int *best;
 	double time;
@@ -17,7 +23,7 @@ public:
 
 	void startSearch(Task &task);
 
-	void search(int *var, int set, Task &task, int n);
+	void search(/*int *var, int set, Task &task, int n*/trData *data);
 
 	double getTime();
 

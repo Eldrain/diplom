@@ -1,10 +1,11 @@
-// kursach.cpp: определяет точку входа для консольного приложения.
+// kursach.cpp: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 
 #include "stdafx.h"
 #include "test.cpp"
-#include <conio.h>
-#include "UnitTests.cpp"
+#include <stdio.h>
+//#include "UnitTests.cpp"
+#include <list>
 
 using namespace std;
 
@@ -26,12 +27,12 @@ void print(int i) {
 int main()
 {
 	setlocale(0, "");
-
-	Task task("data3.txt");
+	
+	Task task;
 	int n = 0, m = 0;
 
-	thread thrd(&Task::createProcs, &task, 5);
-	thrd.join();
+	//thread thrd(&Task::createProcs, &task, 5);
+	//thrd.join();
 	//UnitTests t;
 
 	//t.TreeTest();
@@ -52,21 +53,22 @@ int main()
 	cout << endl << "timeCheck = " << clip.timeCheck << "s.; timeCrit = " << clip.timeCrit << "s.";
 	cout << endl << "maxTime = " << clip.maxTime << "s.; minTime = " << clip.minTime << "s.";
 	/*task exp(n, m, times, rel);
-	cout << "\nЗагруженные данные: n = " << n << "; m = " << m << "\ntimes: ";
+	cout << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: n = " << n << "; m = " << m << "\ntimes: ";
 	printArr(times, n);
 	rel.print();
-	cout << "\nПеребор: f = " << exp.sortOut();
-	cout << "\nЧисло вариантов: " << exp.countVar << "\nПерестановка: ";
+	cout << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: f = " << exp.sortOut();
+	cout << "\nпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << exp.countVar << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ";
 	exp.printBestSO();
 	exp.test();
 	cout << endl << "timeSO = " << exp.timeSO;
 	//exp.drawGraph(false);
-	cout << "\nМетод ветвей и границ: f = " << exp.mVG();
-	cout << "\nЧисло вариантов: " << exp.countVar << "\nПерестановка: ";
+	cout << "\nпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: f = " << exp.mVG();
+	cout << "\nпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << exp.countVar << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ";
 	exp.printBestMVG();
 	cout << endl << "timeMVG = " << exp.timeMVG;
 	//exp.drawGraph(true);*/
 	//clearArr(times);
-	_getch();
+	//nodelay();
+	getchar();
 	return 0;
 }

@@ -40,7 +40,7 @@ public:
 		return true;
 	}
 
-	void res(string testName, bool result) {
+	void res(std::string testName, bool result) {
 
 		if (result) {
 			SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 10));
@@ -53,7 +53,7 @@ public:
 		SetConsoleTextAttribute(hConsole, (WORD)((0 << 4) | 7));
 	}
 
-	void log(string str) {
+	void log(std::string str) {
 		std::cout << str << ":" << std::endl;
 	}
 };

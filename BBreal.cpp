@@ -3,17 +3,23 @@
 #include "AMethod.cpp"
 #include "Tree.cpp"
 #include "BBMarks.cpp"
+#include "MazMarks.cpp"
 
 class BBreal : public AMethod {
 public:
-	int countVar, *buf;
+	int *buf;
+	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Tree tree;
-	BBMarks mark;
+	Marks *marks;
+
+	BBreal() {
+		marks = new MazMarks();
+	}
 
 	void update() {
 		AMethod::update();
 		tree.init(n);
-		mark.init(n);
+		marks->init(n);
 
 		delete[] buf;
 		buf = new int[n];
@@ -21,28 +27,27 @@ public:
 
 	int solve(Task &task) {
 		minF = 0;
-		countVar = 0;
 
 		n = task.n;
 		update();
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает jobs.время выполнения работы.
-		ArrFunctions::clearArr(var, n);
-		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
+			minF += task.jobs.jobs[i].time; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ jobs.пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+		clearArr(var, n);
+		minF++; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ best пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 		int maximum = minF;
 		tree.addInWave(var, maximum, maximum, 0);
 		tree.addWave();
 		//Stack<Tree::leaf>::elem *prsp = new Stack<Tree::leaf>::elem(*first);
 		//tree.setBest(prsp);
-
+		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
 		time = clock();
 		minF = clip(0, maximum, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		int set = countSet(best, n);
 		if (set < n) {
-			mark.maxB(best, set, task);
+			marks->maxB(best, set, task);
 			for (int i = set; i < n; i++)
 				best[i] = buf[i];
 		}
@@ -59,8 +64,8 @@ public:
 
 		while (!tree.isEmpty()) {
 			tree.findPrsp();
-			tree.produce(task);
-			tree.marks(mark, task);
+			countVar+=tree.produce(task);
+			tree.marks(*marks, task);
 			tree.cut(maximum);
 			tree.addWave();
 		}
@@ -70,36 +75,6 @@ public:
 
 		return tree.getMin();
 	}
-
-	/*int minB(int *var, int set, Task &task) {
-		task.procs.crit(var, task.jobs, set);
-
-		int value = task.procs.adjustment(task.jobs.jobs[task.jobs.minTime()].time, n - set);
-
-		return value;
-	}
-
-	int max(int *var, int set, Task &task) {
-		int i = 0;
-		task.jobs.refresh();
-
-		for (; i < set; i++) {
-			buf[i] = var[i];
-			task.jobs.complete(var[i]);
-		}
-
-		int maxNum = 0;
-		while (i < n) {
-			maxNum = task.jobs.front.findMax(task.jobs);
-			buf[i] = maxNum;
-			i++;
-			task.jobs.complete(maxNum);
-		}
-
-		//std::cout << std::endl << "\nbuffer: ";
-		//printArr(buffer, n);
-		return task.procs.crit(buf, task.jobs, n);
-	}*/
 
 	int countSet(int *var, int n) {
 		int set = 0;
@@ -112,6 +87,8 @@ public:
 	}
 
 	~BBreal() {
-		delete buf;
+		delete[] buf;
+		delete marks;
+		marks = NULL;
 	}
 };

@@ -60,7 +60,7 @@ public:
 	public:
 		Stack<int> stack, pool;
 
-		//Возвращает индекс работы с максимальным временем во фронте. Аргумент нужен для получения длительностей выполнения работ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		int findMax(Jobs &jobs) {
 			Stack<int>::elem *elem = stack.first;
 			if (!elem)
@@ -75,7 +75,7 @@ public:
 			return max;
 		}
 
-		//Возвращает индекс работы с минимальным временем во фронте. Аргумент нужен для получения длительностей выполнения работ
+		//Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅРѕРјРµСЂ СЂР°Р±РѕС‚С‹ РёР· С„СЂРѕРЅС‚Р° СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РІСЂРµРјРµРЅРµРј РІС‹РїРѕР»РЅРµРЅРёСЏ
 		int findMin(Jobs &jobs) {
 			Stack<int>::elem *elem = stack.first;
 			if (!elem)
@@ -118,6 +118,10 @@ public:
 			}
 			return false;
 		}	
+		
+		int GetSize() {
+			return stack.size();
+		}
 
 		void print() {
 			stack.print();
@@ -184,6 +188,29 @@ public:
 		} else
 			return false;
 	}
+	
+	//Р’С‹РїРѕР»РЅСЏРµС‚ n СЂР°Р±РѕС‚ РёР· С„СЂРѕРЅС‚Р° СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РІСЂРµРјРµРЅРµРј РІС‹РїРѕР»РЅРµРЅРёСЏ
+	void CompleteJobs(int n) {
+		int minJob = 0;
+
+		while(n != 0 && front.GetSize() != 0) 
+		{
+			minJob = front.findMin(*this);
+			front.del(minJob);
+			Stack<int>::elem *now = jobs[minJob - 1].follow.first;
+
+			while (now) {
+				jobs[now->info - 1].nowPrev--;
+				now = now->next;
+			}
+			jobs[minJob - 1].complete = true;
+			n--;
+		}
+		
+		for(int i = 0; i < count; i++)
+			if (jobs[i].nowPrev == 0 && !jobs[i].complete)
+				front.add(i + 1);
+	}
 
 	int minTime() {
 		int min = 0;
@@ -211,7 +238,7 @@ public:
 		}	
 	}
 
-	//возвращает время выполнения работы
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int operator[](int i) {
 		return jobs[i].time;
 	}

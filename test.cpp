@@ -7,7 +7,8 @@
 #include "BBreal.cpp"
 #include "MultiSearch.h"
 #include <ctime>
-#include <vld.h>
+#include "stdlib.h"
+//#include <vld.h>
 
 #define CM 4
 using namespace std;
@@ -39,7 +40,7 @@ public:
 			
 			for (int j = 0; j < CM; j++) {
 				opt = mtds[j]->solve(task);
-				cout << endl << "Method " << j + 1 << ": time = " << mtds[j]->getTime() << " s.; f = " << opt << "; ";
+				cout << endl << "Method " << j + 1 << ": time = " << mtds[j]->getTime() << " s.; f = " << opt << "; countVar = " << mtds[j]->getCountVar();
 				mtds[j]->printRes();
 			}
 
@@ -63,14 +64,14 @@ public:
 			cout << endl << "FrontAlg: ";
 			cout << endl << "f1 = " << front.f1;
 			//front.printBest1();
-			cout << endl << "f2 = " << front.f2 << "\nРазличий с 1-ой = " << compare(front.sol1, front.sol2, i + 1);
+			cout << endl << "f2 = " << front.f2 << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1-пїЅпїЅ = " << compare(front.sol1, front.sol2, i + 1);
 			//front.printBest2();
-			cout << endl << "f3 = " << front.f3 << "\nРазличий с 1-ой = " << compare(front.sol1, front.sol3, i + 1);
-			cout << endl << "Различий со 2-ой = " << compare(front.sol2, front.sol3, i + 1);
+			cout << endl << "f3 = " << front.f3 << "\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1-пїЅпїЅ = " << compare(front.sol1, front.sol3, i + 1);
+			cout << endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 2-пїЅпїЅ = " << compare(front.sol2, front.sol3, i + 1);
 			//front.printBest3();
 		}
 	}
-	//Возвращает число разных элементов в массивах
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int compare(int *arr1, int *arr2, int len) {
 		int count = 0;
 
@@ -134,7 +135,7 @@ public:
 	~test() {
 		for (int i = 0; i < CM; i++)
 			delete mtds[i];
-		delete mtds;
+		delete[] mtds;
 		mtds = NULL;
 	}
 };

@@ -107,5 +107,8 @@
     <ClCompile Include="ArrFunctions.cpp">
       <Filter>Файлы исходного кода\framework</Filter>
     </ClCompile>
+    <ClCompile Include="MazMarks.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

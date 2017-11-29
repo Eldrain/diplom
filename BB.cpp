@@ -1,39 +1,46 @@
 #include "stdafx.h"
 #include "AMethod.cpp"
+#include "BBMarks.cpp"
 
 class BB : public AMethod {
 public:
-	int countVar, *buf;
-	//double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
+	int *buf;
+	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
+	Marks *marks;
+
+	BB() {
+		marks = new BBMarks();
+	}
 
 	void update() {
 		AMethod::update();
 
+		marks->init(n);
 		delete[] buf;
 		buf = new int[n];
 	}
 
-	int AMethod::solve(Task &task) {
+	int solve(Task &task) {
 		minF = 0;
 		countVar = 0;
 
 		n = task.n;
 		update();
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // переопределенный оператор индекса. На самом деле возвращает jobs.время выполнения работы.
-		ArrFunctions::clearArr(var, n);
-		minF++; //для цепочки (для того, чтобы best заполнился хотя бы один раз
+			minF += task.jobs.jobs[i].time; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ jobs.пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+		clearArr(var, n);
+		minF++; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ best пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 		int maximum = minF;
 
-		//timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
+		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
 		time = clock();
 		minF = clip(0, maximum, task);
-		time = (clock() - time) / 1000;
+		time = (clock() - time) / CLOCKS_PER_SEC;
 
 		int set = countSet(best, n);
 		if (set < n) {
-			max(best, set, task);
+			marks->maxB(best, set, task);
 			for (int i = set; i < n; i++)
 				best[i] = buf[i];
 		}
@@ -61,13 +68,13 @@ public:
 						var[set] = 0;
 						continue;
 					}
-					//bufTime = clock();
-					int mx = max(var, set + 1, task);
-					//maxTime += (clock() - bufTime) / 1000;
+					bufTime = clock();
+					int mx = marks->maxB(var, set + 1, task);
+					maxTime += (clock() - bufTime) / 1000;
 					
-					//bufTime = clock();
-					int mn = min(var, set + 1, task);
-					//minTime += (clock() - bufTime) / 1000;
+					bufTime = clock();
+					int mn = marks->minB(var, set + 1, task);
+					minTime += (clock() - bufTime) / 1000;
 
 					if (mx < maximum)
 						maximum = mx;
@@ -97,36 +104,6 @@ public:
 		return minF;
 	}
 
-	int min(int *var, int set, Task &task) {
-		task.procs.crit(var, task.jobs, set);
-		
-		int value = task.procs.adjustment(task.jobs.jobs[task.jobs.minTime()].time, n - set);
-		
-		return value;
-	}
-
-	int max(int *var, int set, Task &task) {
-		int i = 0;
-		task.jobs.refresh();
-
-		for (; i < set; i++) {
-			buf[i] = var[i];
-			task.jobs.complete(var[i]);
-		}
-
-		int maxNum = 0;
-		while (i < n) {
-			maxNum = task.jobs.front.findMax(task.jobs);
-			buf[i] = maxNum;
-			i++;
-			task.jobs.complete(maxNum);
-		}
-
-		//std::cout << std::endl << "\nbuffer: ";
-		//printArr(buffer, n);
-		return task.procs.crit(buf, task.jobs, n);
-	}
-
 	int countSet(int *var, int n) {
 		int set = 0;
 		for (int i = 0; i < n; i++)
@@ -139,5 +116,7 @@ public:
 
 	~BB() {
 		delete[] buf;
+		delete marks;
+		marks = NULL;
 	}
 };
