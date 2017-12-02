@@ -27,9 +27,9 @@ public:
 		n = task.n;
 		update();
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // ���������������� �������� �������. �� ����� ���� ���������� jobs.����� ���������� ������.
+			minF += task.jobs[i]; // ���������������� �������� �������. �� ����� ���� ���������� jobs.����� ���������� ������.
 		clearArr(var, n);
-		minF++; //��� ������� (��� ����, ����� best ���������� ���� �� ���� ���
+		minF++;
 
 		int maximum = minF;
 
@@ -48,7 +48,7 @@ public:
 	}
 
 	int clip(int set, int &maximum, Task &task) {
-		if (!task.jobs.checkVar(var, set)) {
+		if (!task.jobs.Check(var, set)) {
 			return minF;
 		}
 
@@ -64,7 +64,7 @@ public:
 						j++;
 				if (j == set) {
 					var[set] = i + 1;
-					if (!task.jobs.checkVar(var, set + 1)) {
+					if (!task.jobs.Check(var, set + 1)) {
 						var[set] = 0;
 						continue;
 					}

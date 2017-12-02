@@ -33,7 +33,7 @@ public:
 		for (int i = startN; i < finishN + 1; i++) {		
 			generateTree(task.jobs, i, maxTime, retry);
 			task.n = i;
-			task.jobs.print();
+			task.jobs.Print();
 			cout << endl << endl << i << " JOBS:\nTimes: ";
 			for (int j = 0; j < i; j++)
 				cout << task.jobs[j] << ", ";
@@ -59,7 +59,7 @@ public:
 			cout << endl << endl << i + 1 << " JOBS:";
 
 			generateTree(task.jobs, i + 1, maxTime, retry);
-			task.n = task.jobs.getCount();
+			task.n = task.jobs.get_count();
 			front.solve(task);
 			cout << endl << "FrontAlg: ";
 			cout << endl << "f1 = " << front.f1;
@@ -83,11 +83,11 @@ public:
 
 	void generateTree(Jobs &jobs, int n, int maxTime, int retry) {
 		jobs.clear();
-		jobs.create(n);
+		jobs.SetCount(n);
 
 		int to = 0;
 		for (int i = n - 1; i >= 0; i--) {
-			jobs.jobs[i].time = rand() % maxTime + 1;
+			jobs.SetJobTime(i + 1, rand() % maxTime + 1);
 
 			if(i != 0)
 				for (int j = 0; j < retry; j++) {

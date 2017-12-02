@@ -28,7 +28,7 @@ public:
 				}
 				if (buffer == '\n')
 					break;
-				jobs.create(num);
+				jobs.SetCount(num);
 				num = 0;
 				buffer = file.get();
 			}
@@ -39,7 +39,7 @@ public:
 			int nowCell = 0;
 			while (buffer != '\n') {
 				if (buffer == ' ') {
-					jobs.jobs[nowCell].time = num;
+					jobs.SetJobTime(nowCell + 1, num);
 					num = 0;
 					nowCell++;
 				}
@@ -47,7 +47,7 @@ public:
 					num = num * 10 + buffer - 48;
 				buffer = file.get();
 			}
-			jobs.jobs[nowCell].time = num;
+			jobs.SetJobTime(nowCell + 1, num);
 			loadRelations(jobs);
 
 			file.close();
@@ -65,12 +65,12 @@ public:
 
 			while (!file.eof()) {
 				if (buffer == ' ') {
-					jobs.jobs[numJob].addFollow(num);
+					jobs.AddJobFollow(numJob, num);
 					num = 0;
 				}
 				else if (buffer == '\n') {
 					if (num != 0)
-						jobs.jobs[numJob].addFollow(num);
+						jobs.AddJobFollow(numJob, num);
 					numJob++;
 					num = 0;
 				}

@@ -11,7 +11,7 @@ public:
 		minF = 0;
 		countVar = 0;
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // ���������������� �������� �������. �� ����� ���� ���������� ����� ���������� ������.
+			minF += task.jobs[i]; // ���������������� �������� �������. �� ����� ���� ���������� ����� ���������� ������.
 		clearArr(var, n);
 		minF++; //��� ������� (��� ����, ����� best ���������� ���� �� ���� ���
 
@@ -25,7 +25,7 @@ public:
 
 	int sortOut(int set, Task &task) {
 		//buf = clock();
-		if (!task.jobs.checkVar(var, set)) {
+		if (!task.jobs.Check(var, set)) {
 			//timeCheck += (clock() - buf) / 1000;
 			return minF;
 		}

@@ -3,10 +3,9 @@
 #include <iostream>
 
 template <typename T>
-class Stack {//������ ��� ����������� �����
+class Stack {
 private: 
 	int count;
-
 public:
 	class elem {
 	public:
@@ -21,10 +20,34 @@ public:
 			this->info = info;
 			next = NULL;
 		}
+
+
+	};
+    class Iterator {//Class for itarating objects of stack
+	public:
+		elem *current_;
+
+		Iterator() {
+			current_ = NULL;
+		}
+
+		void reset(elem *first) {
+			current_ = first;
+		}
+
+		bool get_next() {
+			if (current_->next != NULL) {
+				current_ = current_->next;
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	};
 
 	elem *first;
-	
+	Iterator iterator;
 
 	Stack() {
 		first = NULL;
@@ -128,6 +151,25 @@ public:
 
 	int size() {
 		return count;
+	}
+
+	//Returns functioning iterator of stack with pointer to first
+	Iterator *GetIterator() {
+		iterator->reset(first);
+		return &iterator;
+	}
+
+	//Returns functioning iterator of stack with pointer to element specified info
+	Iterator *GetIterator(T info) {
+		elem *element = NULL;
+		element = pop(info);
+		if (element == NULL) {
+			return NULL;
+		}
+		else {
+			iterator->reset(element);
+			return &iterator;
+		}	
 	}
 
 	~Stack() {

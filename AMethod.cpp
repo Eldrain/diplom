@@ -43,10 +43,6 @@ public:
 		return time;
 	}
 
-	double getTime() {
-		return time;
-	}
-
 	int getCountVar() {
 		return countVar;
 	}

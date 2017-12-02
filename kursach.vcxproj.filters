@@ -68,9 +68,6 @@
     <ClCompile Include="Procs.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="FrontAlg.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -98,13 +95,19 @@
     <ClCompile Include="UnitTests.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectStack.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="MultiSearch.cpp">
       <Filter>Файлы исходного кода\framework\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="ArrFunctions.cpp">
+      <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="MazMarks.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectStack.cpp">
       <Filter>Файлы исходного кода\framework</Filter>
     </ClCompile>
   </ItemGroup>

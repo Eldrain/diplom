@@ -8,7 +8,7 @@ public:
 	int minB(int *var, int set, Task &task) {
 		task.procs.crit(var, task.jobs, set);
 
-		int value = task.procs.adjustment(task.getTime(task.jobs.minTime()), n - set);
+		int value = task.procs.adjustment(task.getTime(task.jobs.MinTime()), n - set);
 
 		return value;
 	}
@@ -19,23 +19,18 @@ public:
 
 		for (; i < set; i++) {
 			buf[i] = var[i];
-			task.jobs.complete(var[i]);
+			task.jobs.Complete(var[i]);
 		}
 
 		int maxNum = 0;
 		while (i < n) {
-			maxNum = task.jobs.front.findMax(task.jobs);
+			maxNum = task.jobs.FindMaxInFront();
 			buf[i] = maxNum;
 			i++;
-			task.jobs.complete(maxNum);
+			task.jobs.Complete(maxNum);
 		}
 
 		return task.procs.crit(buf, task.jobs, n);
-	}
-
-	int* getBuf() 
-	{
-		return buf;
 	}
 
 	~BBMarks() {

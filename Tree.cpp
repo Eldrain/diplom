@@ -7,10 +7,7 @@ class Tree {
 public:
 	class leaf {
 	public:
-		//static int nextId;
 		int *arr, max, min, set;
-
-		//int leaf::nextId = 0;
 
 		leaf() {
 			arr = NULL;

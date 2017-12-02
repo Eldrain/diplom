@@ -31,9 +31,9 @@ public:
 		n = task.n;
 		update();
 		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // ���������������� �������� �������. �� ����� ���� ���������� jobs.����� ���������� ������.
+			minF += task.jobs[i]; // ���������������� �������� �������. �� ����� ���� ���������� jobs.����� ���������� ������.
 		clearArr(var, n);
-		minF++; //��� ������� (��� ����, ����� best ���������� ���� �� ���� ���
+		minF++;
 
 		int maximum = minF;
 		tree.addInWave(var, maximum, maximum, 0);
@@ -48,6 +48,7 @@ public:
 		
 		if (set < n) {
 			marks->maxB(best, set, task);
+			int *buffer = marks->getBuf();
 			for (int i = set; i < n; i++)
 				best[i] = buffer[i];
 		}

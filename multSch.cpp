@@ -5,6 +5,7 @@
 #include "test.cpp"
 #include <conio.h>
 #include "UnitTests.cpp"
+#include <stack>
 
 using namespace std;
 
@@ -29,12 +30,6 @@ int main()
 	
 	Task task;
 	int n = 0, m = 0;
-
-	thread thrd(&Task::createProcs, &task, 5);
-	thrd.join();
-	//UnitTests t;
-
-	//t.TreeTest();
 
 	test test1;
 	test1.timeTest(5, 30, 3, 50, 8, task);

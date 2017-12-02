@@ -35,27 +35,25 @@ public:
 			return f1;
 	}
 
-	//��������� ������������ ������������� �� ������
 	int alg1(Task &task) {
 		int index = 0;
 		task.jobs.refresh();
 
 		for (int i = 0; i < n; i++) {
-			index = task.jobs.front.findMax(task.jobs);
-			task.jobs.complete(index);
+			index = task.jobs.FindMaxInFront();
+			task.jobs.Complete(index);
 			sol1[i] = index;
 		}
 		f1 = task.procs.crit(sol1, task.jobs, n);
 		return f1;
 	}
 
-	//��������� ������������ ������������ �� ������
 	int alg2(Task &task) {
 		int index = 0;
 		task.jobs.refresh();
 		for (int i = 0; i < n; i++) {
-			index = task.jobs.front.findMin(task.jobs);
-			task.jobs.complete(index);
+			index = task.jobs.FindMinInFront();
+			task.jobs.Complete(index);
 			sol2[i] = index;
 		}
 		f2 = task.procs.crit(sol2, task.jobs, n);
@@ -93,7 +91,7 @@ public:
 
 		for (int i = 0; i < n; i++) {
 			var[i] = abs(task.jobs[i] - diff);
-			if (var[i] < var[min - 1] && task.jobs.front.find(i + 1))
+			if (var[i] < var[min - 1] && task.jobs.FindInFront(i + 1))
 				min = i + 1;
 		}
 		return min;

@@ -23,6 +23,6 @@ public:
 
 
 	int getTime(int jobNum) {
-		return jobs.jobs[jobNum].time;
+		return jobs[jobNum];
 	}
 };

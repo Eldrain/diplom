@@ -97,6 +97,7 @@
     <ClCompile Include="FrontAlg.cpp" />
     <ClCompile Include="Jobs.cpp" />
     <ClCompile Include="Marks.cpp" />
+    <ClCompile Include="MazMarks.cpp" />
     <ClCompile Include="MultiSearch.cpp" />
     <ClCompile Include="ObjectStack.cpp" />
     <ClCompile Include="Stack.cpp" />

@@ -48,7 +48,7 @@ public:
 		int nextJob = 0;
 		while (true) {
 			for (int i = 0; i < count; i++)
-				if (jobs.front.find(arr[nextJob]) && procs[i].workTime == 0) {
+				if (jobs.FindInFront(arr[nextJob]) && procs[i].workTime == 0) {
 					procs[i].workTime = jobs[arr[nextJob] - 1];//[]
 					procs[i].job = arr[nextJob];
 					nextJob++;
@@ -70,7 +70,7 @@ public:
 					procs[i].bufTime = 0;
 
 					if (procs[i].workTime == 0) {
-						jobs.complete(procs[i].job);
+						jobs.Complete(procs[i].job);
 						
 						completeJob++;
 						if (completeJob == set)

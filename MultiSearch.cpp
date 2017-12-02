@@ -12,7 +12,7 @@ MultiSearch::MultiSearch()
 
 void MultiSearch::search(trData *data) {	
 	mutexObj.lock();
-	if (!data->task->jobs.checkVar(data->var, data->set))
+	if (!data->task->jobs.Check(data->var, data->set))
 	{
 		mutexObj.unlock();
 		return;
@@ -58,7 +58,7 @@ void MultiSearch::startSearch(Task &task)
 	best = new int[task.n];
 
 	for (int i = 0; i < task.n; i++) {
-		bestF += task.jobs.jobs[i].time; // ���������������� �������� �������. �� ����� ���� ���������� ����� ���������� ������.
+		bestF += task.jobs[i];
 	}
 	bestF++;
 	time = clock();
