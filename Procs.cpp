@@ -40,9 +40,6 @@ public:
 
 	int crit(int *arr, Jobs &jobs, int set) {
 		prepare();
-		//for (int i = 0; i < set; i++)
-		//	std::cout << arr[i] << ", ";
-		//	procs[i].prepare();
 		if (set == 0)
 			return 0;
 		int workTime = 0, minWork = 0, f = 0, completeJob = 0;
@@ -87,26 +84,26 @@ public:
 		}
 	}
 
-	//Досчет(adjustment - подгонка). Функция используется для подсчета нижней оценки: прибавляет к общему
-	//времени выполнения еще k работ с минимальной длительностью
+	//пїЅпїЅпїЅпїЅпїЅпїЅ(adjustment - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ). пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ k пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int adjustment(int jobTime, int count) {
 		int minNum = 0, maxNum = 0;
 
 		while (count != 0) {
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < this->count; i++)
 				if (procs[i].allTime < procs[minNum].allTime)
 					minNum = i;
 			procs[minNum].allTime += jobTime;
 			count--;
 		}
 
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < this->count; i++)
 			if (procs[i].allTime > procs[maxNum].allTime)
 				maxNum = i;
 		return procs[maxNum].allTime;
 	}
 
-	//индекс процессора с минимальной занятостью
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int minTime() {
 		int min = 0;
 		for (int i = 0; i < count; i++)
@@ -115,7 +112,7 @@ public:
 		return min;
 	}
 
-	//индекс процессора с максимальной занятостью
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int maxTime() {
 		int max = 0;
 		for (int i = 0; i < count; i++)
@@ -134,7 +131,7 @@ public:
 	}
 
 	~Procs() {
-		delete procs;
+		delete[] procs;
 		procs = NULL;
 	}
 };
