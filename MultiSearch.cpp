@@ -1,118 +1,100 @@
 #pragma once
 #include "stdafx.h"
-#include "MultiSearch.h"
-#include "ArrFunctions.cpp"
+#include "AMethod.cpp"
 #include <thread>
-#include <vector>
+#include <mutex>
 
-MultiSearch::MultiSearch()
-{
-	best = NULL;	
-}
-
-void MultiSearch::search(trData *data) {	
-	mutexObj.lock();
-	if (!data->task->jobs.Check(data->var, data->set))
-	{
-		mutexObj.unlock();
-		return;
+class MultiSearch : public AMethod {
+private:
+	struct trData {
+		std::vector<int> var;
+		int set;
+		Task *task;
+		int n;
+	};
+	std::mutex mutexObj;
+	double time;
+public:
+	void Update() {
 	}
-	mutexObj.unlock();
 
-	if (data->set < data->n) {
-		int j = 0;
-		for (int i = 0; i < data->n; i++) {
-			j = 0;
-			while (data->var[j] != 0)
-				if (data->var[j] == i + 1)
-					break;
-				else
-					j++;
-			if (j == data->set) {
-				data->var[data->set] = i + 1;
-				data->set++;
-				search(data);
-				data->set--;
-				data->var[data->set] = 0;
-			}
-		}
-	}
-	else {
-		int f = 0;	
+	void Start(Task &task)
+	{	
+		std::vector<int> *var = new std::vector<int>[task.n];
+		std::vector<std::thread> threads;
+		trData *datas = new trData[n];
 
 		mutexObj.lock();
-		f = data->task->procs.crit(data->var, data->task->jobs, data->set);
+		for (int i = 0; i < n; i++) {
+			var[i].resize(n);
+			ArrFunctions::clearArr(var[i]);
+			var[i][0] = i + 1;
 
-		if (f < bestF) {
-			bestF = f;
-			ArrFunctions::copyArr(best, data->var, data->n);
+			trData *data = &datas[i];
+			data->var = var[i];
+			data->set = 1;
+			data->n = n;
+			data->task = &task;
+
+			threads.emplace_back(&MultiSearch::Search, this, data);
 		}
 		mutexObj.unlock();
-	}
-}
 
-void MultiSearch::startSearch(Task &task) 
-{
-	bestF = 0;
-	delete[] best;
-	best = new int[task.n];
+		for (int i = 0; i < n; i++) {
+			threads[i].join();
+		}
 
-	for (int i = 0; i < task.n; i++) {
-		bestF += task.jobs[i];
-	}
-	bestF++;
-	time = clock();
-
-	int **var = new int*[task.n];
-	int n = task.n;
-	std::vector<std::thread> threads;
-	//Task *tasks = new Task[task.n];
-	trData *datas = new trData[n];
-
-	mutexObj.lock();
-	for (int i = 0; i < n; i++) {
-		var[i] = new int[n];
-		//tasks[i] = task;
-		ArrFunctions::clearArr(var[i], n);
-		var[i][0] = i + 1;
-
-		trData *data = &datas[i];
-		data->var = var[i];
-		data->set = 1;
-		data->n = n;
-		data->task = &task;
-
-
-		threads.emplace_back(&MultiSearch::search, this, data);
-	}
-	mutexObj.unlock();
-	for (int i = 0; i < n; i++)
-	{
-		threads[i].join();
-		delete[] var[i];
-		var[i] = NULL;
+		delete[] var;
+		delete[] datas;
+		var = NULL;
 	}
 
-	delete[] var;
-	delete[] datas;
-	var = NULL;
+	void Search(trData *data) {
+		mutexObj.lock();
+		if (!data->task->jobs.Check(data->var, data->set))
+		{
+			mutexObj.unlock();
+			return;
+		}
+		mutexObj.unlock();
 
-	time = (clock() - time) / CLOCKS_PER_SEC;
-}
+		if (data->set < data->n) {
+			int j = 0;
+			for (int i = 0; i < data->n; i++) {
+				j = 0;
+				while (data->var[j] != 0)
+					if (data->var[j] == i + 1)
+						break;
+					else
+						j++;
+				if (j == data->set) {
+					data->var[data->set] = i + 1;
+					data->set++;
+					Search(data);
+					data->set--;
+					data->var[data->set] = 0;
+				}
+			}
+		}
+		else {
+			int f = 0;
 
-double MultiSearch::getTime() {
-	return time;
-}
+			mutexObj.lock();
+			f = data->task->procs.crit(data->var, data->task->jobs, data->set);
 
-void MultiSearch::PrintRes(int n) {
-	ArrFunctions::printArr(best, n);
-}
+			if (f < minF) {
+				minF = f;
+				best_ = data->var;
+			}
+			mutexObj.unlock();
+		}
+	}
 
-int MultiSearch::GetMinF() {
-	return bestF;
-}
+	void PrintRes() {
+		std::cout << "\nMultithreading sort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+		PrintBest();		
+	}
 
-MultiSearch::~MultiSearch()
-{
-	delete[] best;
-}
+	~MultiSearch(){
+	}
+};

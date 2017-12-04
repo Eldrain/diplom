@@ -32,7 +32,7 @@ int main()
 	int n = 0, m = 0;
 
 	test test1;
-	test1.timeTest(5, 30, 3, 50, 8, task);
+	test1.timeTest(5, 30, 3, 50, 8);
 
 	getchar();
 	return 0;

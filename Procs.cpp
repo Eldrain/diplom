@@ -38,6 +38,7 @@ public:
 		procs = new processor[m];
 	}
 
+	//TODO: delete this method!!!
 	int crit(int *arr, Jobs &jobs, int set) {
 		prepare();
 		if (set == 0)
@@ -76,6 +77,56 @@ public:
 						if (completeJob == set)
 							return procs[i].allTime;
 						
+					}
+				}
+				else if (procs[i].workTime < 0)
+					std::cout << "\nProcNum Error!";
+			}
+		}
+	}
+
+	int crit(std::vector<int> &arr, Jobs &jobs, int set) {
+		prepare();
+		if (set == 0)
+			return 0;
+		int workTime = 0, minWork = 0, f = 0, completeJob = 0;
+
+		jobs.refresh();
+		int nextJob = 0;
+		while (true) {
+			if (nextJob < arr.size()) {
+				for (int i = 0; i < count; i++)
+					if (jobs.FindInFront(arr[nextJob]) && procs[i].workTime == 0) {
+						procs[i].workTime = jobs[arr[nextJob] - 1];//[]
+						procs[i].job = arr[nextJob];
+						nextJob++;
+						if (nextJob == arr.size())
+							break;
+					}
+			}
+
+
+			minWork = jobs[0];//[]
+
+			for (int i = 0; i < count; i++)
+				if (procs[i].workTime > 0 && minWork > procs[i].workTime)
+					minWork = procs[i].workTime;
+
+			for (int i = 0; i < count; i++) {
+				procs[i].bufTime += minWork;
+
+				if (procs[i].workTime > 0) {
+					procs[i].workTime -= minWork;
+					procs[i].allTime += procs[i].bufTime;
+					procs[i].bufTime = 0;
+
+					if (procs[i].workTime == 0) {
+						jobs.Complete(procs[i].job);
+
+						completeJob++;
+						if (completeJob == set)
+							return procs[i].allTime;
+
 					}
 				}
 				else if (procs[i].workTime < 0)

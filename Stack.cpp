@@ -155,8 +155,13 @@ public:
 
 	//Returns functioning iterator of stack with pointer to first
 	Iterator *GetIterator() {
-		iterator->reset(first);
-		return &iterator;
+		iterator.reset(first);
+		if (iterator.current_ == NULL) {
+			return NULL;
+		}
+		else {
+			return &iterator;
+		}
 	}
 
 	//Returns functioning iterator of stack with pointer to element specified info

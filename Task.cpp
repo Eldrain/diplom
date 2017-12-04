@@ -25,4 +25,8 @@ public:
 	int getTime(int jobNum) {
 		return jobs[jobNum];
 	}
+
+	void PrintJobs() {
+		jobs.Print();
+	}
 };

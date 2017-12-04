@@ -7,7 +7,7 @@
 #include <string>
 
 class UnitTests {
-private:
+/*private:
 	HANDLE hConsole;
 public:
 	UnitTests() {
@@ -23,7 +23,7 @@ public:
 		log("Tree test");
 		testLeaf(lf, lf2, lf3, arr);
 		tree.addInWave(arr, 3, 3, set);
-		res("Add in wave", compare(arr, tree.wave.first->info->arr, n));*/
+		res("Add in wave", compare(arr, tree.wave.first->info->arr, n));
 
 	}
 
@@ -55,5 +55,5 @@ public:
 
 	void log(std::string str) {
 		std::cout << str << ":" << std::endl;
-	}
+	}*/
 };

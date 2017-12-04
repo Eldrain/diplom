@@ -4,33 +4,27 @@
 
 class Marks {
 protected:
-	int n, *buf;
+	std::vector<int> buf_;
 public:
 	Marks() {
-		n = 0;
-		buf = NULL;
 	}
 
 	Marks(int n) {
-		this->n = n;
-		buf = new int[n];
+		buf_.resize(n);
 	}
 
 	void init(int n) {
-		this->n = n;
-		delete[] buf;
-		buf = new int[n];
+		buf_.resize(n);
 	}
 
-	virtual int minB(int *var, int set, Task &task) = 0;
+	virtual int minB(std::vector<int> &var, int set, Task &task) = 0;
 
-	virtual int maxB(int *var, int set, Task &task) = 0;
+	virtual int maxB(std::vector<int> &var, int set, Task &task) = 0;
 
-	virtual int* getBuf() {
-		return buf;
+	virtual std::vector<int> &GetBuf() {
+		return buf_;
 	}
 
 	virtual ~Marks() {
-		delete[] buf;
 	}
 };

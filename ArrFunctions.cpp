@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include <iostream>
+#include <vector>
 
 class ArrFunctions {
 public:
@@ -14,8 +15,18 @@ public:
 			std::cout << arr[i] << ", ";
 	}
 
+	static void printArr(std::vector<int> &arr) {
+		for (int i = 0; i < arr.size(); i++)
+			std::cout << arr[i] << ", ";
+	}
+
 	static void clearArr(int *arr, int n) {
 		for (int i = 0; i < n; i++)
+			arr[i] = 0;
+	}
+
+	static void clearArr(std::vector<int> &arr) {
+		for (int i = 0; i < arr.size(); i++)
 			arr[i] = 0;
 	}
 };

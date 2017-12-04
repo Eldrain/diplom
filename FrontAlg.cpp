@@ -4,7 +4,8 @@
 
 class FrontAlg : public AMethod {
 public:
-	int *sol1, *sol2, *sol3, f1, f2, f3;
+	std::vector<int> sol1, sol2, sol3;
+	int f1, f2, f3;
 
 	FrontAlg() {
 		f1 = 0;
@@ -12,27 +13,29 @@ public:
 		f3 = 0;
 	}
 
-	void update() {
-		AMethod::update();
-		sol1 = best;
-		delete[] sol2;
-		delete[] sol3;
-		sol2 = new int[n];
-		sol3 = new int[n];
+	void PrintRes() {
+		std::cout << "\nFrontAlg (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.";
+		PrintBest();
 	}
 
-	int solve(Task &task) {
-		n = task.n;
-		update();
-		time = clock();
+	void Update() {
+		sol1.resize(n);
+		sol2.resize(n);
+		sol3.resize(n);
+	}
+
+	void Start(Task &task) {
 		alg1(task);
 		alg2(task);
-		time = (clock() - time) / CLOCKS_PER_SEC;
-		//alg3();
-		if (f1 > f2)
-			return f2;
-		else
-			return f1;
+
+		if (f1 > f2) {
+			minF = f2;
+			best_ = sol2;
+		}
+		else {
+			minF = f1;
+			best_ = sol1;
+		}
 	}
 
 	int alg1(Task &task) {
@@ -85,13 +88,12 @@ public:
 		return f3;
 	}*/
 
-	//��������� ������ � ���������� ����������� �������� ������� � ���.
 	int getMin(int diff, Task &task) {
 		int min = 0;// jobs->front.stack.first->info;
 
 		for (int i = 0; i < n; i++) {
-			var[i] = abs(task.jobs[i] - diff);
-			if (var[i] < var[min - 1] && task.jobs.FindInFront(i + 1))
+			var_[i] = abs(task.jobs[i] - diff);
+			if (var_[i] < var_[min - 1] && task.jobs.FindInFront(i + 1))
 				min = i + 1;
 		}
 		return min;
@@ -123,10 +125,5 @@ public:
 	}
 
 	~FrontAlg() {
-		delete[] sol2;
-		delete[] sol3;
-		sol1 = NULL;
-		sol2 = NULL;
-		sol3 = NULL;
 	}
 };

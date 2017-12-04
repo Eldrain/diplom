@@ -69,7 +69,7 @@ private:
 			if (stack_.size() == 0)
 				return 0;
 			Stack<int>::Iterator *i = stack_.GetIterator();
-			int max = 0;
+			int max = i->current_->info;
 
 			do {
 				if (jobs[max - 1] < jobs[i->current_->info - 1])
@@ -84,7 +84,7 @@ private:
 			if (stack_.size() == 0)
 				return 0;
 			Stack<int>::Iterator *i = stack_.GetIterator();
-			int min = 0;
+			int min = i->current_->info;
 
 			do {
 				if (jobs[min - 1] > jobs[i->current_->info - 1])
@@ -173,7 +173,7 @@ public:
 	}
 
 	//Return TRUE if order corresponds to current task
-	bool Check(int *arr, int set) {
+	bool Check(std::vector<int> &arr, int set) {
 		refresh();
 		for (int i = 0; i < set; i++)
 			if (!Complete(arr[i]))
@@ -209,10 +209,12 @@ public:
 			minJob = front_.FindMin(*this);
 			front_.Remove(minJob);
 			Stack<int>::Iterator *i = jobs_[n - 1].GetFollowIterator();
-			do {
-				jobs_[i->current_->info - 1].nowPrev--;
-			} while (i->get_next());
 
+			if (i != NULL) {
+				do {
+					jobs_[i->current_->info - 1].nowPrev--;
+				} while (i->get_next());
+			}
 			jobs_[minJob - 1].complete = true;
 			n--;
 		}
@@ -283,6 +285,11 @@ public:
 		return true;
 
 	}
+
+	bool FindInFollows(int n, int follow) {
+		return jobs_[n - 1].follow.find(follow);
+	}
+
 	//Returns time of jobs
 	int operator[](int i) {
 		return jobs_[i].time;
@@ -315,6 +322,7 @@ public:
 	void clear() {
 		front_.Clear();
 		count = 0;
+		jobs_.clear();
 	}
 
 	int get_count() {

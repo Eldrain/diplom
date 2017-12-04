@@ -1,10 +1,11 @@
+#pragma once
 #include "stdafx.h"
 #include "Marks.cpp"
 
 class MazMarks : public Marks {
 public:
 
-    int minB(int *var, int set, Task &task) {
+	int minB(std::vector<int> &var, int set, Task &task) {
         int crit = task.procs.crit(var, task.jobs, set);
         
         int m = task.m;
@@ -20,24 +21,24 @@ public:
 		return crit + bound;
 	}
 
-	int maxB(int *var, int set, Task &task) {
+	int maxB(std::vector<int> &var, int set, Task &task) {
 		int i = 0;
 		task.jobs.refresh();
 
 		for (; i < set; i++) {
-			buf[i] = var[i];
+			buf_[i] = var[i];
 			task.jobs.Complete(var[i]);
 		}
 
 		int maxNum = 0;
-		while (i < n) {
+		while (i < buf_.size()) {
 			maxNum = task.jobs.FindMaxInFront();
-			buf[i] = maxNum;
+			buf_[i] = maxNum;
 			i++;
 			task.jobs.Complete(maxNum);
 		}
 
-		return task.procs.crit(buf, task.jobs, n);
+		return task.procs.crit(buf_, task.jobs, buf_.size());
 	}
 
 	~MazMarks() {

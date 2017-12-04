@@ -16,8 +16,11 @@
     <Filter Include="Файлы исходного кода\framework">
       <UniqueIdentifier>{231845a2-1cd4-4358-b5c4-49aefabf53f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы исходного кода\framework\multithreading">
-      <UniqueIdentifier>{e567a13c-d54c-4bde-858e-bd7923412cee}</UniqueIdentifier>
+    <Filter Include="Файлы исходного кода\framework\marks">
+      <UniqueIdentifier>{45451dca-9de6-473a-9ca9-2604aac7b3d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\framework\methods">
+      <UniqueIdentifier>{a5cacb7f-b107-436e-834b-bcdbfe55f901}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,9 +45,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="MultiSearch.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -62,53 +62,59 @@
     <ClCompile Include="Jobs.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="SortOut.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Procs.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="FrontAlg.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Task.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="AMethod.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="BB.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="Tree.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="BBreal.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Marks.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="BBMarks.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="UnitTests.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="MultiSearch.cpp">
-      <Filter>Файлы исходного кода\framework\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="ArrFunctions.cpp">
       <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="MazMarks.cpp">
-      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Stack.cpp">
       <Filter>Файлы исходного кода\framework</Filter>
     </ClCompile>
     <ClCompile Include="ObjectStack.cpp">
       <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="BBMarks.cpp">
+      <Filter>Файлы исходного кода\framework\marks</Filter>
+    </ClCompile>
+    <ClCompile Include="Marks.cpp">
+      <Filter>Файлы исходного кода\framework\marks</Filter>
+    </ClCompile>
+    <ClCompile Include="MazMarks.cpp">
+      <Filter>Файлы исходного кода\framework\marks</Filter>
+    </ClCompile>
+    <ClCompile Include="MarkFactory.cpp">
+      <Filter>Файлы исходного кода\framework\marks</Filter>
+    </ClCompile>
+    <ClCompile Include="AMethod.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="BB.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="BBreal.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontAlg.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="SortOut.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="Schedule.cpp">
+      <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiSearch.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,54 +1,43 @@
 #include "stdafx.h"
 #include "AMethod.cpp"
-#include "BBMarks.cpp"
+#include "MarkFactory.cpp"
 
-class BB : public AMethod {
+class BB : public AMethod {//Method Branches and Bounds
 public:
-	int *buf;
+	std::vector<int> buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Marks *marks;
 
 	BB() {
-		marks = new BBMarks();
+		marks = MarkFactory::CreateSimpleMarks();
 	}
 
-	void update() {
-		AMethod::update();
+	void PrintRes() {
+		std::cout << "\nA-B clip (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+		PrintBest();
+	}
 
+	void Update() {
 		marks->init(n);
-		delete[] buf;
-		buf = new int[n];
+		buf.resize(n);
 	}
 
-	int solve(Task &task) {
-		minF = 0;
-		countVar = 0;
-
-		n = task.n;
-		update();
-		for (int i = 0; i < n; i++)
-			minF += task.jobs[i]; // ���������������� �������� �������. �� ����� ���� ���������� jobs.����� ���������� ������.
-		clearArr(var, n);
-		minF++;
-
+	void Start(Task &task) {
 		int maximum = minF;
 
 		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
-		time = clock();
 		minF = clip(0, maximum, task);
-		time = (clock() - time) / CLOCKS_PER_SEC;
 
-		int set = countSet(best, n);
+		int set = countSet(best_, n);
 		if (set < n) {
-			marks->maxB(best, set, task);
+			marks->maxB(best_, set, task);
 			for (int i = set; i < n; i++)
-				best[i] = buf[i];
+				best_[i] = buf[i];
 		}
-		return minF;
 	}
 
 	int clip(int set, int &maximum, Task &task) {
-		if (!task.jobs.Check(var, set)) {
+		if (!task.jobs.Check(var_, set)) {
 			return minF;
 		}
 
@@ -57,23 +46,23 @@ public:
 			int j = 0;
 			for (int i = 0; i < n; i++) {
 				j = 0;
-				while (var[j] != 0)
-					if (var[j] == i + 1)
+				while (var_[j] != 0)
+					if (var_[j] == i + 1)
 						break;
 					else
 						j++;
 				if (j == set) {
-					var[set] = i + 1;
-					if (!task.jobs.Check(var, set + 1)) {
-						var[set] = 0;
+					var_[set] = i + 1;
+					if (!task.jobs.Check(var_, set + 1)) {
+						var_[set] = 0;
 						continue;
 					}
 					bufTime = clock();
-					int mx = marks->maxB(var, set + 1, task);
+					int mx = marks->maxB(var_, set + 1, task);
 					maxTime += (clock() - bufTime) / 1000;
 					
 					bufTime = clock();
-					int mn = marks->minB(var, set + 1, task);
+					int mn = marks->minB(var_, set + 1, task);
 					minTime += (clock() - bufTime) / 1000;
 
 					if (mx < maximum)
@@ -82,29 +71,29 @@ public:
 						if (mn < minF) {
 							minF = mn;
 							for (int i = 0; i < n; i++)
-								best[i] = var[i];
+								best_[i] = var_[i];
 						}
 					}
 					else if (mn <= maximum)
 						clip(set + 1, maximum, task);
 
-					var[set] = 0;
+					var_[set] = 0;
 				}
 			}
 		} else {
 			int f = 0;
-			f = task.procs.crit(var, task.jobs, set);
+			f = task.procs.crit(var_, task.jobs, set);
 
 			if (f < minF) {
 				minF = f;
 				for (int i = 0; i < n; i++)
-					best[i] = var[i];
+					best_[i] = var_[i];
 			}
 		}
 		return minF;
 	}
 
-	int countSet(int *var, int n) {
+	int countSet(std::vector<int> var, int n) {
 		int set = 0;
 		for (int i = 0; i < n; i++)
 			if (var[i] == 0)
@@ -115,7 +104,6 @@ public:
 	}
 
 	~BB() {
-		delete[] buf;
 		delete marks;
 		marks = NULL;
 	}
