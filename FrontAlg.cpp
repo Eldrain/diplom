@@ -4,7 +4,7 @@
 
 class FrontAlg : public AMethod {
 public:
-	std::vector<int> sol1, sol2, sol3;
+	sort::vector<int> sol1, sol2, sol3;
 	int f1, f2, f3;
 
 	FrontAlg() {

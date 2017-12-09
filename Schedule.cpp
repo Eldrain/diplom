@@ -4,19 +4,18 @@
 #include "BBreal.cpp"
 #include "FrontAlg.cpp"
 #include "MultiSearch.cpp"
-#include <vector>
 #define M 5
 
 class Schedule {
 private:
 	Task task;
-	std::vector<AMethod*> met_;
+	sort::vector<AMethod*> met_;
 public:
 
 	void Solve() {
-		for each(auto var in met_) {
-			var->Solve(task);
-			var->PrintRes();
+		for (int i = 0; i < met_.size(); i++) {
+			met_[i]->Solve(task);
+			met_[i]->PrintRes();
 		}
 	}
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Procs.cpp"
+
 class Task {
 public:
 	int n, m;

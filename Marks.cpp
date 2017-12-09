@@ -4,7 +4,7 @@
 
 class Marks {
 protected:
-	std::vector<int> buf_;
+	sort::vector<int> buf_;
 public:
 	Marks() {
 	}
@@ -17,11 +17,11 @@ public:
 		buf_.resize(n);
 	}
 
-	virtual int minB(std::vector<int> &var, int set, Task &task) = 0;
+	virtual int minB(sort::vector<int> &var, int set, Task &task) = 0;
 
-	virtual int maxB(std::vector<int> &var, int set, Task &task) = 0;
+	virtual int maxB(sort::vector<int> &var, int set, Task &task) = 0;
 
-	virtual std::vector<int> &GetBuf() {
+	virtual sort::vector<int> &GetBuf() {
 		return buf_;
 	}
 

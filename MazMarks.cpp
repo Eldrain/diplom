@@ -5,7 +5,7 @@
 class MazMarks : public Marks {
 public:
 
-	int minB(std::vector<int> &var, int set, Task &task) {
+	int minB(sort::vector<int> &var, int set, Task &task) {
         int crit = task.procs.crit(var, task.jobs, set);
         
         int m = task.m;
@@ -21,7 +21,7 @@ public:
 		return crit + bound;
 	}
 
-	int maxB(std::vector<int> &var, int set, Task &task) {
+	int maxB(sort::vector<int> &var, int set, Task &task) {
 		int i = 0;
 		task.jobs.refresh();
 

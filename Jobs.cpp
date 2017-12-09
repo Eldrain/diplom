@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Stack.cpp"
-#include <vector>
+#include "vector.cpp"
 
 class Jobs {//Class for work and store jobs
 private:
@@ -144,7 +144,7 @@ private:
 	};
 
 	Front front_;
-	std::vector<job> jobs_;
+	sort::vector<job> jobs_;
 
 public:
 	Jobs() {
@@ -173,7 +173,7 @@ public:
 	}
 
 	//Return TRUE if order corresponds to current task
-	bool Check(std::vector<int> &arr, int set) {
+	bool Check(sort::vector<int> &arr, int set) {
 		refresh();
 		for (int i = 0; i < set; i++)
 			if (!Complete(arr[i]))

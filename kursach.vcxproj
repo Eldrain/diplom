@@ -114,6 +114,7 @@
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UnitTests.cpp" />
+    <ClCompile Include="vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

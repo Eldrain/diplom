@@ -85,7 +85,7 @@ public:
 		}
 	}
 
-	int crit(std::vector<int> &arr, Jobs &jobs, int set) {
+	int crit(sort::vector<int> &arr, Jobs &jobs, int set) {
 		prepare();
 		if (set == 0)
 			return 0;

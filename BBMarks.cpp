@@ -5,7 +5,7 @@
 class BBMarks : public Marks {
 public:
 
-	int minB(std::vector<int> &var, int set, Task &task) {
+	int minB(sort::vector<int> &var, int set, Task &task) {
 		task.procs.crit(var, task.jobs, set);
 
 		int value = task.procs.adjustment(task.getTime(task.jobs.MinTime()), var.size() - set);
@@ -13,7 +13,7 @@ public:
 		return value;
 	}
 
-	int maxB(std::vector<int> &var, int set, Task &task) {
+	int maxB(sort::vector<int> &var, int set, Task &task) {
 		int i = 0;
 		task.jobs.refresh();
 

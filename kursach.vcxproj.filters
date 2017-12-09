@@ -116,5 +116,8 @@
     <ClCompile Include="MultiSearch.cpp">
       <Filter>Файлы исходного кода\framework\methods</Filter>
     </ClCompile>
+    <ClCompile Include="vector.cpp">
+      <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

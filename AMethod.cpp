@@ -7,7 +7,7 @@
 class AMethod {
 protected:
 	int n, minF, countVar;
-	std::vector<int> var_, best_;
+	sort::vector<int> var_, best_;
 	double time_;
 	
 private:

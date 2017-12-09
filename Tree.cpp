@@ -7,7 +7,7 @@ class Tree {
 public:
 	class leaf {
 	public:
-		std::vector<int> arr_;
+		sort::vector<int> arr_;
 		int max, min, set;
 
 		leaf() {
@@ -23,29 +23,24 @@ public:
 			arr_.resize(n);
 		}
 
-		leaf(std::vector<int> &arr, int max, int min, int set) {
+		leaf(sort::vector<int> &arr, int max, int min, int set) {
 			arr_.resize(arr.size());
-			copyArr(arr);
+			arr_ = arr;
 			this->min = min;
 			this->max = max;
 			this->set = set;
 		}
 
-		void setData(std::vector<int> &arr, int max, int min, int set) {
-			copyArr(arr);
+		void setData(sort::vector<int> &arr, int max, int min, int set) {
+			arr_ = arr;
 			this->min = min;
 			this->max = max;
 			this->set = set;
 		}
 
-		void copyArr(std::vector<int> &arr) {
-			for (int i = 0; i < arr.size(); i++)
-				arr_[i] = arr[i];
-		}
-
-		bool operator==(const leaf &l) {
+		bool operator==(leaf &l) {
 			for (int i = 0; i < set; i++)
-				if (arr_[i] != l.arr_[i])
+				if (arr_ != l.arr_)
 					return false;
 			return true;
 		}
@@ -107,7 +102,7 @@ public:
 		int mx = 0, mn = 0;
 		int count = 0;
 		int set = prsp->set;
-		std::vector<int> &var = prsp->arr_;
+		sort::vector<int> &var = prsp->arr_;
 
 		for (int i = 0; i < n; i++) {
 			seted = false;
@@ -164,7 +159,7 @@ public:
 		}
 	}
 
-	void addInWave(std::vector<int> &arr, int max, int min, int set) {
+	void addInWave(sort::vector<int> &arr, int max, int min, int set) {
 		leaf *l = NULL;
 		if (pool.count > 0) {
 			ObjectStack<leaf>::elem *el = pool.pop();
@@ -189,8 +184,8 @@ public:
 		setBest(l->arr_, l->max);
 	}
 
-	void setBest(std::vector<int> &arr, int min) {
-		best->copyArr(arr);
+	void setBest(sort::vector<int> &arr, int min) {
+		best->arr_ = arr;
 		best->min = min;
 	}
 

@@ -4,7 +4,7 @@
 
 class BB : public AMethod {//Method Branches and Bounds
 public:
-	std::vector<int> buf;
+	sort::vector<int> buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Marks *marks;
 
@@ -28,7 +28,7 @@ public:
 		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
 		minF = clip(0, maximum, task);
 
-		int set = countSet(best_, n);
+		int set = countSet(best_);
 		if (set < n) {
 			marks->maxB(best_, set, task);
 			for (int i = set; i < n; i++)
@@ -93,9 +93,9 @@ public:
 		return minF;
 	}
 
-	int countSet(std::vector<int> var, int n) {
+	int countSet(sort::vector<int> &var) {
 		int set = 0;
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < var.size(); i++)
 			if (var[i] == 0)
 				return set;
 			else

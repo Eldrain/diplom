@@ -1,92 +1,35 @@
-﻿Сборка начата 03.12.2017 18:48:31.
+﻿Сборка начата 09.12.2017 22:20:44.
      1>Проект "C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" в узле 2 (целевые объекты Rebuild).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (diplom.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AMethod.cpp ArrFunctions.cpp BB.cpp BBMarks.cpp BBreal.cpp FrontAlg.cpp Jobs.cpp MarkFactory.cpp Marks.cpp MazMarks.cpp MultiSearch.cpp ObjectStack.cpp Schedule.cpp Stack.cpp Procs.cpp SortOut.cpp Task.cpp IOFile.cpp multSch.cpp test.cpp Tree.cpp UnitTests.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AMethod.cpp ArrFunctions.cpp BB.cpp BBMarks.cpp BBreal.cpp FrontAlg.cpp Jobs.cpp MarkFactory.cpp Marks.cpp MazMarks.cpp MultiSearch.cpp ObjectStack.cpp Schedule.cpp Stack.cpp Procs.cpp SortOut.cpp Task.cpp IOFile.cpp multSch.cpp test.cpp Tree.cpp UnitTests.cpp vector.cpp
+         vector.cpp
          UnitTests.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\tree.cpp(42): warning C4018: <: несоответствие типов со знаком и без знака
          Tree.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\tree.cpp(42): warning C4018: <: несоответствие типов со знаком и без знака
          test.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\bbmarks.cpp(26): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\mazmarks.cpp(34): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\tree.cpp(42): warning C4018: <: несоответствие типов со знаком и без знака
          multSch.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\bbmarks.cpp(26): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\mazmarks.cpp(34): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\tree.cpp(42): warning C4018: <: несоответствие типов со знаком и без знака
          IOFile.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
          Task.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
          SortOut.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
          Procs.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
          Stack.cpp
          Schedule.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\bbmarks.cpp(26): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\mazmarks.cpp(34): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\tree.cpp(42): warning C4018: <: несоответствие типов со знаком и без знака
          ObjectStack.cpp
          MultiSearch.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
          MazMarks.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\mazmarks.cpp(34): warning C4018: <: несоответствие типов со знаком и без знака
          Marks.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
          MarkFactory.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\bbmarks.cpp(26): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\mazmarks.cpp(34): warning C4018: <: несоответствие типов со знаком и без знака
          Jobs.cpp
          FrontAlg.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
          BBreal.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\tree.cpp(42): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\bbmarks.cpp(26): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\mazmarks.cpp(34): warning C4018: <: несоответствие типов со знаком и без знака
          BBMarks.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\bbmarks.cpp(26): warning C4018: <: несоответствие типов со знаком и без знака
-         BB.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\bbmarks.cpp(26): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\mazmarks.cpp(34): warning C4018: <: несоответствие типов со знаком и без знака
          Создание кода...
          Компиляция...
+         BB.cpp
          ArrFunctions.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
          AMethod.cpp
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\procs.cpp(97): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\артем\documents\visual studio 2013\projects\kursach\kursach\arrfunctions.cpp(29): warning C4018: <: несоответствие типов со знаком и без знака
          Создание кода...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\Debug\multSch.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\Debug\multSch.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\Debug\multSch.lib" /MACHINE:X86 Debug\AMethod.obj
@@ -112,9 +55,10 @@
          Debug\test.obj
          Debug\Tree.obj
          Debug\UnitTests.obj
+         Debug\vector.obj
          kursach.vcxproj -> C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\Debug\multSch.exe
      1>Сборка проекта "C:\Users\Артем\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" завершена (целевые объекты Rebuild).
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:10.06
+Затраченное время: 00:00:09.74
