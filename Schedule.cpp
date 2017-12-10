@@ -9,18 +9,19 @@
 class Schedule {
 private:
 	Task task;
-	sort::vector<AMethod*> met_;
+	AMethod **met_;
 public:
 
 	void Solve() {
-		for (int i = 0; i < met_.size(); i++) {
+		for (int i = 0; i < M; i++) {
 			met_[i]->Solve(task);
 			met_[i]->PrintRes();
 		}
 	}
 
 	void CreateBaseSet() {
-		met_.resize(M);
+		delete[] met_;
+		met_ = new AMethod*[M];
 		met_[0] = create<SortOut>();
 		met_[1] = create<BB>();
 		met_[2] = create<BBreal>();
@@ -44,6 +45,13 @@ public:
 	template<class T>
 	AMethod* create() {
 		return new T();
+	}
+
+	~Schedule() {
+		for (int i = 0; i < M; i++) {
+			delete met_[i];
+		}
+		delete[] met_;
 	}
 
 	class Generator {

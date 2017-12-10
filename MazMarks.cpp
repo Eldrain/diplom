@@ -5,7 +5,7 @@
 class MazMarks : public Marks {
 public:
 
-	int minB(sort::vector<int> &var, int set, Task &task) {
+	int minB(int *var, int set, Task &task) {
         int crit = task.procs.crit(var, task.jobs, set);
         
         int m = task.m;
@@ -21,7 +21,7 @@ public:
 		return crit + bound;
 	}
 
-	int maxB(sort::vector<int> &var, int set, Task &task) {
+	int maxB(int *var, int set, Task &task) {
 		int i = 0;
 		task.jobs.refresh();
 
@@ -31,14 +31,14 @@ public:
 		}
 
 		int maxNum = 0;
-		while (i < buf_.size()) {
+		while (i < n_) {
 			maxNum = task.jobs.FindMaxInFront();
 			buf_[i] = maxNum;
 			i++;
 			task.jobs.Complete(maxNum);
 		}
 
-		return task.procs.crit(buf_, task.jobs, buf_.size());
+		return task.procs.crit(buf_, task.jobs, n_);
 	}
 
 	~MazMarks() {

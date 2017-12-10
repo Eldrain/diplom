@@ -34,7 +34,7 @@ namespace sort {
 
 		T& operator[](int n) {
 			if (n < 0 || n >= n_)
-				throw new int(-1);
+				return arr_[n_ - 1];
 			return arr_[n];
 		}
 

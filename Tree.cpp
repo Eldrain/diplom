@@ -2,37 +2,49 @@
 #include "stdafx.h"
 #include "ObjectStack.cpp"
 #include "Marks.cpp"
+#include "ArrFunctions.cpp"
 
 class Tree {
 public:
 	class leaf {
 	public:
-		sort::vector<int> arr_;
+		int *arr_;
+		//vector<int> arr_;
 		int max, min, set;
 
 		leaf() {
 			max = 0;
 			min = 0;
 			set = 0;
+			arr_ = NULL;
 		}
 
 		leaf(int n, int set) {	
 			this->set = set;
 			min = 0;
 			max = 0;
-			arr_.resize(n);
+			//arr_.resize(n);
+			delete[] arr_;
+			arr_ = new int[n];
 		}
 
-		leaf(sort::vector<int> &arr, int max, int min, int set) {
-			arr_.resize(arr.size());
-			arr_ = arr;
+		leaf(int *arr, int n, int max, int min, int set) {
+			arr_ = new int[n];
+			//arr_.resize(n);
+			copy(arr, n);
 			this->min = min;
 			this->max = max;
 			this->set = set;
 		}
 
-		void setData(sort::vector<int> &arr, int max, int min, int set) {
-			arr_ = arr;
+		void copy(int *arr, int n) {
+			for (int i = 0; i < n; i++) {
+				arr_[i] = arr[i];
+			}
+		}
+
+		void setData(int *arr, int n, int max, int min, int set) {
+			copy(arr, n);
 			this->min = min;
 			this->max = max;
 			this->set = set;
@@ -40,12 +52,13 @@ public:
 
 		bool operator==(leaf &l) {
 			for (int i = 0; i < set; i++)
-				if (arr_ != l.arr_)
+				if (arr_[i] != l.arr_[i])
 					return false;
 			return true;
 		}
 
 		~leaf() {
+			delete[] arr_;
 		}
 	};
 
@@ -102,7 +115,8 @@ public:
 		int mx = 0, mn = 0;
 		int count = 0;
 		int set = prsp->set;
-		sort::vector<int> &var = prsp->arr_;
+		//vector<int> &var = prsp->arr_;
+		int *var = prsp->arr_;
 
 		for (int i = 0; i < n; i++) {
 			seted = false;
@@ -159,17 +173,17 @@ public:
 		}
 	}
 
-	void addInWave(sort::vector<int> &arr, int max, int min, int set) {
+	void addInWave(int *arr, int max, int min, int set) {
 		leaf *l = NULL;
 		if (pool.count > 0) {
 			ObjectStack<leaf>::elem *el = pool.pop();
 			l = el->info;
-			l->setData(arr, max, min, set);
+			l->setData(arr, n, max, min, set);
 			el->info = NULL;
 			delete el;
 		}
 		else {
-			l = new leaf(arr, max, min, set);
+			l = new leaf(arr, n, max, min, set);
 			count++;
 		}
 		wave.push(l);
@@ -184,8 +198,8 @@ public:
 		setBest(l->arr_, l->max);
 	}
 
-	void setBest(sort::vector<int> &arr, int min) {
-		best->arr_ = arr;
+	void setBest(int *arr, int min) {
+		ArrFunctions::copyArr(best->arr_ , arr, n);
 		best->min = min;
 	}
 

@@ -1,7 +1,9 @@
 #pragma once
 #include "stdafx.h"
 #include <iostream>
-#include "vector.cpp"
+//#include "vector.cpp"
+
+//using namespace sort;
 
 class ArrFunctions {
 public:
@@ -15,18 +17,23 @@ public:
 			std::cout << arr[i] << ", ";
 	}
 
-	static void printArr(sort::vector<int> &arr) {
-		for (int i = 0; i < arr.size(); i++)
-			std::cout << arr[i] << ", ";
-	}
-
 	static void clearArr(int *arr, int n) {
 		for (int i = 0; i < n; i++)
 			arr[i] = 0;
 	}
 
-	static void clearArr(sort::vector<int> &arr) {
+	/*tatic void copyArr(vector<int> &arr1, vector<int> &arr2) {
+		for (int i = 0; i < arr1.size(); i++)
+			arr1[i] = arr2[i];
+	}
+
+	static void printArr(vector<int> &arr) {
+		for (int i = 0; i < arr.size(); i++)
+			std::cout << arr[i] << ", ";
+	}
+
+	static void clearArr(vector<int> &arr) {
 		for (int i = 0; i < arr.size(); i++)
 			arr[i] = 0;
-	}
+	}*/
 };

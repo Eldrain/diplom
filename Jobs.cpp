@@ -3,6 +3,8 @@
 #include "Stack.cpp"
 #include "vector.cpp"
 
+using namespace sort;
+
 class Jobs {//Class for work and store jobs
 private:
 	int count;
@@ -75,8 +77,9 @@ private:
 				if (jobs[max - 1] < jobs[i->current_->info - 1])
 					max = i->current_->info;
 			} while (i->get_next());
-
+			
 			return max;
+			
 		}
 
 		//Method returns index of job with min time in front
@@ -144,16 +147,18 @@ private:
 	};
 
 	Front front_;
-	sort::vector<job> jobs_;
+	job *jobs_;
 
 public:
 	Jobs() {
 		count = 0;
+		jobs_ = NULL;
 	}
 
 	Jobs(int n) {
 		count = n;
-		jobs_.resize(n);
+		//jobs_.resize(n);
+		jobs_ = new job[n];
 	}
 
 	/*Jobs &operator =(const Jobs &jobs) {
@@ -169,11 +174,13 @@ public:
 	//Resize array of jobs
 	void SetCount(int n) {
 		count = n;
-		jobs_.resize(n);
+		delete[] jobs_;
+		jobs_ = new job[n];
+		//jobs_.resize(n);
 	}
 
 	//Return TRUE if order corresponds to current task
-	bool Check(sort::vector<int> &arr, int set) {
+	bool Check(int *arr, int set) {
 		refresh();
 		for (int i = 0; i < set; i++)
 			if (!Complete(arr[i]))
@@ -208,7 +215,8 @@ public:
 		{
 			minJob = front_.FindMin(*this);
 			front_.Remove(minJob);
-			Stack<int>::Iterator *i = jobs_[n - 1].GetFollowIterator();
+
+			Stack<int>::Iterator *i = jobs_[minJob - 1].GetFollowIterator();
 
 			if (i != NULL) {
 				do {
@@ -322,7 +330,9 @@ public:
 	void clear() {
 		front_.Clear();
 		count = 0;
-		jobs_.clear();
+		//jobs_.clear();
+		delete[] jobs_;
+		jobs_ = NULL;
 	}
 
 	int get_count() {
@@ -330,5 +340,6 @@ public:
 	}
 
 	~Jobs() {
+		delete[] jobs_;
 	}
 };

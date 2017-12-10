@@ -4,13 +4,17 @@
 
 class FrontAlg : public AMethod {
 public:
-	sort::vector<int> sol1, sol2, sol3;
+	//vector<int> sol1, sol2, sol3;
+	int *sol1, *sol2, *sol3;
 	int f1, f2, f3;
 
 	FrontAlg() {
 		f1 = 0;
 		f2 = 0;
 		f3 = 0;
+		sol1 = NULL;
+		sol2 = NULL;
+		sol3 = NULL;
 	}
 
 	void PrintRes() {
@@ -19,9 +23,16 @@ public:
 	}
 
 	void Update() {
-		sol1.resize(n);
+		/*sol1.resize(n);
 		sol2.resize(n);
-		sol3.resize(n);
+		sol3.resize(n);*/
+		delete[] sol1;
+		delete[] sol2;
+		delete[] sol3;
+
+		sol1 = new int[n];
+		sol2 = new int[n];
+		sol3 = new int[n];
 	}
 
 	void Start(Task &task) {
@@ -30,11 +41,11 @@ public:
 
 		if (f1 > f2) {
 			minF = f2;
-			best_ = sol2;
+			ArrFunctions::copyArr(best_, sol2, n);
 		}
 		else {
 			minF = f1;
-			best_ = sol1;
+			ArrFunctions::copyArr(best_, sol1, n);
 		}
 	}
 
@@ -125,5 +136,8 @@ public:
 	}
 
 	~FrontAlg() {
+		delete[] sol1;
+		delete[] sol2;
+		delete[] sol3;
 	}
 };

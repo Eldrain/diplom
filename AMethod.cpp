@@ -7,19 +7,29 @@
 class AMethod {
 protected:
 	int n, minF, countVar;
-	sort::vector<int> var_, best_;
+	//vector<int> var_, best_;
+	int *var_, *best_;
 	double time_;
 	
 private:
 	void FirstUpd() {
 		minF = 0;
 		countVar = 0;
-		var_.resize(n);
-		best_.resize(n);	
-		ArrFunctions::clearArr(var_);
+
+		/*var_.resize(n);
+		best_.resize(n);*/
+		delete[] var_;
+		delete[] best_;
+		var_ = new int[n];
+		best_ = new int[n];
+		ArrFunctions::clearArr(var_, n);
 	}
 
 public:
+	AMethod() {
+		/*var_ = NULL;
+		best_ = NULL;*/
+	}
 
 	int Solve(Task &task) {
 		n = task.n;
@@ -44,7 +54,7 @@ public:
 
 	void PrintBest() {
 		std::cout << std::endl << "Best result: ";
-		ArrFunctions::printArr(best_);
+		ArrFunctions::printArr(best_, n);
 	}	
 
 	double GetTime() {
@@ -56,5 +66,7 @@ public:
 	}
 
 	virtual ~AMethod() {
+		delete[] var_;
+		delete[] best_;
 	}
 };

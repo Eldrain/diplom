@@ -8,7 +8,7 @@
 class MultiSearch : public AMethod {
 private:
 	struct trData {
-		sort::vector<int> *var;
+		int *var;
 		int set;
 		Task *task;
 		int n;
@@ -21,18 +21,20 @@ public:
 
 	void Start(Task &task)
 	{	
-		sort::vector<int> *var = new sort::vector<int>[task.n];
+		//sort::vector<int> *var = new sort::vector<int>[task.n];
+		int **var = new int*[task.n];
 		std::vector<std::thread> threads;
 		trData *datas = new trData[n];
 
 		mutexObj.lock();
 		for (int i = 0; i < n; i++) {
-			var[i].resize(n);
-			ArrFunctions::clearArr(var[i]);
+			var[i] = new int[task.n];
+			//var[i].resize(n);
+			ArrFunctions::clearArr(var[i], n);
 			var[i][0] = i + 1;
 
 			trData *data = &datas[i];
-			data->var = &var[i];
+			data->var = var[i];
 			data->set = 1;
 			data->n = n;
 			data->task = &task;
@@ -45,6 +47,10 @@ public:
 			threads[i].join();
 		}
 
+		for (int i = 0; i < task.n; i++) {
+			delete[] var[i];
+		}
+
 		delete[] var;
 		delete[] datas;
 		var = NULL;
@@ -52,7 +58,7 @@ public:
 
 	void Search(trData *data) {
 		mutexObj.lock();
-		if (!data->task->jobs.Check(*data->var, data->set))
+		if (!data->task->jobs.Check(data->var, data->set))
 		{
 			mutexObj.unlock();
 			return;
@@ -63,17 +69,17 @@ public:
 			int j = 0;
 			for (int i = 0; i < data->n; i++) {
 				j = 0;
-				while ((*data->var)[j] != 0)
-					if ((*data->var)[j] == i + 1)
+				while (data->var[j] != 0)
+					if (data->var[j] == i + 1)
 						break;
 					else
 						j++;
 				if (j == data->set) {
-					(*data->var)[data->set] = i + 1;
+					data->var[data->set] = i + 1;
 					data->set++;
 					Search(data);
 					data->set--;
-					(*data->var)[data->set] = 0;
+					data->var[data->set] = 0;
 				}
 			}
 		}
@@ -81,11 +87,12 @@ public:
 			int f = 0;
 
 			mutexObj.lock();
-			f = data->task->procs.crit(*data->var, data->task->jobs, data->set);
+			f = data->task->procs.crit(data->var, data->task->jobs, data->set);
 
 			if (f < minF) {
 				minF = f;
-				best_ = *data->var;
+				for (int i = 0; i < n; i++)
+					best_[i] = data->var[i];
 			}
 			mutexObj.unlock();
 		}

@@ -6,13 +6,12 @@
 
 class BBreal : public AMethod {
 public:
-	sort::vector<int> buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Tree tree;
 	Marks *marks;
 
 	BBreal() {
-		marks = MarkFactory::CreateBestMarks();
+		marks = new MazMarks();//MarkFactory::CreateBestMarks();
 	}
 
 	void PrintRes() {
@@ -23,7 +22,6 @@ public:
 	void Update() {
 		tree.init(n);
 		marks->init(n);
-		buf.resize(n);
 	}
 
 	void Start(Task &task) {
@@ -38,8 +36,7 @@ public:
 		
 		if (set < n) {
 			marks->maxB(best_, set, task);
-			sort::vector<int> &buffer = marks->GetBuf();
-			best_ = buffer;
+			ArrFunctions::copyArr(best_, marks->GetBuf(), n);
 		}
 	}
 
@@ -53,14 +50,24 @@ public:
 		}
 
 		minF = tree.getMin();
-		best_ = tree.best->arr_;
+		ArrFunctions::copyArr(best_, tree.best->arr_, n);
 
 		return tree.getMin();
 	}
 
-	int countSet(sort::vector<int> &var) {
+	int countSet(int *var) {
 		int set = 0;
-		for (int i = 0; i < var.size(); i++)
+		for (int i = 0; i < n; i++)
+			if (var[i] == 0)
+				return set;
+			else
+				set++;
+		return set;
+	}
+
+	int countSet(vector<int> &var) {
+		int set = 0;
+		for (int i = 0; i < n; i++)
 			if (var[i] == 0)
 				return set;
 			else
@@ -70,6 +77,5 @@ public:
 
 	~BBreal() {
 		delete marks;
-		marks = NULL;
 	}
 };

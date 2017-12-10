@@ -4,7 +4,6 @@
 
 class BB : public AMethod {//Method Branches and Bounds
 public:
-	sort::vector<int> buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Marks *marks;
 
@@ -19,7 +18,6 @@ public:
 
 	void Update() {
 		marks->init(n);
-		buf.resize(n);
 	}
 
 	void Start(Task &task) {
@@ -29,10 +27,13 @@ public:
 		minF = clip(0, maximum, task);
 
 		int set = countSet(best_);
-		if (set < n) {
+		if (set < n) {	
 			marks->maxB(best_, set, task);
+			ArrFunctions::copyArr(best_, marks->GetBuf(), n);
+			/*int *buffer = marks->GetBuf();
+
 			for (int i = set; i < n; i++)
-				best_[i] = buf[i];
+				best_[i] = buffer[i];*/
 		}
 	}
 
@@ -93,9 +94,19 @@ public:
 		return minF;
 	}
 
-	int countSet(sort::vector<int> &var) {
+	int countSet(int *var) {
 		int set = 0;
-		for (int i = 0; i < var.size(); i++)
+		for (int i = 0; i < n; i++)
+			if (var[i] == 0)
+				return set;
+			else
+				set++;
+		return set;
+	}
+
+	int countSet(vector<int> &var) {
+		int set = 0;
+		for (int i = 0; i < n; i++)
 			if (var[i] == 0)
 				return set;
 			else
@@ -105,6 +116,6 @@ public:
 
 	~BB() {
 		delete marks;
-		marks = NULL;
+		//delete[] buf_;
 	}
 };

@@ -48,7 +48,8 @@ public:
 
 			if (f < minF) {
 				minF = f;
-				best_ = var_;
+				for (int i = 0; i < n; i++)
+					best_[i] = var_[i];
 			}
 		}
 		return minF;

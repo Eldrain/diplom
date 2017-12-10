@@ -4,27 +4,37 @@
 
 class Marks {
 protected:
-	sort::vector<int> buf_;
+	//vector<int> buf_;
+	int *buf_;
+	int n_;
 public:
 	Marks() {
+		buf_ = NULL;
+		n_ = 0;
 	}
 
 	Marks(int n) {
-		buf_.resize(n);
+		buf_ = new int[n];
+		//buf_.resize(n);
+		n_ = n;
 	}
 
 	void init(int n) {
-		buf_.resize(n);
+		delete[] buf_;
+		buf_ = new int[n];
+		n_ = n;
+		//buf_.resize(n);
 	}
 
-	virtual int minB(sort::vector<int> &var, int set, Task &task) = 0;
+	virtual int minB(int *var, int set, Task &task) = 0;
 
-	virtual int maxB(sort::vector<int> &var, int set, Task &task) = 0;
+	virtual int maxB(int *var, int set, Task &task) = 0;
 
-	virtual sort::vector<int> &GetBuf() {
+	int* GetBuf() {
 		return buf_;
 	}
 
 	virtual ~Marks() {
+		delete[] buf_;
 	}
 };
