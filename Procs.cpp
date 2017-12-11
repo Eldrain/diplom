@@ -20,43 +20,47 @@ public:
 		}
 	};
 
-	processor *procs;
+	sort::vector<processor> procs;
 
 	Procs() {
 		count = 0;
-		procs = NULL;
+		//procs = NULL;
 	}
 
 	Procs(int m) {
 		this->count = m;
-		procs = new processor[m];
+		procs.resize(m);
+		//procs = new processor[m];
 	}
 
-	void create(int m) {
+	void resize(int m) {
 		this->count = m;
-		delete procs;
-		procs = new processor[m];
+		procs.resize(m);
+		/*delete procs;
+		procs = new processor[m];*/
 	}
 
 	int crit(int *arr, Jobs &jobs, int set) {
 		prepare();
-		//for (int i = 0; i < set; i++)
-		//	std::cout << arr[i] << ", ";
-		//	procs[i].prepare();
 		if (set == 0)
 			return 0;
 		int workTime = 0, minWork = 0, f = 0, completeJob = 0;
+		int n = jobs.get_count();
 
 		jobs.refresh();
 		int nextJob = 0;
 		while (true) {
-			for (int i = 0; i < count; i++)
-				if (jobs.front.find(arr[nextJob]) && procs[i].workTime == 0) {
-					procs[i].workTime = jobs[arr[nextJob] - 1];//[]
-					procs[i].job = arr[nextJob];
-					nextJob++;
-				}
-				
+			//if (nextJob < n) {
+				for (int i = 0; i < count; i++)
+					if (jobs.FindInFront(arr[nextJob]) && procs[i].workTime == 0) {
+						procs[i].workTime = jobs[arr[nextJob] - 1];//[]
+						procs[i].job = arr[nextJob];
+						nextJob++;
+						if (nextJob == n)
+							break;
+					}
+			//}
+
 
 			minWork = jobs[0];//[]
 
@@ -73,12 +77,12 @@ public:
 					procs[i].bufTime = 0;
 
 					if (procs[i].workTime == 0) {
-						jobs.complete(procs[i].job);
-						
+						jobs.Complete(procs[i].job);
+
 						completeJob++;
 						if (completeJob == set)
 							return procs[i].allTime;
-						
+
 					}
 				}
 				else if (procs[i].workTime < 0)
@@ -134,7 +138,6 @@ public:
 	}
 
 	~Procs() {
-		delete[] procs;
-		procs = NULL;
+		//delete[] procs;
 	}
 };

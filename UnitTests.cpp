@@ -7,7 +7,7 @@
 #include <string>
 
 class UnitTests {
-private:
+/*private:
 	HANDLE hConsole;
 public:
 	UnitTests() {
@@ -17,8 +17,8 @@ public:
 	void TreeTest() {
 		int arr[] = { 1, 2, 3 };
 		int n = 3, set = 3;
-		Tree::leaf lf(arr, n, 0, 0, set), lf2(new int[]{2, 3, 0}, 3, 1, 1, 2), lf3(arr, n, 1, 2, set);
-		Tree tree(n);
+		//Tree::leaf lf(arr, n, 0, 0, set), lf2(new int[]{2, 3, 0}, 3, 1, 1, 2), lf3(arr, n, 1, 2, set);
+		/*Tree tree(n);
 
 		log("Tree test");
 		testLeaf(lf, lf2, lf3, arr);
@@ -55,5 +55,5 @@ public:
 
 	void log(std::string str) {
 		std::cout << str << ":" << std::endl;
-	}
+	}*/
 };

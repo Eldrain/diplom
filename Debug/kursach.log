@@ -1,9 +1,11 @@
-﻿Сборка начата 29.11.2017 19:57:50.
+﻿Сборка начата 11.12.2017 23:22:55.
      1>Проект "C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" в узле 2 (целевые объекты Rebuild).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (diplom.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AMethod.cpp ArrFunctions.cpp BB.cpp BBMarks.cpp BBreal.cpp FrontAlg.cpp Jobs.cpp Marks.cpp MazMarks.cpp MultiSearch.cpp ObjectStack.cpp Stack.cpp Procs.cpp SortOut.cpp Task.cpp IOFile.cpp multSch.cpp test.cpp Tree.cpp UnitTests.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AMethod.cpp ArrFunctions.cpp BB.cpp BBMarks.cpp BBreal.cpp FastMS.cpp FrontAlg.cpp Jobs.cpp MarkFactory.cpp Marks.cpp MazMarks.cpp MultiSearch.cpp ObjectStack.cpp Schedule.cpp Stack.cpp Procs.cpp SortOut.cpp Task.cpp IOFile.cpp multSch.cpp test.cpp Tree.cpp UnitTests.cpp vector.cpp
+         vector.cpp
          UnitTests.cpp
          Tree.cpp
          test.cpp
@@ -13,13 +15,18 @@
          SortOut.cpp
          Procs.cpp
          Stack.cpp
+         Schedule.cpp
          ObjectStack.cpp
          MultiSearch.cpp
          MazMarks.cpp
          Marks.cpp
+         MarkFactory.cpp
          Jobs.cpp
          FrontAlg.cpp
+         FastMS.cpp
          BBreal.cpp
+         Создание кода...
+         Компиляция...
          BBMarks.cpp
          BB.cpp
          ArrFunctions.cpp
@@ -31,12 +38,15 @@
          Debug\BB.obj
          Debug\BBMarks.obj
          Debug\BBreal.obj
+         Debug\FastMS.obj
          Debug\FrontAlg.obj
          Debug\Jobs.obj
+         Debug\MarkFactory.obj
          Debug\Marks.obj
          Debug\MazMarks.obj
          Debug\MultiSearch.obj
          Debug\ObjectStack.obj
+         Debug\Schedule.obj
          Debug\Stack.obj
          Debug\Procs.obj
          Debug\SortOut.obj
@@ -47,9 +57,10 @@
          Debug\test.obj
          Debug\Tree.obj
          Debug\UnitTests.obj
+         Debug\vector.obj
          kursach.vcxproj -> C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\Debug\multSch.exe
      1>Сборка проекта "C:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" завершена (целевые объекты Rebuild).
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:33.56
+Затраченное время: 00:00:33.93

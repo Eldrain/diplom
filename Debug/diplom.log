@@ -1,0 +1,23 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\WDExpress\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (kursach.vcxproj, multSch.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  stdafx.cpp
+  UnitTests.cpp
+  Tree.cpp
+  test.cpp
+  Task.cpp
+  Stack.cpp
+  SortOut.cpp
+  Procs.cpp
+  ObjectStack.cpp
+  MultiSearch.cpp
+  Marks.cpp
+  Jobs.cpp
+  IOFile.cpp
+  FrontAlg.cpp
+  diplom.cpp
+  BBreal.cpp
+  BBMarks.cpp
+  BB.cpp
+  ArrFunctions.cpp
+  AMethod.cpp
+  Generating Code...
+  diplom.vcxproj -> C:\Users\anovikov\source\repos\diplom\Debug\diplom.exe

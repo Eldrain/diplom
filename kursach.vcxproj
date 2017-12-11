@@ -84,7 +84,6 @@
     <Text Include="data1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MultiSearch.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -94,12 +93,15 @@
     <ClCompile Include="BB.cpp" />
     <ClCompile Include="BBMarks.cpp" />
     <ClCompile Include="BBreal.cpp" />
+    <ClCompile Include="FastMS.cpp" />
     <ClCompile Include="FrontAlg.cpp" />
     <ClCompile Include="Jobs.cpp" />
+    <ClCompile Include="MarkFactory.cpp" />
     <ClCompile Include="Marks.cpp" />
     <ClCompile Include="MazMarks.cpp" />
     <ClCompile Include="MultiSearch.cpp" />
     <ClCompile Include="ObjectStack.cpp" />
+    <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Procs.cpp" />
     <ClCompile Include="SortOut.cpp" />
@@ -113,6 +115,7 @@
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UnitTests.cpp" />
+    <ClCompile Include="vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

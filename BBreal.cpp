@@ -2,66 +2,45 @@
 #include "stdafx.h"
 #include "AMethod.cpp"
 #include "Tree.cpp"
-#include "BBMarks.cpp"
-#include "MazMarks.cpp"
+#include "MarkFactory.cpp"
 
 class BBreal : public AMethod {
 public:
-	int *buf;
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Tree tree;
 	Marks *marks;
 
 	BBreal() {
-		marks = new MazMarks();
+		marks = new MazMarks();//MarkFactory::CreateBestMarks();
 	}
 
-	void update() {
-		AMethod::update();
+	void PrintRes() {
+		std::cout << "\nB&B (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+		PrintBest();
+	}
+
+	void Update() {
 		tree.init(n);
 		marks->init(n);
-
-		delete[] buf;
-		buf = new int[n];
 	}
 
-	int solve(Task &task) {
-		minF = 0;
-
-		n = task.n;
-		update();
-		for (int i = 0; i < n; i++)
-			minF += task.jobs.jobs[i].time; // ���������������� �������� �������. �� ����� ���� ���������� jobs.����� ���������� ������.
-		clearArr(var, n);
-		minF++; //��� ������� (��� ����, ����� best ���������� ���� �� ���� ���
-
+	void Start(Task &task) {
 		int maximum = minF;
-		tree.addInWave(var, maximum, maximum, 0);
+		tree.addInWave(var_, maximum, maximum, 0);
 		tree.addWave();
-		//Stack<Tree::leaf>::elem *prsp = new Stack<Tree::leaf>::elem(*first);
-		//tree.setBest(prsp);
-		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
-		time = clock();
-		minF = clip(0, maximum, task);
-		time = (clock() - time) / CLOCKS_PER_SEC;
 
-		int set = countSet(best, n);
+		//timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
+		minF = clip(0, maximum, task);
+
+		int set = countSet(best_);
+		
 		if (set < n) {
-			marks->maxB(best, set, task);
-			for (int i = set; i < n; i++)
-				best[i] = buf[i];
+			marks->maxB(best_, set, task);
+			ArrFunctions::copyArr(best_, marks->GetBuf(), n);
 		}
-		return minF;
 	}
 
 	int clip(int set, int &maximum, Task &task) {
-		/*bufTime = clock();
-		if (!task.jobs.checkVar(var, set)) {
-			timeCheck += (clock() - bufTime) / 1000;
-			return minF;
-		}
-		timeCheck += (clock() - bufTime) / 1000;*/
-
 		while (!tree.isEmpty()) {
 			tree.findPrsp();
 			countVar+=tree.produce(task);
@@ -71,12 +50,22 @@ public:
 		}
 
 		minF = tree.getMin();
-		ArrFunctions::copyArr(best, tree.best->arr, n);
+		ArrFunctions::copyArr(best_, tree.best->arr_, n);
 
 		return tree.getMin();
 	}
 
-	int countSet(int *var, int n) {
+	int countSet(int *var) {
+		int set = 0;
+		for (int i = 0; i < n; i++)
+			if (var[i] == 0)
+				return set;
+			else
+				set++;
+		return set;
+	}
+
+	int countSet(vector<int> &var) {
 		int set = 0;
 		for (int i = 0; i < n; i++)
 			if (var[i] == 0)
@@ -87,8 +76,6 @@ public:
 	}
 
 	~BBreal() {
-		delete[] buf;
 		delete marks;
-		marks = NULL;
 	}
 };

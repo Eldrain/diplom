@@ -4,44 +4,61 @@
 #include "ArrFunctions.cpp"
 #include <ctime>
 
-
 class AMethod {
 protected:
-	int *var, *best, n, m, minF, countVar;
-	double time;
+	int n, minF, countVar;
+	//vector<int> var_, best_;
+	int *var_, *best_;
+	double time_;
 	
-	void copyArr(int *arr1, int *arr2, int n) {
-		for (int i = 0; i < n; i++)
-			arr1[i] = arr2[i];
-	}
-
-	void printArr(int *arr, int n) {
-		for (int i = 0; i < n; i++)
-			std::cout << arr[i] << ", ";
-	}
-
-	void clearArr(int *arr, int n) {
-		for (int i = 0; i < n; i++)
-			arr[i] = 0;
-	}
-
-	virtual void update() {
+private:
+	void FirstUpd() {
+		minF = 0;
 		countVar = 0;
-		delete[] var;
-		delete[] best;
-		var = new int[n];
-		best = new int[n];
+
+		/*var_.resize(n);
+		best_.resize(n);*/
+		delete[] var_;
+		delete[] best_;
+		var_ = new int[n];
+		best_ = new int[n];
+		ArrFunctions::clearArr(var_, n);
 	}
+
 public:
-	virtual int solve(Task &task) = 0;
-
-	void printRes() {
-		std::cout << std::endl << "Best result: ";
-		ArrFunctions::printArr(best, n);
+	AMethod() {
+		/*var_ = NULL;
+		best_ = NULL;*/
 	}
 
-	double getTime() {
-		return time;
+	int Solve(Task &task) {
+		n = task.n;
+		FirstUpd();
+		Update();
+		for (int i = 0; i < n; i++)
+			minF += task.jobs[i];
+		minF++;//Best array will filled at least once
+
+		time_ = clock();
+		Start(task);
+		time_ = (clock() - time_) / CLOCKS_PER_SEC;
+
+		return minF;
+	}
+
+	virtual void Update() = 0;
+
+	virtual void Start(Task &task) = 0;
+
+	virtual void PrintRes() = 0;
+
+	void PrintBest() {
+		std::cout << std::endl << "Best result: ";
+		ArrFunctions::printArr(best_, n);
+	}	
+
+	double GetTime() {
+		return time_;
 	}
 
 	int getCountVar() {
@@ -49,7 +66,7 @@ public:
 	}
 
 	virtual ~AMethod() {
-		delete[] var;
-		delete[] best;
+		delete[] var_;
+		delete[] best_;
 	}
 };

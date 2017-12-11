@@ -8,7 +8,7 @@ public:
 	int minB(int *var, int set, Task &task) {
 		task.procs.crit(var, task.jobs, set);
 
-		int value = task.procs.adjustment(task.getTime(task.jobs.minTime()), n - set);
+		int value = task.procs.adjustment(task.getTime(task.jobs.MinTime()), n_ - set);
 
 		return value;
 	}
@@ -18,21 +18,19 @@ public:
 		task.jobs.refresh();
 
 		for (; i < set; i++) {
-			buf[i] = var[i];
-			task.jobs.complete(var[i]);
+			buf_[i] = var[i];
+			task.jobs.Complete(var[i]);
 		}
 
 		int maxNum = 0;
-		while (i < n) {
-			maxNum = task.jobs.front.findMax(task.jobs);
-			buf[i] = maxNum;
+		while (i < n_) {
+			maxNum = task.jobs.FindMaxInFront();
+			buf_[i] = maxNum;
 			i++;
-			task.jobs.complete(maxNum);
+			task.jobs.Complete(maxNum);
 		}
 
-		//std::cout << std::endl << "\nbuffer: ";
-		//printArr(buffer, n);
-		return task.procs.crit(buf, task.jobs, n);
+		return task.procs.crit(buf_, task.jobs, n_);
 	}
 
 	~BBMarks() {
