@@ -22,6 +22,12 @@
     <Filter Include="Файлы исходного кода\framework\methods">
       <UniqueIdentifier>{a5cacb7f-b107-436e-834b-bcdbfe55f901}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\framework\marks\min_marks">
+      <UniqueIdentifier>{2c337e12-c717-48db-ac6a-3169ba4ba9d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\framework\marks\max_marks">
+      <UniqueIdentifier>{d4f85d06-051b-4651-9edc-663d4b7bb7df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -89,9 +95,6 @@
     <ClCompile Include="Marks.cpp">
       <Filter>Файлы исходного кода\framework\marks</Filter>
     </ClCompile>
-    <ClCompile Include="MazMarks.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
     <ClCompile Include="MarkFactory.cpp">
       <Filter>Файлы исходного кода\framework\marks</Filter>
     </ClCompile>
@@ -124,6 +127,21 @@
     </ClCompile>
     <ClCompile Include="FastMS.cpp">
       <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="Mark.cpp">
+      <Filter>Файлы исходного кода\framework\marks</Filter>
+    </ClCompile>
+    <ClCompile Include="MinMoz.cpp">
+      <Filter>Файлы исходного кода\framework\marks\min_marks</Filter>
+    </ClCompile>
+    <ClCompile Include="MinSimple.cpp">
+      <Filter>Файлы исходного кода\framework\marks\min_marks</Filter>
+    </ClCompile>
+    <ClCompile Include="MozMarks.cpp">
+      <Filter>Файлы исходного кода\framework\marks</Filter>
+    </ClCompile>
+    <ClCompile Include="MaxSimple.cpp">
+      <Filter>Файлы исходного кода\framework\marks\max_marks</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

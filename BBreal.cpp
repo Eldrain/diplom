@@ -11,7 +11,7 @@ public:
 	Marks *marks;
 
 	BBreal() {
-		marks = new MazMarks();//MarkFactory::CreateBestMarks();
+		marks = MarkFactory::CreateBestMarks();
 	}
 
 	void PrintRes() {
@@ -45,8 +45,10 @@ public:
 			tree.findPrsp();
 			countVar+=tree.produce(task);
 			tree.marks(*marks, task);
+			tree.printTree();
 			tree.cut(maximum);
 			tree.addWave();
+			
 		}
 
 		minF = tree.getMin();

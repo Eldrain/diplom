@@ -96,7 +96,12 @@ private:
 			return min;
 		}
 
+		//Add job with index == n in front. If front contains this job, not add it again
 		void Add(int n) {
+			if (Find(n)) {
+				return;
+			}
+
 			Stack<int>::elem *el = pool_.pop();
 			if (!el) {
 				el = new Stack<int>::elem(n);
@@ -118,7 +123,7 @@ private:
 				return false;
 		}
 
-		//Find from front job with index == n. If it's having here returns TRUE, else FALSE
+		//Find in front job with index == n. If it's having here returns TRUE, else FALSE
 		bool Find(int n) {
 			Stack<int>::elem *now = stack_.first;
 			while (now) {
@@ -207,13 +212,28 @@ public:
 			return false;
 	}
 	
-	//Fulfilling n jobs with min time from front
-	void CompleteJobs(int n) {
+	//Fulfilling n jobs with min time from front. Returns pointer on current unfulfited job in var
+	int CompleteJobs(int n, int *var, int &pointer) {
 		int minJob = 0;
+		int minTime = jobs_[front_.FindMin(*this) - 1].time;
 
 		while (n != 0 && front_.size() != 0)
 		{
-			minJob = front_.FindMin(*this);
+			if (var[pointer] == 0) {
+				minJob = front_.FindMin(*this);
+			}
+			else {
+				minJob = var[pointer];
+				if (front_.Find(minJob) == false) {
+					break;
+				}
+			}
+
+			if (minTime > jobs_[minJob - 1].time) {
+				minTime = jobs_[minJob - 1].time;
+			}
+
+			pointer++;
 			front_.Remove(minJob);
 
 			Stack<int>::Iterator *i = jobs_[minJob - 1].GetFollowIterator();
@@ -230,6 +250,8 @@ public:
 		for(int i = 0; i < count; i++)
 			if (jobs_[i].nowPrev == 0 && !jobs_[i].complete)
 				front_.Add(i + 1);
+		
+		return minTime;
 	}
 
 	//Returns index - 1 of job with min time fulfiting

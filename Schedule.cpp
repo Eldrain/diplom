@@ -29,7 +29,7 @@ public:
 		met_[1] = create<BB>();
 		met_[2] = create<BBreal>();
 		met_[3] = create<FrontAlg>();
-		met_[4] = create<MultiSearch>();
+		met_[4] = create<FastMS>();
 	}
 
 	void CreateFastSet() {

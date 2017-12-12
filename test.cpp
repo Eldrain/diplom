@@ -14,7 +14,7 @@ public:
 
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry) {
 		Schedule sch;
-		sch.CreateBBSet();
+		sch.CreateBaseSet();
 
 		for (int i = startN; i < finishN + 1; i++) {		
 			sch.Generate(i, m, maxTime, retry);

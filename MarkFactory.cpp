@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "Marks.cpp"
 #include "BBMarks.cpp"
-#include "MazMarks.cpp"
+#include "MozMarks.cpp"
 
 class MarkFactory {
 public:
@@ -11,7 +11,7 @@ public:
 	}
 
 	static Marks *CreateBestMarks() {
-		return create<MazMarks>();
+		return create<MozMarks>();
 	}
 
 private:
