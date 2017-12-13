@@ -91,6 +91,58 @@ public:
 		}
 	}
 
+	//Complete set jobs and returns criterion value. In pointer save index of processor, where was
+	/*int CritWithProcPointer(int *arr, Jobs &jobs, int set, int &pointer) {
+		prepare();
+		if (set == 0)
+			return 0;
+		int workTime = 0, minWork = 0, f = 0, completeJob = 0;
+		int n = jobs.get_count();
+
+		jobs.refresh();
+		int nextJob = 0;
+		while (true) {
+			//if (nextJob < n) {
+			for (int i = 0; i < count; i++)
+				if (jobs.FindInFront(arr[nextJob]) && procs[i].workTime == 0) {
+					procs[i].workTime = jobs[arr[nextJob] - 1];//[]
+					procs[i].job = arr[nextJob];
+					nextJob++;
+					if (nextJob == n)
+						break;
+				}
+			//}
+
+
+			minWork = jobs[0];//[]
+
+			for (int i = 0; i < count; i++)
+				if (procs[i].workTime > 0 && minWork > procs[i].workTime)
+					minWork = procs[i].workTime;
+
+			for (int i = 0; i < count; i++) {
+				procs[i].bufTime += minWork;
+
+				if (procs[i].workTime > 0) {
+					procs[i].workTime -= minWork;
+					procs[i].allTime += procs[i].bufTime;
+					procs[i].bufTime = 0;
+
+					if (procs[i].workTime == 0) {
+						jobs.Complete(procs[i].job);
+
+						completeJob++;
+						if (completeJob == set)
+							return procs[i].allTime;
+
+					}
+				}
+				else if (procs[i].workTime < 0)
+					std::cout << "\nProcNum Error!";
+			}
+		}
+	}*/
+
 	//������(adjustment - ��������). ������� ������������ ��� �������� ������ ������: ���������� � ������
 	//������� ���������� ��� k ����� � ����������� �������������
 	int adjustment(int jobTime, int count) {

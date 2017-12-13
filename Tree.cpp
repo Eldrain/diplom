@@ -3,6 +3,7 @@
 #include "ObjectStack.cpp"
 #include "Marks.cpp"
 #include "ArrFunctions.cpp"
+#include "log.cpp"
 
 class Tree {
 public:
@@ -65,6 +66,7 @@ public:
 	int count, n;
 	ObjectStack<leaf> pool, tree, wave;
 	leaf *best, *prsp;
+	sort::log logger;
 
 	Tree() {
 		count = 0;
@@ -150,8 +152,10 @@ public:
 		while (l) {
 			l->info->max = mark.maxB(l->info->arr_, l->info->set, task);
 			l->info->min = mark.minB(l->info->arr_, l->info->set, task);
+			logger.doLog(l->info->min);
 			l = l->next;
 		}
+		//logger.print();
 	}
 
 	void cut(int &maximum) {

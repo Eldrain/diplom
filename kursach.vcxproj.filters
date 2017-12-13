@@ -122,9 +122,6 @@
     <ClCompile Include="vector.cpp">
       <Filter>Файлы исходного кода\framework</Filter>
     </ClCompile>
-    <ClCompile Include="MazMarks.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="FastMS.cpp">
       <Filter>Файлы исходного кода\framework\methods</Filter>
     </ClCompile>
@@ -142,6 +139,24 @@
     </ClCompile>
     <ClCompile Include="MaxSimple.cpp">
       <Filter>Файлы исходного кода\framework\marks\max_marks</Filter>
+    </ClCompile>
+    <ClCompile Include="MinMingozzi.cpp">
+      <Filter>Файлы исходного кода\framework\marks\min_marks</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="StatMethod.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="Statistics.cpp">
+      <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="StatMarks.cpp">
+      <Filter>Файлы исходного кода\framework\marks</Filter>
+    </ClCompile>
+    <ClCompile Include="NextMT.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

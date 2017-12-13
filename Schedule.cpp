@@ -5,95 +5,17 @@
 #include "FrontAlg.cpp"
 #include "MultiSearch.cpp"
 #include "FastMS.cpp"
+#include "StatMethod.cpp"
 #define M 5
 
 class Schedule {
-private:
-	Task task;
-	sort::vector<AMethod*> met_;
 public:
-
-	void Solve() {
-		for (int i = 0; i < met_.size(); i++) {
-			met_[i]->Solve(task);
-			met_[i]->PrintRes();
-		}
-	}
-
-	void CreateBaseSet() {
-		/*delete[] met_;
-		met_ = new AMethod*[M];*/
-		clear();
-		met_.resize(M);
-		met_[0] = create<SortOut>();
-		met_[1] = create<BB>();
-		met_[2] = create<BBreal>();
-		met_[3] = create<FrontAlg>();
-		met_[4] = create<FastMS>();
-	}
-
-	void CreateFastSet() {
-		clear();
-		met_.resize(3);
-		met_[0] = create<BB>();
-		met_[1] = create<BBreal>();
-		met_[2] = create<FastMS>();
-	}
-
-	void CreateSortOutSet() {
-		clear();
-		met_.resize(3);
-		met_[0] = create<SortOut>();
-		met_[1] = create<MultiSearch>();
-		met_[2] = create<FastMS>();
-	}
-
-	void CreateBBSet() {
-		clear();
-		met_.resize(2);
-		met_[0] = create<BB>();
-		met_[1] = create<BBreal>();
-	}
-
-	void ResizeTaskProcs(int m) {
-		task.ResizeProcs(m);
-	}
-
-	void Generate(int n, int m, int maxTime, int retry) {
-		task.ResizeProcs(m);
-		Generator::GenerateTree(task, n, maxTime, retry);
-	}
-
-	void PrintJobs() {
-		task.PrintJobs();
-	}
-
-	template<class T>
-	AMethod* create() {
-		return new T();
-	}
-
-	//Delete set of methods
-	void clear() {
-		for (int i = 0; i < met_.size(); i++) {
-			delete met_[i];
-		}
-		met_.clear();
-	}
-
-	~Schedule() {
-		for (int i = 0; i < M; i++) {
-			delete met_[i];
-		}
-		met_.clear();
-		//delete[] met_;
-	}
-
 	class Generator {
 	public:
 		static void GenerateTree(Task &task, int n, int maxTime, int retry) {
 			task.n = n;
 			generateTree(task.jobs, n, maxTime, retry);
+			task.jobs.PrintTimes();
 		}
 
 		static void GenerateChain(Task &task, int n, int maxTime) {
@@ -135,4 +57,127 @@ public:
 			jobs.refresh();
 		}
 	};
+private:
+	Task task;
+	sort::vector<AMethod*> met_;
+	Statistics *stat;
+public:
+
+	void Solve() {
+		for (int i = 0; i < met_.size(); i++) {
+			met_[i]->Solve(task);
+			met_[i]->PrintRes();
+		}
+	}
+
+	void CreateBaseSet() {
+		/*delete[] met_;
+		met_ = new AMethod*[M];*/
+		clear();
+		met_.resize(M);
+		initStat();
+
+		met_[0] = CreateStat<SortOut>(&stat[0]);
+		met_[1] = CreateWithMarks<BB>(&stat[1]);
+		met_[2] = CreateWithMarks<BBreal>(&stat[2]);
+
+		//TODO: DELETE KOSTYLIIIIIIIIII!!!!!!!!!!!!!!!!!!
+		/*delete ((BB*)met_[1])->marks;
+		((BB*)met_[1])->marks = MarkFactory::CreateStatMarks(&stat[1]);
+		delete ((BBreal*)met_[2])->marks;
+		((BBreal*)met_[2])->marks = MarkFactory::CreateStatMarks(&stat[1]);*/
+		//============================================================================
+		met_[3] = CreateStat<FrontAlg>(&stat[3]);
+		met_[4] = CreateStat<FastMS>(&stat[4]);
+		
+	}
+
+	void CreateFastSet() {
+		clear();
+		met_.resize(3);
+		met_[0] = create<BB>();
+		met_[1] = create<BBreal>();
+		met_[2] = create<FastMS>();
+		initStat();
+	}
+
+	void CreateSortOutSet() {
+		clear();
+		met_.resize(3);
+		met_[0] = create<SortOut>();
+		met_[1] = create<MultiSearch>();
+		met_[2] = create<FastMS>();
+		initStat();
+	}
+
+	void CreateBBSet() {
+		clear();
+		met_.resize(2);
+		met_[0] = create<BB>();
+		met_[1] = create<BBreal>();
+		initStat();
+	}
+
+	void ResizeTaskProcs(int m) {
+		task.ResizeProcs(m);
+	}
+
+	void Generate(int n, int m, int maxTime, int retry) {
+		task.ResizeProcs(m);
+		Generator::GenerateTree(task, n, maxTime, retry);
+	}
+
+	void PrintJobs() {
+		task.PrintJobs();
+	}
+
+	int GetCountMethod() {
+		return met_.size();
+	}
+
+	void initStat() {
+		delete[] stat;
+		stat = new Statistics[met_.size()];
+	}
+
+	void PrintStat() {
+		for (int i = 0; i < met_.size(); i++) {
+			stat[i].print();
+		}
+	}
+
+	template<class T>
+	AMethod* create() {
+		return new T();
+	}
+
+	template<class T>
+	AMethod* CreateStat(Statistics *st) {
+		return new StatMethod<T>(st);
+	}
+
+	//TODO: DELETE!!!!!!!!!!!!!
+	template<class T>
+	AMethod* CreateWithMarks(Statistics *st) {
+		return new StatMethod<T>(st, new T(st));
+	}
+
+
+
+	//Delete set of methods
+	void clear() {
+		for (int i = 0; i < met_.size(); i++) {
+			delete met_[i];
+		}
+		met_.clear();
+	}
+
+	~Schedule() {
+		for (int i = 0; i < M; i++) {
+			delete met_[i];
+		}
+		met_.clear();
+		delete[] stat;
+		//delete[] met_;
+	}
 };

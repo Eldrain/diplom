@@ -24,7 +24,7 @@ public:
 		n_ = n;
 	}
 
-	void init(int n) {
+	virtual void init(int n) {
 		//initMarks();
 		delete[] buf_;
 		buf_ = new int[n];
@@ -32,15 +32,15 @@ public:
 		//buf_.resize(n);
 	}
 
-	int minB(int *var, int set, Task &task) {
+	virtual int minB(int *var, int set, Task &task) {
 		return min->bound(var, set, task, buf_);
 	}
 
-	int maxB(int *var, int set, Task &task) {
+	virtual int maxB(int *var, int set, Task &task) {
 		return max->bound(var, set, task, buf_);
 	}
 
-	int* GetBuf() {
+	virtual int* GetBuf() {
 		return buf_;
 	}
 

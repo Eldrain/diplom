@@ -14,6 +14,10 @@ public:
 		marks = MarkFactory::CreateBestMarks();
 	}
 
+	BBreal(Statistics *st) {
+		marks = MarkFactory::CreateStatMarks(st);
+	}
+
 	void PrintRes() {
 		std::cout << "\nB&B (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
@@ -45,7 +49,7 @@ public:
 			tree.findPrsp();
 			countVar+=tree.produce(task);
 			tree.marks(*marks, task);
-			tree.printTree();
+			//tree.printTree();
 			tree.cut(maximum);
 			tree.addWave();
 			

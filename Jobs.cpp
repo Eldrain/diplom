@@ -211,6 +211,22 @@ public:
 		} else
 			return false;
 	}
+
+	//Make job with index n unfulfited
+	void Uncomplete(int n) {
+		jobs_[n - 1].complete = false;
+		Stack<int>::Iterator *i = jobs_[n - 1].GetFollowIterator();
+
+		if (i != NULL) {
+			do {
+				jobs_[i->current_->info - 1].nowPrev++;
+				if (jobs_[i->current_->info - 1].nowPrev == 1) {
+					front_.Remove(i->current_->info);
+				}
+			} while (i->get_next());
+		}
+		front_.Add(n);
+	}
 	
 	//Fulfilling n jobs with min time from front. Returns pointer on current unfulfited job in var
 	int CompleteJobs(int n, int *var, int &pointer) {
@@ -333,6 +349,13 @@ public:
 		for (int i = 0; i < count; i++) {
 			std::cout << std::endl << i + 1 << ": ";
 			jobs_[i].follow.print();
+		}
+	}
+
+	void PrintTimes() {
+		std::cout << std::endl << "Times: ";
+		for (int i = 0; i < count; i++) {
+			std::cout << jobs_[i].time << ", ";
 		}
 	}
 

@@ -2,10 +2,7 @@ c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\multsch.pch
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\vc141.pdb
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\vc141.idb
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\stdafx.obj
-c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\mark.obj
-c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\markfactory.obj
-c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\marks.obj
-c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\maxsimple.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\minmingozzi.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\mozmarks.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\minmoz.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\minsimple.obj
@@ -15,6 +12,9 @@ c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\schedule.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\stack.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\procs.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\sortout.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\statistics.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\statmarks.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\statmethod.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\task.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\iofile.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\multsch.obj
@@ -30,6 +30,11 @@ c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\bbreal.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\fastms.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\frontalg.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\jobs.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\log.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\mark.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\markfactory.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\marks.obj
+c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\maxsimple.obj
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\multsch.ilk
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\multsch.exe
 c:\users\anovikov\documents\visual studio 2017\diplom-master\debug\multsch.pdb

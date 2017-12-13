@@ -24,6 +24,8 @@ void print(int i) {
 		cout << endl << k + 1;
 }
 
+int Statistics::etalonMinF = 1;
+
 int main()
 {
 	setlocale(0, "");
@@ -32,7 +34,7 @@ int main()
 	int n = 0, m = 0;
 
 	test test1;
-	test1.timeTest(5, 30, 3, 50, 8);
+	test1.timeTest(5, 25, 3, 50, 8);
 
 	getchar();
 	return 0;

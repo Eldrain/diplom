@@ -2,13 +2,13 @@
 #include "stdafx.h"
 #include "Marks.cpp"
 #include "MaxSimple.cpp"
-#include "MinMoz.cpp"
+#include "MinMingozzi.cpp"
 
 class MozMarks : public Marks {
 public:
 	MozMarks() {
 		max = new MaxSimple();
-		min = new MinMoz();
+		min = new MinMingozzi();
 	}
 
 	~MozMarks() {

@@ -10,7 +10,6 @@ protected:
 	//vector<int> var_, best_;
 	int *var_, *best_;
 	double time_;
-	
 private:
 	void FirstUpd() {
 		minF = 0;
@@ -31,7 +30,7 @@ public:
 		best_ = NULL;*/
 	}
 
-	int Solve(Task &task) {
+	virtual int Solve(Task &task) {
 		n = task.n;
 		FirstUpd();
 		Update();

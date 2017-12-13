@@ -7,6 +7,9 @@
   multSch.cpp
   IOFile.cpp
   Task.cpp
+  StatMethod.cpp
+  StatMarks.cpp
+  Statistics.cpp
   SortOut.cpp
   Procs.cpp
   Stack.cpp
@@ -16,12 +19,14 @@
   MinSimple.cpp
   MinMoz.cpp
   MozMarks.cpp
+  MinMingozzi.cpp
+  Generating Code...
+  Compiling...
   MaxSimple.cpp
   Marks.cpp
   MarkFactory.cpp
   Mark.cpp
-  Generating Code...
-  Compiling...
+  log.cpp
   Jobs.cpp
   FrontAlg.cpp
   FastMS.cpp

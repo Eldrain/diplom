@@ -6,7 +6,6 @@
 
 using namespace std;
 class test {
-
 public:
 	test() {
 		//srand(time(0));
@@ -15,6 +14,7 @@ public:
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry) {
 		Schedule sch;
 		sch.CreateBaseSet();
+		double averangeF = 0;
 
 		for (int i = startN; i < finishN + 1; i++) {		
 			sch.Generate(i, m, maxTime, retry);
@@ -22,6 +22,8 @@ public:
 			//cout << endl << endl << i << " JOBS:\nTimes: ";	
 			sch.Solve();
 		}
+
+		sch.PrintStat();
 	}
 
 

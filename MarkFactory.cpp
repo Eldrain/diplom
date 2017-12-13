@@ -3,6 +3,7 @@
 #include "Marks.cpp"
 #include "BBMarks.cpp"
 #include "MozMarks.cpp"
+#include "StatMarks.cpp"
 
 class MarkFactory {
 public:
@@ -12,6 +13,11 @@ public:
 
 	static Marks *CreateBestMarks() {
 		return create<MozMarks>();
+	}
+
+	static Marks* CreateStatMarks(Statistics *stat) {
+		StatMarks<MozMarks> *marks = new StatMarks<MozMarks>(stat);
+		return marks;
 	}
 
 private:

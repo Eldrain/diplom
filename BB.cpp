@@ -11,6 +11,10 @@ public:
 		marks = MarkFactory::CreateBestMarks();
 	}
 
+	BB(Statistics *st) {
+		marks = MarkFactory::CreateStatMarks(st);
+	}
+
 	void PrintRes() {
 		std::cout << "\nA-B clip (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
