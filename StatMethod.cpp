@@ -31,8 +31,8 @@ public:
 		m->Update();
 	}
 
-	void Start(Task &task) {
-		m->Start(task);
+	void Start(Task &task, int set) {
+		m->Start(task, set);
 	}
 
 	void PrintRes() {

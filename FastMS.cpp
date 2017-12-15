@@ -17,7 +17,7 @@ public:
 	void Update() {
 	}
 
-	void Start(Task &task)
+	void Start(Task &task, int set)
 	{
 		Task *task_arr = new Task[task.n];
 		int **var = new int*[task.n];

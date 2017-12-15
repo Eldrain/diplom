@@ -90,10 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AMethod.cpp" />
+    <ClCompile Include="Ant.cpp" />
     <ClCompile Include="ArrFunctions.cpp" />
     <ClCompile Include="BB.cpp" />
     <ClCompile Include="BBMarks.cpp" />
     <ClCompile Include="BBreal.cpp" />
+    <ClCompile Include="ErrorMarks.cpp" />
     <ClCompile Include="FastMS.cpp" />
     <ClCompile Include="FrontAlg.cpp" />
     <ClCompile Include="Jobs.cpp" />
@@ -106,6 +108,7 @@
     <ClCompile Include="MozMarks.cpp" />
     <ClCompile Include="MinMoz.cpp" />
     <ClCompile Include="MinSimple.cpp" />
+    <ClCompile Include="MTBB.cpp" />
     <ClCompile Include="MultiSearch.cpp" />
     <ClCompile Include="NextMT.cpp" />
     <ClCompile Include="ObjectStack.cpp" />
@@ -124,6 +127,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="transport.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UnitTests.cpp" />
     <ClCompile Include="vector.cpp" />

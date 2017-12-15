@@ -5,8 +5,10 @@
 #include "FrontAlg.cpp"
 #include "MultiSearch.cpp"
 #include "FastMS.cpp"
+#include "NextMT.cpp"
+#include "MTBB.cpp"
+#include "Ant.cpp"
 #include "StatMethod.cpp"
-#define M 5
 
 class Schedule {
 public:
@@ -74,7 +76,7 @@ public:
 		/*delete[] met_;
 		met_ = new AMethod*[M];*/
 		clear();
-		met_.resize(M);
+		met_.resize(5);
 		initStat();
 
 		met_[0] = CreateStat<SortOut>(&stat[0]);
@@ -97,7 +99,7 @@ public:
 		met_.resize(3);
 		met_[0] = create<BB>();
 		met_[1] = create<BBreal>();
-		met_[2] = create<FastMS>();
+		met_[2] = create<MTBB>();
 		initStat();
 	}
 
@@ -113,9 +115,26 @@ public:
 	void CreateBBSet() {
 		clear();
 		met_.resize(2);
+		initStat();
 		met_[0] = create<BB>();
 		met_[1] = create<BBreal>();
+	}
+
+	void CreateMTSet() {
+		clear();
+		met_.resize(4);
+		met_[0] = create<FastMS>();
+		met_[1] = CreateNextMT<SortOut>();
+		met_[2] = CreateNextMT<BB>();
+		met_[3] = create<MTBB>();
+	}
+
+	void CreateEvrSet() {
+		clear();
+		met_.resize(2);
 		initStat();
+		met_[0] = CreateStat<FrontAlg>(&stat[0]);
+		met_[1] = CreateStat<Ant>(&stat[1]);
 	}
 
 	void ResizeTaskProcs(int m) {
@@ -152,6 +171,11 @@ public:
 	}
 
 	template<class T>
+	AMethod* CreateNextMT() {
+		return new NextMT<T>();
+	}
+
+	template<class T>
 	AMethod* CreateStat(Statistics *st) {
 		return new StatMethod<T>(st);
 	}
@@ -173,7 +197,7 @@ public:
 	}
 
 	~Schedule() {
-		for (int i = 0; i < M; i++) {
+		for (int i = 0; i < met_.size(); i++) {
 			delete met_[i];
 		}
 		met_.clear();

@@ -35,9 +35,9 @@ public:
 		sol3 = new int[n];
 	}
 
-	void Start(Task &task) {
-		alg1(task);
-		alg2(task);
+	void Start(Task &task, int set) {
+		alg1(task, set);
+		alg2(task, set);
 
 		if (f1 > f2) {
 			minF = f2;
@@ -49,11 +49,11 @@ public:
 		}
 	}
 
-	int alg1(Task &task) {
+	int alg1(Task &task, int set) {
 		int index = 0;
 		task.jobs.refresh();
 
-		for (int i = 0; i < n; i++) {
+		for (int i = set; i < n; i++) {
 			index = task.jobs.FindMaxInFront();
 			task.jobs.Complete(index);
 			sol1[i] = index;
@@ -62,10 +62,10 @@ public:
 		return f1;
 	}
 
-	int alg2(Task &task) {
+	int alg2(Task &task, int set) {
 		int index = 0;
 		task.jobs.refresh();
-		for (int i = 0; i < n; i++) {
+		for (int i = set; i < n; i++) {
 			index = task.jobs.FindMinInFront();
 			task.jobs.Complete(index);
 			sol2[i] = index;

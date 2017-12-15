@@ -14,9 +14,9 @@ public:
 		PrintBest();
 	}
 
-	void Start(Task &task) {
+	void Start(Task &task, int set) {
 		timeCrit = timeCheck = buf = 0;
-		minF = sortOut(0, task);
+		minF = sortOut(set, task);
 	}
 
 	int sortOut(int set, Task &task) {

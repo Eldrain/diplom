@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Task.cpp"
 #include "ArrFunctions.cpp"
+#include "transport.cpp"
 #include <ctime>
 
 class AMethod {
@@ -39,7 +40,7 @@ public:
 		minF++;//Best array will filled at least once
 
 		time_ = clock();
-		Start(task);
+		Start(task, 0);
 		time_ = (clock() - time_) / CLOCKS_PER_SEC;
 
 		return minF;
@@ -47,7 +48,7 @@ public:
 
 	virtual void Update() = 0;
 
-	virtual void Start(Task &task) = 0;
+	virtual void Start(Task &task, int set) = 0;
 
 	virtual void PrintRes() = 0;
 
@@ -62,6 +63,25 @@ public:
 
 	int getCountVar() {
 		return countVar;
+	}
+
+	void MTPrepare(transport *data) {
+		n = data->task->n;
+		FirstUpd();
+		Update();
+		for (int i = 0; i < n; i++)
+			minF += data->task->jobs[i];
+		minF++;//Best array will filled at least once
+
+		ArrFunctions::copyArr(var_, data->var, n);
+	}
+
+	int GetMin() {
+		return minF;
+	}
+
+	int* GetBest() {
+		return best_;
 	}
 
 	virtual ~AMethod() {

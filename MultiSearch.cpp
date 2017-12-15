@@ -19,7 +19,7 @@ public:
 	void Update() {
 	}
 
-	void Start(Task &task)
+	void Start(Task &task, int set)
 	{	
 		//sort::vector<int> *var = new sort::vector<int>[task.n];
 		int **var = new int*[task.n];

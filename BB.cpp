@@ -1,3 +1,4 @@
+#pragma once
 #include "stdafx.h"
 #include "AMethod.cpp"
 #include "MarkFactory.cpp"
@@ -24,13 +25,13 @@ public:
 		marks->init(n);
 	}
 
-	void Start(Task &task) {
+	void Start(Task &task, int set) {
 		int maximum = minF;
 
 		timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
-		minF = clip(0, maximum, task);
+		minF = clip(set, maximum, task);
 
-		int set = countSet(best_);
+		set = countSet(best_);
 		if (set < n) {	
 			marks->maxB(best_, set, task);
 			ArrFunctions::copyArr(best_, marks->GetBuf(), n);

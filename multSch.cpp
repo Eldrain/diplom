@@ -34,7 +34,7 @@ int main()
 	int n = 0, m = 0;
 
 	test test1;
-	test1.timeTest(5, 25, 3, 50, 8);
+	test1.timeTest(5, 25, 3, 50, 10);
 
 	getchar();
 	return 0;

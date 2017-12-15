@@ -214,6 +214,13 @@ public:
 	ObjectStack<leaf>::elem *getFirstInWave() {
 		return wave.first;
 	}
+
+	void SavePrsp() {
+		wave.push(tree.pop(prsp));
+		tree.clear();
+		addWave();
+		prsp = tree.first->info;
+	}
 	
 	int getMin() {
 		return best->min;

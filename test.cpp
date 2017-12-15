@@ -13,7 +13,7 @@ public:
 
 	void timeTest(int startN, int finishN, int m, int maxTime, int retry) {
 		Schedule sch;
-		sch.CreateBaseSet();
+		sch.CreateMTSet();
 		double averangeF = 0;
 
 		for (int i = startN; i < finishN + 1; i++) {		

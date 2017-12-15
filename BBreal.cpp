@@ -15,7 +15,10 @@ public:
 	}
 
 	BBreal(Statistics *st) {
-		marks = MarkFactory::CreateStatMarks(st);
+		//TODO: DELETE!!!
+		marks = MarkFactory::CreateBestMarks();
+
+		//marks = MarkFactory::CreateStatMarks(st);
 	}
 
 	void PrintRes() {
@@ -28,15 +31,15 @@ public:
 		marks->init(n);
 	}
 
-	void Start(Task &task) {
+	void Start(Task &task, int set) {
 		int maximum = minF;
 		tree.addInWave(var_, maximum, maximum, 0);
 		tree.addWave();
 
 		//timeCrit = timeCheck = bufTime = minTime = maxTime = 0;
-		minF = clip(0, maximum, task);
+		minF = clip(set, maximum, task);
 
-		int set = countSet(best_);
+		set = countSet(best_);
 		
 		if (set < n) {
 			marks->maxB(best_, set, task);

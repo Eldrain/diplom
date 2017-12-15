@@ -1,23 +1,20 @@
 #pragma once
 #include "stdafx.h"
-#include "AMethod.cpp"
+//#include "AMethod.cpp"
+#include "BB.cpp"
 #include <thread>
 #include <vector>
-//#include <functional>
+#include <mutex>
+#include "transport.cpp"
 
-typedef std::function<void()> func;
-
+template <class T>
 class NextMT : public AMethod {
 private:
+	std::mutex mut;
 	const int maxThreads;
 	int cur_threads_;
-	struct trData {
-		int *var;
-		int set;
-		Task *task;
-		int n;
-	};
 	double time;
+
 public:
 	NextMT(int max_threads_count = 25) : maxThreads(max_threads_count) {
 		cur_threads_ = 0;
@@ -26,13 +23,12 @@ public:
 	void Update() {
 	}
 
-	void Start(Task &task)
+	void Start(Task &task, int set)
 	{
 		Task *task_arr = new Task[task.n];
 		int **var = new int*[task.n];
 		std::vector<std::thread> threads;
-		trData *datas = new trData[n];
-
+		transport *dt = new transport[n];
 
 		for (int i = 0; i < n; i++) {
 			var[i] = new int[task.n];
@@ -41,7 +37,7 @@ public:
 			ArrFunctions::clearArr(var[i], n);
 			var[i][0] = i + 1;
 
-			trData *data = &datas[i];
+			transport *data = &dt[i];
 			data->var = var[i];
 			data->set = 1;
 			data->n = n;
@@ -59,49 +55,39 @@ public:
 		}
 
 		delete[] var;
-		delete[] datas;
+		delete[] dt;
 		delete[] task_arr;
 	}
 
-	void Search(trData *data) {
-		if (!data->task->jobs.Check(data->var, data->set))
-		{
-			return;
-		}
+	void Search(transport *data) {
+		T b;
+		b.MTPrepare(data);
 
-		if (data->set < data->n) {
-			int j = 0;
-			for (int i = 0; i < data->n; i++) {
-				j = 0;
-				while (data->var[j] != 0)
-					if (data->var[j] == i + 1)
-						break;
-					else
-						j++;
-				if (j == data->set) {
-					data->var[data->set] = i + 1;
-					data->set++;
-					Search(data);
-					data->set--;
-					data->var[data->set] = 0;
-				}
-			}
-		}
-		else {
-			int f = 0;
+		/*int maximum = b.GetMin();
+		int set = data->set;
+		int f = b.clip(set, maximum, *data->task);
 
-			f = data->task->procs.crit(data->var, data->task->jobs, data->set);
+		set = b.countSet(best_);
 
-			if (f < minF) {
-				minF = f;
-				for (int i = 0; i < n; i++)
-					best_[i] = data->var[i];
-			}
+		if (set < n) {
+			b.marks->maxB(best_, set, *data->task);
+			ArrFunctions::copyArr(best_, b.marks->GetBuf(), n);
+		}*/
+		b.Start(*data->task, data->set);
+		int f = b.GetMin();
+
+		countVar += b.getCountVar();
+		mut.lock();
+		if (f < minF) {
+			minF = f;
+			for (int i = 0; i < n; i++)
+				best_[i] = b.GetBest()[i];
 		}
+		mut.unlock();
 	}
 
 	void PrintRes() {
-		std::cout << "\nFast MS sort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+		std::cout << "\nNextMT aB (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
 	}
 
