@@ -64,12 +64,21 @@ private:
 	sort::vector<AMethod*> met_;
 	Statistics *stat;
 public:
-
+	
 	void Solve() {
 		for (int i = 0; i < met_.size(); i++) {
 			met_[i]->Solve(task);
 			met_[i]->PrintRes();
 		}
+	}
+
+	int SolveByMethod(int n, int m,  int method, std::string &results) {
+		Generate(n, m, 50, 8);
+		met_[method]->Solve(task);
+		met_[method]->PrintRes();
+		results = n + " jobs. Solved.";
+
+		return met_[method]->GetMin();
 	}
 
 	void CreateBaseSet() {
@@ -81,16 +90,9 @@ public:
 
 		met_[0] = CreateStat<SortOut>(&stat[0]);
 		met_[1] = CreateWithMarks<BB>(&stat[1]);
-		met_[2] = CreateWithMarks<BBreal>(&stat[2]);
-
-		//TODO: DELETE KOSTYLIIIIIIIIII!!!!!!!!!!!!!!!!!!
-		/*delete ((BB*)met_[1])->marks;
-		((BB*)met_[1])->marks = MarkFactory::CreateStatMarks(&stat[1]);
-		delete ((BBreal*)met_[2])->marks;
-		((BBreal*)met_[2])->marks = MarkFactory::CreateStatMarks(&stat[1]);*/
-		//============================================================================
+		met_[2] = CreateStat<BBreal>(&stat[2]);// CreateWithMarks<BBreal>(&stat[2]);
 		met_[3] = CreateStat<FrontAlg>(&stat[3]);
-		met_[4] = CreateStat<FastMS>(&stat[4]);
+		met_[4] = CreateNextMT<BB>();//CreateStat<FastMS>(&stat[4]);
 		
 	}
 

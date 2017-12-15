@@ -11,14 +11,14 @@ public:
 	Marks *marks;
 
 	BBreal() {
-		marks = MarkFactory::CreateBestMarks();
+		marks = MarkFactory::CreateErrorMarks();
 	}
 
 	BBreal(Statistics *st) {
 		//TODO: DELETE!!!
-		marks = MarkFactory::CreateBestMarks();
+		
 
-		//marks = MarkFactory::CreateStatMarks(st);
+		marks = MarkFactory::CreateStatMarks(st);
 	}
 
 	void PrintRes() {

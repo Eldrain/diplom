@@ -4,6 +4,7 @@
 #include "BBMarks.cpp"
 #include "MozMarks.cpp"
 #include "StatMarks.cpp"
+#include "ErrorMarks.cpp"
 
 class MarkFactory {
 public:
@@ -18,6 +19,10 @@ public:
 	static Marks* CreateStatMarks(Statistics *stat) {
 		StatMarks<MozMarks> *marks = new StatMarks<MozMarks>(stat);
 		return marks;
+	}
+
+	static Marks* CreateErrorMarks() {
+		return new ErrorMarks();
 	}
 
 private:
