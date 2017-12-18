@@ -22,7 +22,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -98,6 +98,7 @@
     <ClCompile Include="ErrorMarks.cpp" />
     <ClCompile Include="FastMS.cpp" />
     <ClCompile Include="FrontAlg.cpp" />
+    <ClCompile Include="IMethod.cpp" />
     <ClCompile Include="Jobs.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Mark.cpp" />

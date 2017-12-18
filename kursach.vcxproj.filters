@@ -170,5 +170,8 @@
     <ClCompile Include="MTBB.cpp">
       <Filter>Файлы исходного кода\framework\methods</Filter>
     </ClCompile>
+    <ClCompile Include="IMethod.cpp">
+      <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -90,9 +90,9 @@ public:
 
 		met_[0] = CreateStat<SortOut>(&stat[0]);
 		met_[1] = CreateWithMarks<BB>(&stat[1]);
-		met_[2] = CreateStat<BBreal>(&stat[2]);// CreateWithMarks<BBreal>(&stat[2]);
+		met_[2] = CreateWithMarks<BBreal>(&stat[2]);
 		met_[3] = CreateStat<FrontAlg>(&stat[3]);
-		met_[4] = CreateNextMT<BB>();//CreateStat<FastMS>(&stat[4]);
+		met_[4] = CreateStatNextMT<BB>(&stat[4]);//CreateStat<FastMS>(&stat[4]);
 		
 	}
 
@@ -175,6 +175,11 @@ public:
 	template<class T>
 	AMethod* CreateNextMT() {
 		return new NextMT<T>();
+	}
+
+	template<class T>
+	AMethod* CreateStatNextMT(Statistics *st) {
+		return new StatMethod<NextMT<T>>(st);
 	}
 
 	template<class T>

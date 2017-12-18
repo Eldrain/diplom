@@ -1,16 +1,23 @@
 #pragma once
 #include "stdafx.h"
-#include "Task.cpp"
+#include "IMethod.cpp"
 #include "ArrFunctions.cpp"
 #include "transport.cpp"
 #include <ctime>
+#include <string>
 
-class AMethod {
+class AMethod : public IMethod {
 protected:
 	int n, minF, countVar;
 	//vector<int> var_, best_;
 	int *var_, *best_;
 	double time_;
+
+	void PrintBest() {
+		std::cout << std::endl << "Best result: ";
+		ArrFunctions::printArr(best_, n);
+	}
+
 private:
 	void FirstUpd() {
 		minF = 0;
@@ -24,12 +31,11 @@ private:
 		best_ = new int[n];
 		ArrFunctions::clearArr(var_, n);
 	}
-
 public:
-	AMethod() {
-		/*var_ = NULL;
-		best_ = NULL;*/
-	}
+	/*AMethod() {
+		var_ = NULL;
+		best_ = NULL;
+	}*/
 
 	virtual int Solve(Task &task) {
 		n = task.n;
@@ -50,12 +56,17 @@ public:
 
 	virtual void Start(Task &task, int set) = 0;
 
-	virtual void PrintRes() = 0;
+	virtual void PrintRes() {
+		std::string tmp;
+		GetRes(tmp);
+		std::cout << tmp;
+	}
 
-	void PrintBest() {
-		std::cout << std::endl << "Best result: ";
-		ArrFunctions::printArr(best_, n);
-	}	
+	virtual void GetRes(std::string &res) = 0;
+
+	virtual void GetAddInfo(std::string &res) {
+		res = "AMethod: No info.";
+	}
 
 	double GetTime() {
 		return time_;
