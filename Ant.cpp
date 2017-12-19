@@ -1,28 +1,28 @@
 #pragma once
 #include "stdafx.h"
-#include "AMethod.cpp"
+#include "MarkMethod.cpp"
 #include "Tree.cpp"
-#include "MarkFactory.cpp"
 
-class Ant : public AMethod {
+class Ant : public MarkMethod {
 private:
 	Tree tree;
 	int count_;
 public:
-	Marks * marks;
-
-	Ant() {
+	Ant(Marks *marks) : MarkMethod(marks) {
 		count_ = 1;
-		marks = MarkFactory::CreateBestMarks();
+	}
+
+	void GetRes(std::ostringstream &res) {
+		res << "\nAnt (" << count_ << " ant; " << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 	}
 
 	void Update() {
 	}
 
-	void PrintRes() {
+	/*void PrintRes() {
 		std::cout << "\nAnt (" << count_ << " ant; " << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
-	}
+	}*/
 
 	void Start(Task &task, int set) {		
 		tree.init(n);

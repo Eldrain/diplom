@@ -61,7 +61,7 @@ public:
 	};
 private:
 	Task task;
-	sort::vector<AMethod*> met_;
+	sort::vector<IMethod*> met_;
 	Statistics *stat;
 public:
 	
@@ -78,7 +78,7 @@ public:
 		met_[method]->PrintRes();
 		results = n + " jobs. Solved.";
 
-		return met_[method]->GetMin();
+		return 0;// met_[method]->GetMin();
 	}
 
 	void CreateBaseSet() {
@@ -88,19 +88,19 @@ public:
 		met_.resize(5);
 		initStat();
 
-		met_[0] = CreateStat<SortOut>(&stat[0]);
-		met_[1] = CreateWithMarks<BB>(&stat[1]);
-		met_[2] = CreateWithMarks<BBreal>(&stat[2]);
-		met_[3] = CreateStat<FrontAlg>(&stat[3]);
-		met_[4] = CreateStatNextMT<BB>(&stat[4]);//CreateStat<FastMS>(&stat[4]);
+		met_[0] = new StatMethod(&stat[0], new SortOut());//CreateStat<SortOut>(&stat[0]);
+		met_[1] = new StatMethod(&stat[1], new BB(MarkFactory::CreateBestMarks())); //CreateStatWithMarks<BB>(&stat[1]);
+		met_[2] = new StatMethod(&stat[2], new BBreal(MarkFactory::CreateBestMarks())); //CreateStatWithMarks<BBreal>(&stat[2]);
+		met_[3] = new StatMethod(&stat[3], new FrontAlg()); //CreateStat<FrontAlg>(&stat[3]);
+		met_[4] = new StatMethod(&stat[4], new NextMT<BB, MozMarks>()); //CreateStatNextMT<BB, MozMarks>(&stat[4]);//CreateStat<FastMS>(&stat[4]);
 		
 	}
 
-	void CreateFastSet() {
+	/*void CreateFastSet() {
 		clear();
 		met_.resize(3);
-		met_[0] = create<BB>();
-		met_[1] = create<BBreal>();
+		met_[0] = CreateMarks<BB, MozMarks>();
+		met_[1] = CreateMarks<BBreal, ErrorMarks>();
 		met_[2] = create<MTBB>();
 		initStat();
 	}
@@ -118,13 +118,13 @@ public:
 		clear();
 		met_.resize(2);
 		initStat();
-		met_[0] = create<BB>();
-		met_[1] = create<BBreal>();
+		met_[0] = CreateMarks<BB, MozMarks>();
+		met_[1] = CreateMarks<BBreal, MozMarks>();
 	}
 
 	void CreateMTSet() {
 		clear();
-		met_.resize(4);
+		/*met_.resize(4);
 		met_[0] = create<FastMS>();
 		met_[1] = CreateNextMT<SortOut>();
 		met_[2] = CreateNextMT<BB>();
@@ -136,9 +136,9 @@ public:
 		met_.resize(2);
 		initStat();
 		met_[0] = CreateStat<FrontAlg>(&stat[0]);
-		met_[1] = CreateStat<Ant>(&stat[1]);
+		met_[1] = CreateStatWithMarks<Ant>(&stat[1]);
 	}
-
+	*/
 	void ResizeTaskProcs(int m) {
 		task.ResizeProcs(m);
 	}
@@ -166,34 +166,6 @@ public:
 			stat[i].print();
 		}
 	}
-
-	template<class T>
-	AMethod* create() {
-		return new T();
-	}
-
-	template<class T>
-	AMethod* CreateNextMT() {
-		return new NextMT<T>();
-	}
-
-	template<class T>
-	AMethod* CreateStatNextMT(Statistics *st) {
-		return new StatMethod<NextMT<T>>(st);
-	}
-
-	template<class T>
-	AMethod* CreateStat(Statistics *st) {
-		return new StatMethod<T>(st);
-	}
-
-	//TODO: DELETE!!!!!!!!!!!!!
-	template<class T>
-	AMethod* CreateWithMarks(Statistics *st) {
-		return new StatMethod<T>(st, new T(st));
-	}
-
-
 
 	//Delete set of methods
 	void clear() {

@@ -1,25 +1,22 @@
 #pragma once
 #include "stdafx.h"
-#include "AMethod.cpp"
+#include "MarkMethod.cpp"
 #include "MarkFactory.cpp"
 
-class BB : public AMethod {//Method Branches and Bounds
+class BB : public MarkMethod {//Method Branches and Bounds
 public:
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
-	Marks *marks;
 
-	BB() {
-		marks = MarkFactory::CreateBestMarks();
+	BB(Marks *m) : MarkMethod(m) {}
+
+	void GetRes(std::ostringstream &res) {
+		res << "\nA-B clip (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 	}
 
-	BB(Statistics *st) {
-		marks = MarkFactory::CreateStatMarks(st);
-	}
-
-	void PrintRes() {
+	/*void PrintRes() {
 		std::cout << "\nA-B clip (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
-	}
+	}*/
 
 	void Update() {
 		marks->init(n);
@@ -120,7 +117,6 @@ public:
 	}
 
 	~BB() {
-		delete marks;
 		//delete[] buf_;
 	}
 };

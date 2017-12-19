@@ -1,3 +1,4 @@
+#pragma once
 #include "stdafx.h"
 #include "AMethod.cpp"
 
@@ -5,14 +6,18 @@ class SortOut : public AMethod {
 public:
 	double timeSO, timeCrit, timeCheck, buf;
 
+	void GetRes(std::ostringstream &res) {
+		res << "\nSort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+	}
+
 	void Update() {
 
 	}
 
-	void PrintRes() {
+	/*void PrintRes() {
 		std::cout << "\nSort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
-	}
+	}*/
 
 	void Start(Task &task, int set) {
 		timeCrit = timeCheck = buf = 0;

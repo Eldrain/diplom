@@ -7,6 +7,7 @@
 #include <vector>
 #include <mutex>
 #include "transport.cpp"
+#include "MarkFactory.cpp"
 
 //template <class T>
 class MTBB : public AMethod {
@@ -66,7 +67,7 @@ public:
 	}
 
 	void Search(transport *data) {
-		BBreal b;
+		BBreal b(MarkFactory::CreateBestMarks());
 		b.MTPrepare(data);
 
 		int set = data->set;
@@ -81,10 +82,10 @@ public:
 			return;
 		set = b.countSet(b.GetBest());
 
-		if (set < n) {
+		/*if (set < n) {
 			b.marks->maxB(b.GetBest(), set, *data->task);
 			ArrFunctions::copyArr(b.GetBest(), b.marks->GetBuf(), n);
-		}
+		}*/
 		/*b.Start(*data->task, data->set);
 		int f = b.GetMin();*/
 
@@ -99,10 +100,14 @@ public:
 		mut.unlock();
 	}
 
-	void PrintRes() {
+	void GetRes(std::ostringstream &res) {
+		res << "\nMTBB (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+	}
+
+	/*void PrintRes() {
 		std::cout << "\nMTBB (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
-	}
+	}*/
 
 	~MTBB() {
 	}

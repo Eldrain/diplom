@@ -1,30 +1,23 @@
 #pragma once
 #include "stdafx.h"
-#include "AMethod.cpp"
+#include "MarkMethod.cpp"
 #include "Tree.cpp"
-#include "MarkFactory.cpp"
 
-class BBreal : public AMethod {
+class BBreal : public MarkMethod {
 public:
 	double timeClip, timeCrit, timeCheck, bufTime, minTime, maxTime;
 	Tree tree;
-	Marks *marks;
 
-	BBreal() {
-		marks = MarkFactory::CreateErrorMarks();
+	BBreal(Marks *m): MarkMethod(m) {}
+
+	void GetRes(std::ostringstream &res) {
+		res << "\nB&B (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 	}
 
-	BBreal(Statistics *st) {
-		//TODO: DELETE!!!
-		
-
-		marks = MarkFactory::CreateStatMarks(st);
-	}
-
-	void PrintRes() {
+	/*void PrintRes() {
 		std::cout << "\nB&B (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
-	}
+	}*/
 
 	void Update() {
 		tree.init(n);
@@ -85,6 +78,5 @@ public:
 	}
 
 	~BBreal() {
-		delete marks;
 	}
 };

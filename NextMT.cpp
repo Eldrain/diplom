@@ -7,7 +7,7 @@
 #include <mutex>
 #include "transport.cpp"
 
-template <class T>
+template <class T1, class T2>
 class NextMT : public AMethod {
 private:
 	std::mutex mut;
@@ -60,7 +60,7 @@ public:
 	}
 
 	void Search(transport *data) {
-		T b;
+		T1 b(MarkFactory::create<T2>());
 		b.MTPrepare(data);
 
 		/*int maximum = b.GetMin();
@@ -86,10 +86,14 @@ public:
 		mut.unlock();
 	}
 
-	void PrintRes() {
+	void GetRes(std::ostringstream &res) {
+		res << "\nNextMT aB (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+	}
+
+	/*void PrintRes() {
 		std::cout << "\nNextMT aB (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
-	}
+	}*/
 
 	~NextMT() {
 	}

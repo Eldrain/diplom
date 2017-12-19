@@ -28,6 +28,9 @@
     <Filter Include="Файлы исходного кода\framework\marks\max_marks">
       <UniqueIdentifier>{d4f85d06-051b-4651-9edc-663d4b7bb7df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\framework\methods\mark_method">
+      <UniqueIdentifier>{2d8ae0b0-ffc4-4328-99ca-962cc97fea74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -101,12 +104,6 @@
     <ClCompile Include="AMethod.cpp">
       <Filter>Файлы исходного кода\framework\methods</Filter>
     </ClCompile>
-    <ClCompile Include="BB.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="BBreal.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
     <ClCompile Include="FrontAlg.cpp">
       <Filter>Файлы исходного кода\framework\methods</Filter>
     </ClCompile>
@@ -161,9 +158,6 @@
     <ClCompile Include="transport.cpp">
       <Filter>Файлы исходного кода\framework</Filter>
     </ClCompile>
-    <ClCompile Include="Ant.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
     <ClCompile Include="ErrorMarks.cpp">
       <Filter>Файлы исходного кода\framework\marks</Filter>
     </ClCompile>
@@ -172,6 +166,18 @@
     </ClCompile>
     <ClCompile Include="IMethod.cpp">
       <Filter>Файлы исходного кода\framework\methods</Filter>
+    </ClCompile>
+    <ClCompile Include="BB.cpp">
+      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
+    </ClCompile>
+    <ClCompile Include="BBreal.cpp">
+      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
+    </ClCompile>
+    <ClCompile Include="Ant.cpp">
+      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
+    </ClCompile>
+    <ClCompile Include="MarkMethod.cpp">
+      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

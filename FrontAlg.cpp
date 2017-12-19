@@ -3,11 +3,13 @@
 #include "AMethod.cpp"
 
 class FrontAlg : public AMethod {
+private:
+	std::string add_info_;
 public:
 	//vector<int> sol1, sol2, sol3;
 	int *sol1, *sol2, *sol3;
 	int f1, f2, f3;
-
+	
 	FrontAlg() {
 		f1 = 0;
 		f2 = 0;
@@ -17,11 +19,15 @@ public:
 		sol3 = NULL;
 	}
 
-	void PrintRes() {
+	void GetRes(std::ostringstream &res) {
+		res << "\nFrontAlg (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.";
+	}
+
+	/*void PrintRes() {
 		std::cout << "\nFrontAlg (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.";
 		PrintBest();
 	}
-
+	*/
 	void Update() {
 		/*sol1.resize(n);
 		sol2.resize(n);
@@ -42,10 +48,16 @@ public:
 		if (f1 > f2) {
 			minF = f2;
 			ArrFunctions::copyArr(best_, sol2, n);
+			add_info_ = "met2";
 		}
 		else {
 			minF = f1;
 			ArrFunctions::copyArr(best_, sol1, n);
+			add_info_ = "met1";
+		}
+
+		if (f1 = f2) {
+			add_info_ = "met12";
 		}
 	}
 

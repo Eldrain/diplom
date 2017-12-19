@@ -4,7 +4,6 @@
 #include "ArrFunctions.cpp"
 #include "transport.cpp"
 #include <ctime>
-#include <string>
 
 class AMethod : public IMethod {
 protected:
@@ -57,15 +56,16 @@ public:
 	virtual void Start(Task &task, int set) = 0;
 
 	virtual void PrintRes() {
-		std::string tmp;
+		std::ostringstream tmp;
 		GetRes(tmp);
-		std::cout << tmp;
+		std::cout << tmp.str();
+		PrintBest();
 	}
 
-	virtual void GetRes(std::string &res) = 0;
+	virtual void GetRes(std::ostringstream &res) = 0;
 
-	virtual void GetAddInfo(std::string &res) {
-		res = "AMethod: No info.";
+	virtual void GetAddInfo(std::ostringstream &info) {
+		info << "AMethod: No info.";
 	}
 
 	double GetTime() {

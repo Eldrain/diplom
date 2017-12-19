@@ -103,6 +103,7 @@
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Mark.cpp" />
     <ClCompile Include="MarkFactory.cpp" />
+    <ClCompile Include="MarkMethod.cpp" />
     <ClCompile Include="Marks.cpp" />
     <ClCompile Include="MaxSimple.cpp" />
     <ClCompile Include="MinMingozzi.cpp" />

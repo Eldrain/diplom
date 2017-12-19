@@ -91,10 +91,14 @@ public:
 		}
 	}
 
-	void PrintRes() {
+	void GetRes(std::ostringstream &res) {
+		res << "\nFast MS sort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+	}
+
+	/*void PrintRes() {
 		std::cout << "\nFast MS sort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
 		PrintBest();
-	}
+	}*/
 
 	~FastMS(){
 	}

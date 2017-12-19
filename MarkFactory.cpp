@@ -25,7 +25,6 @@ public:
 		return new ErrorMarks();
 	}
 
-private:
 	template<class T>
 	static Marks *create() {
 		return new T();

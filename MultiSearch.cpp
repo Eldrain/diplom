@@ -16,6 +16,10 @@ private:
 	std::mutex mutexObj;
 	double time;
 public:
+	void GetRes(std::ostringstream &res) {
+		res << "\nMultithreading sort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
+	}
+
 	void Update() {
 	}
 
@@ -96,11 +100,6 @@ public:
 			}
 			mutexObj.unlock();
 		}
-	}
-
-	void PrintRes() {
-		std::cout << "\nMultithreading sort out (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
-		PrintBest();		
 	}
 
 	~MultiSearch(){
