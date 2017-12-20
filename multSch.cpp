@@ -6,6 +6,7 @@
 #include <conio.h>
 #include "UnitTests.cpp"
 #include <stack>
+#include "threadpool.cpp"
 
 using namespace std;
 
@@ -26,10 +27,16 @@ void print(int i) {
 
 int Statistics::etalonMinF = 1;
 
+void funct(int p) {
+	std::cout << "Delegate call p = " << p;
+}
+
 int main()
 {
 	setlocale(0, "");
-	
+	eld::threadpool pool(5);
+	pool.start(funct);
+
 	Task task;
 	int n = 0, m = 0;
 

@@ -2,7 +2,6 @@ f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\vc120.pdb
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\vc120.idb
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\stdafx.obj
-f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\minsimple.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\mtbb.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\multisearch.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\nextmt.obj
@@ -16,11 +15,11 @@ f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\statmethod.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\task.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\iofile.obj
+f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\test.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\transport.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\tree.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\unittests.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\vector.obj
-f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\amethod.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\ant.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\arrfunctions.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\bb.obj
@@ -40,6 +39,8 @@ f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\minmingozzi.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\mozmarks.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\minmoz.obj
+f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\minsimple.obj
+f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\amethod.obj
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\multsch.tlog\cl.command.1.tlog
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\multsch.tlog\cl.read.1.tlog
 f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\debug\multsch.tlog\cl.write.1.tlog
