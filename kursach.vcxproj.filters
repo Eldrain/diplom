@@ -179,5 +179,8 @@
     <ClCompile Include="MarkMethod.cpp">
       <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
     </ClCompile>
+    <ClCompile Include="threadpool.cpp">
+      <Filter>Файлы исходного кода\framework</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
