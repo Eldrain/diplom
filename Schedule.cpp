@@ -85,7 +85,7 @@ public:
 		/*delete[] met_;
 		met_ = new AMethod*[M];*/
 		clear();
-		met_.resize(5);
+		met_.resize(6);
 		initStat();
 
 		met_[0] = new StatMethod(&stat[0], new SortOut());//CreateStat<SortOut>(&stat[0]);
@@ -93,7 +93,7 @@ public:
 		met_[2] = new StatMethod(&stat[2], new BBreal(MarkFactory::CreateBestMarks())); //CreateStatWithMarks<BBreal>(&stat[2]);
 		met_[3] = new StatMethod(&stat[3], new FrontAlg()); //CreateStat<FrontAlg>(&stat[3]);
 		met_[4] = new StatMethod(&stat[4], new NextMT<BB, MozMarks>()); //CreateStatNextMT<BB, MozMarks>(&stat[4]);//CreateStat<FastMS>(&stat[4]);
-		
+		met_[5] = new MTBB(10);
 	}
 
 	/*void CreateFastSet() {

@@ -127,6 +127,7 @@ public:
 			el = pop();
 			delete el;
 		}
+		iterator.reset(nullptr);
 	}
 
 	void swap() {
