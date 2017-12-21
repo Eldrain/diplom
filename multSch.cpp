@@ -4,9 +4,8 @@
 #include "stdafx.h"
 #include "test.cpp"
 #include <conio.h>
-#include "UnitTests.cpp"
-#include <stack>
 #include "threadpool.cpp"
+#include <stack>
 
 using namespace std;
 
@@ -25,20 +24,23 @@ void print(int i) {
 		cout << endl << k + 1;
 }
 
-int Statistics::etalonMinF = 1;
-
-void funct(int p) {
-	std::cout << "Delegate call p = " << p;
+void printr(int t) {
+	for (int i = 0; i < 50; i++) {
+		cout << endl << t;
+	}
 }
+
+int Statistics::etalonMinF = 1;
 
 int main()
 {
 	setlocale(0, "");
+	//eld::
 	eld::threadpool pool(5);
-	pool.start(funct);
-
-	Task task;
-	int n = 0, m = 0;
+	for (int i = 0; i < 5; i++) {
+		pool.async_task(&printr, i);
+	}
+	pool.join();
 
 	test test1;
 	test1.timeTest(5, 22, 3, 50, 10);

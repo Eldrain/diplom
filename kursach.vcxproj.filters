@@ -1,186 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Файлы исходного кода">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Заголовочные файлы">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Файлы исходного кода\framework">
-      <UniqueIdentifier>{231845a2-1cd4-4358-b5c4-49aefabf53f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы исходного кода\framework\marks">
-      <UniqueIdentifier>{45451dca-9de6-473a-9ca9-2604aac7b3d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы исходного кода\framework\methods">
-      <UniqueIdentifier>{a5cacb7f-b107-436e-834b-bcdbfe55f901}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы исходного кода\framework\marks\min_marks">
-      <UniqueIdentifier>{2c337e12-c717-48db-ac6a-3169ba4ba9d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы исходного кода\framework\marks\max_marks">
-      <UniqueIdentifier>{d4f85d06-051b-4651-9edc-663d4b7bb7df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы исходного кода\framework\methods\mark_method">
-      <UniqueIdentifier>{2d8ae0b0-ffc4-4328-99ca-962cc97fea74}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="AMethod.cpp" />
+    <ClCompile Include="Ant.cpp" />
+    <ClCompile Include="ArrFunctions.cpp" />
+    <ClCompile Include="BB.cpp" />
+    <ClCompile Include="BBMarks.cpp" />
+    <ClCompile Include="BBreal.cpp" />
+    <ClCompile Include="ErrorMarks.cpp" />
+    <ClCompile Include="FastMS.cpp" />
+    <ClCompile Include="FrontAlg.cpp" />
+    <ClCompile Include="IMethod.cpp" />
+    <ClCompile Include="Jobs.cpp" />
+    <ClCompile Include="log.cpp" />
+    <ClCompile Include="Mark.cpp" />
+    <ClCompile Include="MarkFactory.cpp" />
+    <ClCompile Include="MarkMethod.cpp" />
+    <ClCompile Include="Marks.cpp" />
+    <ClCompile Include="MaxSimple.cpp" />
+    <ClCompile Include="MinMingozzi.cpp" />
+    <ClCompile Include="MozMarks.cpp" />
+    <ClCompile Include="MinMoz.cpp" />
+    <ClCompile Include="MinSimple.cpp" />
+    <ClCompile Include="MTBB.cpp" />
+    <ClCompile Include="MultiSearch.cpp" />
+    <ClCompile Include="NextMT.cpp" />
+    <ClCompile Include="ObjectStack.cpp" />
+    <ClCompile Include="Schedule.cpp" />
+    <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="Procs.cpp" />
+    <ClCompile Include="SortOut.cpp" />
+    <ClCompile Include="Statistics.cpp" />
+    <ClCompile Include="StatMarks.cpp" />
+    <ClCompile Include="StatMethod.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="IOFile.cpp" />
+    <ClCompile Include="multSch.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="threadpool.cpp" />
+    <ClCompile Include="transport.cpp" />
+    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="UnitTests.cpp" />
+    <ClCompile Include="vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data2.txt" />
+    <Text Include="data3.txt" />
+    <Text Include="data4.txt" />
     <Text Include="ReadMe.txt" />
-    <Text Include="data2.txt">
-      <Filter>Файлы исходного кода</Filter>
-    </Text>
-    <Text Include="data1.txt">
-      <Filter>Файлы исходного кода</Filter>
-    </Text>
-    <Text Include="data3.txt">
-      <Filter>Файлы исходного кода</Filter>
-    </Text>
-    <Text Include="data4.txt">
-      <Filter>Файлы исходного кода</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="multSch.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="IOFile.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="test.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Jobs.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Procs.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Task.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitTests.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="ArrFunctions.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectStack.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="BBMarks.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="Marks.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MarkFactory.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="AMethod.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="FrontAlg.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="SortOut.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="Schedule.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiSearch.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="vector.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="FastMS.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="Mark.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MinMoz.cpp">
-      <Filter>Файлы исходного кода\framework\marks\min_marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MinSimple.cpp">
-      <Filter>Файлы исходного кода\framework\marks\min_marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MozMarks.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MaxSimple.cpp">
-      <Filter>Файлы исходного кода\framework\marks\max_marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MinMingozzi.cpp">
-      <Filter>Файлы исходного кода\framework\marks\min_marks</Filter>
-    </ClCompile>
-    <ClCompile Include="log.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="StatMethod.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="Statistics.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="StatMarks.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="NextMT.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="transport.cpp">
-      <Filter>Файлы исходного кода\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="ErrorMarks.cpp">
-      <Filter>Файлы исходного кода\framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MTBB.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="IMethod.cpp">
-      <Filter>Файлы исходного кода\framework\methods</Filter>
-    </ClCompile>
-    <ClCompile Include="BB.cpp">
-      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
-    </ClCompile>
-    <ClCompile Include="BBreal.cpp">
-      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
-    </ClCompile>
-    <ClCompile Include="Ant.cpp">
-      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
-    </ClCompile>
-    <ClCompile Include="MarkMethod.cpp">
-      <Filter>Файлы исходного кода\framework\methods\mark_method</Filter>
-    </ClCompile>
-    <ClCompile Include="threadpool.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
+    <Text Include="data1.txt" />
   </ItemGroup>
 </Project>
