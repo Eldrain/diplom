@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Schedule.cpp"
 #include "stdlib.h"
 //#include <vld.h>
@@ -22,7 +22,7 @@ public:
 			//cout << endl << endl << i << " JOBS:\nTimes: ";	
 			sch.Solve();
 		}
-
+		cout << endl << "print in test.cpp";
 		sch.PrintStat();
 	}
 

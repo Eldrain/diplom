@@ -1,10 +1,11 @@
 // kursach.cpp: ���������� ����� ����� ��� ����������� ����������.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "test.cpp"
-#include <conio.h>
+//#include <conio.h>
 #include "threadpool.cpp"
+//#include "stdlib.cpp"
 
 
 using namespace std;
@@ -37,8 +38,8 @@ int main()
 	setlocale(0, "");	
 
 	test test1;
-	test1.timeTest(5, 25, 3, 50, 10);
-
+	test1.timeTest(5, 30, 3, 50, 10);
+	
 	getchar();
 	return 0;
 }

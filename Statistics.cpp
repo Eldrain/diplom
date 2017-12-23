@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 
 class Statistics {
@@ -46,6 +46,7 @@ public:
 	}
 
 	void print() {
-		std::cout << "\nStatistics: avF = " << av_f << "; avMin = " << av_min_ << "; avMax = " << av_max_ << "; avTime = " << av_time_ << "s.; avErr = " << av_err_ << " %; avCountVar = " << av_countvar_;
+		std::cout << std::endl << "Statistics: avF = " << av_f << "; avMin = " << av_min_ << "; avMax = " << av_max_ << "; avTime = " << av_time_ << "s.; avErr = " << av_err_ << " %; avCountVar = " << av_countvar_;
+		std::cout << std::endl;
 	}
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "IMethod.cpp"
 #include "ArrFunctions.cpp"
 #include "transport.cpp"
@@ -31,10 +31,10 @@ private:
 		ArrFunctions::clearArr(var_, n);
 	}
 public:
-	/*AMethod() {
+	AMethod() {
 		var_ = NULL;
 		best_ = NULL;
-	}*/
+	}
 
 	virtual int Solve(Task &task) {
 		n = task.n;

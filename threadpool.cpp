@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <thread>
 #include <mutex>
 #include <condition_variable>
@@ -81,7 +81,7 @@ namespace eld  {
 		}
 
 		bool add(fun f) {
-			th_count_mutex_.lock();
+			std::unique_lock<std::mutex> locker(th_count_mutex_);
 
 			if (working_ == thread_count_) {
 				th_count_mutex_.unlock();
@@ -93,7 +93,7 @@ namespace eld  {
 			if (working_ == thread_count_) {
 				working_ = 0;
 			}
-			th_count_mutex_.unlock();
+			//th_count_mutex_.unlock();
 
 			return true;
 		}

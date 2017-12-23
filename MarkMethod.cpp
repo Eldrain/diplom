@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "AMethod.cpp"
 #include "Marks.cpp"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "BBreal.cpp"
 #include "FrontAlg.cpp"
 #include "threadpool.cpp"

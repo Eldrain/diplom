@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "SortOut.cpp"
 #include "BB.cpp"
 #include "BBreal.cpp"
@@ -64,6 +64,10 @@ private:
 	sort::vector<IMethod*> met_;
 	Statistics *stat;
 public:
+
+	Schedule() {
+		stat = NULL;
+	}
 	
 	void Solve() {
 		for (int i = 0; i < met_.size(); i++) {
@@ -169,6 +173,8 @@ public:
 	}
 
 	void PrintStat() {
+		std::cout << "PrintStat() in Schedule";
+		
 		for (int i = 0; i < met_.size(); i++) {
 			stat[i].print();
 		}
