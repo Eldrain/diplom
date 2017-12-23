@@ -57,7 +57,9 @@ public:
 		data *data = elem->info;
 		elem->info = nullptr;
 		delete elem;
-		threadpool_.async_task(&MTBB::search, this, data, false);
+		Prepare(task);
+		data->maximum = minF;
+		search(data, false);
 		threadpool_.join();
 	}
 
@@ -65,8 +67,9 @@ public:
 		if (!data->task->jobs.Check(data->var, data->set)) {
 			std::unique_lock<std::mutex> locker(stack_mutex_);
 			stack.push(data);
+			return;
 		}
-
+		//std::cout << std::endl << data->set;
 		//countVar++;
 		if (data->set < data->task->n) {
 			int j = 0;
@@ -87,20 +90,19 @@ public:
 					int mx = data->marks->maxB(data->var, data->set + 1, *data->task);
 					int mn = data->marks->minB(data->var, data->set + 1, *data->task);
 
-					{
-						//std::unique_lock<std::mutex> locker(data->max_mutex);
-						if (mx < data->maximum)
-							data->maximum = mx;
-					}
+					
+					if (mx < data->maximum)
+						data->maximum = mx;
+					
 					if (mn == mx) {
-						std::unique_lock<std::mutex> locker(min_mutex);
+						min_mutex.lock();
 
 						if (mn < minF) {
 							minF = mn;
 							for (int i = 0; i < n; i++)
 								best_[i] = data->var[i];
 						}
-
+						min_mutex.unlock();
 						/*std::unique_lock<std::mutex> locker1(stack_mutex_);
 						stack.push(data);*/
 					}
@@ -108,9 +110,9 @@ public:
 						if (mn <= data->maximum) {
 							ObjectStack<MTBB::data>::elem *elem = nullptr;
 							
-							std::unique_lock<std::mutex> locker(stack_mutex_);
+							stack_mutex_.lock();
 							elem = stack.pop();
-							locker.unlock();
+							stack_mutex_.unlock();
 							
 							if (elem != nullptr) {
 								MTBB::data *new_data = elem->info;
@@ -130,11 +132,14 @@ public:
 								threadpool_.async_task(&MTBB::search, this, new_data, false);
 							}
 							else {
+								data->set++;
 								search(data, true);
+								data->set--;
 							}
-							data->var[data->set] = 0;
+							
 						}
 					}
+					data->var[data->set] = 0;
 				}
 			}
 		}

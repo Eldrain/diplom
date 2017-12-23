@@ -34,17 +34,10 @@ int Statistics::etalonMinF = 1;
 
 int main()
 {
-	setlocale(0, "");
-	//eld::
-	eld::threadpool pool(5);
-	for (int i = 0; i < 5; i++) {
-		pool.async_task(&printr, i);
-	}
-	pool.join();
-	
+	setlocale(0, "");	
 
 	test test1;
-	test1.timeTest(5, 22, 3, 50, 10);
+	test1.timeTest(5, 25, 3, 50, 10);
 
 	getchar();
 	return 0;

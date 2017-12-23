@@ -1,4 +1,4 @@
-﻿Сборка начата 21.12.2017 22:28:33.
+﻿Сборка начата 23.12.2017 17:45:08.
      1>Проект "F:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" в узле 2 (целевые объекты Rebuild).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (diplom.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
@@ -10,11 +10,11 @@
          Tree.cpp
          transport.cpp
          threadpool.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(130): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
          test.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(130): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
          multSch.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(130): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
          IOFile.cpp
          Task.cpp
          StatMethod.cpp
@@ -24,12 +24,12 @@
          Procs.cpp
          Stack.cpp
          Schedule.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(130): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
          ObjectStack.cpp
          NextMT.cpp
          MultiSearch.cpp
          MTBB.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(130): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
          Создание кода...
          Компиляция...
          MinSimple.cpp
@@ -104,4 +104,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:01:14.52
+Затраченное время: 00:01:00.06

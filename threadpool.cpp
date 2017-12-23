@@ -106,6 +106,7 @@ namespace eld  {
 				if (!threads_[n]->is_empty()) {
 					std::unique_lock<std::mutex> locker(join_mutex_);
 					threadpool_cv_.wait(locker, [&]() { return threads_[n]->is_empty(); });
+					n = thread_count_;
 				}
 				n--;
 			}

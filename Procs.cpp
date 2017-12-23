@@ -68,6 +68,7 @@ public:
 				if (procs[i].workTime > 0 && minWork > procs[i].workTime)
 					minWork = procs[i].workTime;
 
+			int res = 0;
 			for (int i = 0; i < count; i++) {
 				procs[i].bufTime += minWork;
 
@@ -80,13 +81,18 @@ public:
 						jobs.Complete(procs[i].job);
 
 						completeJob++;
-						if (completeJob == set)
-							return procs[i].allTime;
+						if (completeJob == set) {
+							res = i;
+						}
 
 					}
 				}
 				else if (procs[i].workTime < 0)
 					std::cout << "\nProcNum Error!";
+			}
+
+			if (completeJob == set) {
+				return procs[res].allTime;
 			}
 		}
 	}

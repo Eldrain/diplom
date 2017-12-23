@@ -81,6 +81,13 @@ public:
 		return 0;// met_[method]->GetMin();
 	}
 
+	void CreateBestMethod() {
+		clear();
+		met_.resize(1);
+		initStat();
+		met_[0] = new StatMethod(&stat[0], new MTBB(10));//new MTBB(10);
+	}
+
 	void CreateBaseSet() {
 		/*delete[] met_;
 		met_ = new AMethod*[M];*/
@@ -93,7 +100,7 @@ public:
 		met_[2] = new StatMethod(&stat[2], new BBreal(MarkFactory::CreateBestMarks())); //CreateStatWithMarks<BBreal>(&stat[2]);
 		met_[3] = new StatMethod(&stat[3], new FrontAlg()); //CreateStat<FrontAlg>(&stat[3]);
 		met_[4] = new StatMethod(&stat[4], new NextMT<BB, MozMarks>()); //CreateStatNextMT<BB, MozMarks>(&stat[4]);//CreateStat<FastMS>(&stat[4]);
-		met_[5] = new MTBB(10);
+		met_[5] = new MTBB(5);
 	}
 
 	/*void CreateFastSet() {
