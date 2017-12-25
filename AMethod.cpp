@@ -1,8 +1,8 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "IMethod.cpp"
 #include "ArrFunctions.cpp"
-#include "transport.cpp"
+#include "help.cpp"
 #include <ctime>
 
 class AMethod : public IMethod {

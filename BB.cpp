@@ -1,5 +1,5 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "MarkMethod.cpp"
 #include "MarkFactory.cpp"
 
@@ -85,6 +85,7 @@ public:
 			}
 		} else {
 			int f = 0;
+			//f = task.crit(var_, set);
 			f = task.procs.crit(var_, task.jobs, set);
 
 			if (f < minF) {

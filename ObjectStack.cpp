@@ -1,5 +1,5 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include <iostream>
 
 template <typename T>
@@ -25,8 +25,31 @@ public:
 			info = NULL;
 		}
 	};
+	class Iterator {//Class for itarating objects of stack
+	public:
+		elem *current_;
+
+		Iterator() {
+			current_ = NULL;
+		}
+
+		void reset(elem *first) {
+			current_ = first;
+		}
+
+		bool get_next() {
+			if (current_->next != NULL) {
+				current_ = current_->next;
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	};
 
 	elem *first;
+	Iterator iterator;
 	int count;
 
 	ObjectStack() {
@@ -102,6 +125,30 @@ public:
 	void getAll(ObjectStack &stack) {
 		while (stack.first) {
 			push(stack.pop());
+		}
+	}
+
+	//Returns functioning iterator of stack with pointer to first
+	Iterator *GetIterator() {
+		iterator.reset(first);
+		if (iterator.current_ == NULL) {
+			return NULL;
+		}
+		else {
+			return &iterator;
+		}
+	}
+
+	//Returns functioning iterator of stack with pointer to element specified info
+	Iterator *GetIterator(T info) {
+		elem *element = NULL;
+		element = pop(info);
+		if (element == NULL) {
+			return NULL;
+		}
+		else {
+			iterator->reset(element);
+			return &iterator;
 		}
 	}
 

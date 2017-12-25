@@ -1,11 +1,11 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 //#include "AMethod.cpp"
 #include "BB.cpp"
 #include <thread>
 #include <vector>
 #include <mutex>
-#include "transport.cpp"
+#include "help.cpp"
 
 template <class T1, class T2>
 class NextMT : public AMethod {

@@ -1,20 +1,20 @@
-﻿Сборка начата 23.12.2017 17:45:08.
+﻿Сборка начата 25.12.2017 20:48:52.
      1>Проект "F:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\kursach.vcxproj" в узле 2 (целевые объекты Rebuild).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (diplom.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AMethod.cpp Ant.cpp ArrFunctions.cpp BB.cpp BBMarks.cpp BBreal.cpp ErrorMarks.cpp FastMS.cpp FrontAlg.cpp IMethod.cpp Jobs.cpp log.cpp Mark.cpp MarkFactory.cpp MarkMethod.cpp Marks.cpp MaxSimple.cpp MinMingozzi.cpp MozMarks.cpp MinMoz.cpp MinSimple.cpp MTBB.cpp MultiSearch.cpp NextMT.cpp ObjectStack.cpp Schedule.cpp Stack.cpp Procs.cpp SortOut.cpp Statistics.cpp StatMarks.cpp StatMethod.cpp Task.cpp IOFile.cpp multSch.cpp test.cpp threadpool.cpp transport.cpp Tree.cpp UnitTests.cpp vector.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\multSch.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AMethod.cpp Ant.cpp AProcs.cpp ArrFunctions.cpp BB.cpp BBMarks.cpp BBreal.cpp ErrorMarks.cpp FastMS.cpp FastProcs.cpp FastValue.cpp FirstValue.cpp FrontAlg.cpp IMethod.cpp IProcs.cpp IValue.cpp Jobs.cpp log.cpp Mark.cpp MarkFactory.cpp MarkMethod.cpp Marks.cpp MaxSimple.cpp MinMingozzi.cpp MozMarks.cpp MinMoz.cpp MinSimple.cpp MTBB.cpp MultiSearch.cpp NextMT.cpp ObjectStack.cpp processor.cpp Schedule.cpp Stack.cpp Procs.cpp SortOut.cpp Statistics.cpp StatMarks.cpp StatMethod.cpp Task.cpp IOFile.cpp multSch.cpp test.cpp threadpool.cpp help.cpp Tree.cpp UnitTests.cpp vector.cpp
          vector.cpp
          UnitTests.cpp
          Tree.cpp
-         transport.cpp
+         help.cpp
          threadpool.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(119): warning C4018: <: несоответствие типов со знаком и без знака
          test.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(119): warning C4018: <: несоответствие типов со знаком и без знака
          multSch.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(119): warning C4018: <: несоответствие типов со знаком и без знака
          IOFile.cpp
          Task.cpp
          StatMethod.cpp
@@ -24,14 +24,15 @@
          Procs.cpp
          Stack.cpp
          Schedule.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(119): warning C4018: <: несоответствие типов со знаком и без знака
+         processor.cpp
          ObjectStack.cpp
          NextMT.cpp
          MultiSearch.cpp
-         MTBB.cpp
-     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(131): warning C4018: <: несоответствие типов со знаком и без знака
          Создание кода...
          Компиляция...
+         MTBB.cpp
+     1>f:\users\артём\documents\visual studio 2013\projects\kursach\kursach\threadpool.cpp(119): warning C4018: <: несоответствие типов со знаком и без знака
          MinSimple.cpp
          MinMoz.cpp
          MozMarks.cpp
@@ -43,30 +44,42 @@
          Mark.cpp
          log.cpp
          Jobs.cpp
+         IValue.cpp
+         IProcs.cpp
          IMethod.cpp
          FrontAlg.cpp
+         FirstValue.cpp
+         FastValue.cpp
+         FastProcs.cpp
          FastMS.cpp
+         Создание кода...
+         Компиляция...
          ErrorMarks.cpp
          BBreal.cpp
          BBMarks.cpp
          BB.cpp
          ArrFunctions.cpp
+         AProcs.cpp
          Ant.cpp
-         Создание кода...
-         Компиляция...
          AMethod.cpp
          Создание кода...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\Debug\multSch.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\Debug\multSch.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Users\Артём\Documents\Visual Studio 2013\Projects\kursach\kursach\Debug\multSch.lib" /MACHINE:X86 Debug\AMethod.obj
          Debug\Ant.obj
+         Debug\AProcs.obj
          Debug\ArrFunctions.obj
          Debug\BB.obj
          Debug\BBMarks.obj
          Debug\BBreal.obj
          Debug\ErrorMarks.obj
          Debug\FastMS.obj
+         Debug\FastProcs.obj
+         Debug\FastValue.obj
+         Debug\FirstValue.obj
          Debug\FrontAlg.obj
          Debug\IMethod.obj
+         Debug\IProcs.obj
+         Debug\IValue.obj
          Debug\Jobs.obj
          Debug\log.obj
          Debug\Mark.obj
@@ -82,6 +95,7 @@
          Debug\MultiSearch.obj
          Debug\NextMT.obj
          Debug\ObjectStack.obj
+         Debug\processor.obj
          Debug\Schedule.obj
          Debug\Stack.obj
          Debug\Procs.obj
@@ -95,7 +109,7 @@
          Debug\stdafx.obj
          Debug\test.obj
          Debug\threadpool.obj
-         Debug\transport.obj
+         Debug\help.obj
          Debug\Tree.obj
          Debug\UnitTests.obj
          Debug\vector.obj
@@ -104,4 +118,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:01:00.06
+Затраченное время: 00:01:04.81

@@ -1,5 +1,5 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include <thread>
 #include <mutex>
 #include <condition_variable>
@@ -20,6 +20,7 @@ namespace eld  {
 
 			void add_function(fun f) {
 			    std::unique_lock<std::mutex> locker(mutex_); 
+				//mutex_.lock();
 			    f_queue.push(f);
 				//mutex_.unlock();
 				cv.notify_one();
@@ -83,18 +84,12 @@ namespace eld  {
 		bool add(fun f) {
 			std::unique_lock<std::mutex> locker(th_count_mutex_);
 
-			if (working_ == thread_count_) {
-				th_count_mutex_.unlock();
+			ptr thread = get_free_thread();
+			if (thread == nullptr) {
 				return false;
 			}
 
-			get_free_thread()->add_function(f);
-			working_++;
-			if (working_ == thread_count_) {
-				working_ = 0;
-			}
-			//th_count_mutex_.unlock();
-
+			thread->add_function(f);
 			return true;
 		}
 
@@ -110,13 +105,6 @@ namespace eld  {
 				}
 				n--;
 			}
-		}
-
-		bool HaveEmpty() {
-			if (get_free_thread() == nullptr) {
-				return false;
-			}
-			return true;
 		}
 
 		template<class _FN, class... _ARGS>
@@ -141,6 +129,6 @@ namespace eld  {
 		std::vector<ptr> threads_;
 		std::mutex th_count_mutex_;
 		std::mutex join_mutex_;
-		std::condition_variable threadpool_cv_;
+		std::condition_variable threadpool_cv_;//Variable for tracing join() of threads
 	};
 }

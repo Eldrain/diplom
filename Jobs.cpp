@@ -1,5 +1,5 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Stack.cpp"
 #include "vector.cpp"
 

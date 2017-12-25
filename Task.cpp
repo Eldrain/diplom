@@ -1,5 +1,5 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Procs.cpp"
 
 class Task {
@@ -11,11 +11,12 @@ public:
 	Task() {
 		m = 0;
 		n = 0;
+		//procs = new FastProcs();
 	}
 
-	Task(std::string filename) {
-		//loadTask(filename);
-	}
+	/*int crit(int *var, int set) {
+		return procs->crit(var, jobs, set);
+	}*/
 
 	void ResizeProcs(int m) {
 		this->m = m;
@@ -36,5 +37,9 @@ public:
 		ResizeProcs(parent.m);
 		jobs.CloneFrom(parent.jobs);
 		n = jobs.get_count();
+	}
+
+	~Task() {
+		//delete procs;
 	}
 };

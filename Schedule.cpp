@@ -1,4 +1,5 @@
-//#include "stdafx.h"
+#pragma once
+#include "stdafx.h"
 #include "SortOut.cpp"
 #include "BB.cpp"
 #include "BBreal.cpp"
@@ -93,8 +94,6 @@ public:
 	}
 
 	void CreateBaseSet() {
-		/*delete[] met_;
-		met_ = new AMethod*[M];*/
 		clear();
 		met_.resize(6);
 		initStat();
@@ -107,24 +106,26 @@ public:
 		met_[5] = new MTBB(5);
 	}
 
-	/*void CreateFastSet() {
+	void CreateMTSet() {
 		clear();
 		met_.resize(3);
-		met_[0] = CreateMarks<BB, MozMarks>();
-		met_[1] = CreateMarks<BBreal, ErrorMarks>();
-		met_[2] = create<MTBB>();
 		initStat();
-	}
 
+		met_[0] = new StatMethod(&stat[0], new FastMS());
+		met_[1] = new StatMethod(&stat[1], new NextMT<BB, MozMarks>());
+		met_[3] = new StatMethod(&stat[2], new MTBB(10));	
+	}
+	
 	void CreateSortOutSet() {
 		clear();
 		met_.resize(3);
-		met_[0] = create<SortOut>();
-		met_[1] = create<MultiSearch>();
-		met_[2] = create<FastMS>();
 		initStat();
-	}
 
+		met_[0] = new StatMethod(&stat[0], new SortOut());
+		met_[1] = new StatMethod(&stat[1], new NextMT<BB, MozMarks>());
+		met_[2] = new StatMethod(&stat[2], new MTBB(10));
+	}
+	/*
 	void CreateBBSet() {
 		clear();
 		met_.resize(2);

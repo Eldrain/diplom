@@ -1,5 +1,5 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "AMethod.cpp"
 #include <thread>
 #include <vector>
@@ -81,6 +81,7 @@ public:
 		else {
 			int f = 0;
 
+			//f = data->task->crit(data->var, data->set);
 			f = data->task->procs.crit(data->var, data->task->jobs, data->set);
 
 			if (f < minF) {

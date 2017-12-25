@@ -91,14 +91,20 @@
   <ItemGroup>
     <ClCompile Include="AMethod.cpp" />
     <ClCompile Include="Ant.cpp" />
+    <ClCompile Include="AProcs.cpp" />
     <ClCompile Include="ArrFunctions.cpp" />
     <ClCompile Include="BB.cpp" />
     <ClCompile Include="BBMarks.cpp" />
     <ClCompile Include="BBreal.cpp" />
     <ClCompile Include="ErrorMarks.cpp" />
     <ClCompile Include="FastMS.cpp" />
+    <ClCompile Include="FastProcs.cpp" />
+    <ClCompile Include="FastValue.cpp" />
+    <ClCompile Include="FirstValue.cpp" />
     <ClCompile Include="FrontAlg.cpp" />
     <ClCompile Include="IMethod.cpp" />
+    <ClCompile Include="IProcs.cpp" />
+    <ClCompile Include="IValue.cpp" />
     <ClCompile Include="Jobs.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Mark.cpp" />
@@ -114,6 +120,7 @@
     <ClCompile Include="MultiSearch.cpp" />
     <ClCompile Include="NextMT.cpp" />
     <ClCompile Include="ObjectStack.cpp" />
+    <ClCompile Include="processor.cpp" />
     <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Procs.cpp" />
@@ -130,7 +137,7 @@
     </ClCompile>
     <ClCompile Include="test.cpp" />
     <ClCompile Include="threadpool.cpp" />
-    <ClCompile Include="transport.cpp" />
+    <ClCompile Include="help.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UnitTests.cpp" />
     <ClCompile Include="vector.cpp" />

@@ -1,35 +1,25 @@
 #pragma once
-//#include "stdafx.h"
-#include "Jobs.cpp"
+#include "stdafx.h"
+#include "FastValue.cpp"
+#include "FirstValue.cpp"
 
 class Procs {
 private:
+	//IValue *value;
 	int count;
 public:
-	class processor {
-	public:
-		int workTime, job, bufTime, allTime;
-
-		processor() {
-			prepare();
-		}
-		
-		void prepare() {
-			workTime = allTime = bufTime = 0;
-			job = 0;
-		}
-	};
-
 	sort::vector<processor> procs;
 
 	Procs() {
 		count = 0;
+		//value = new FirstValue();
 		//procs = NULL;
 	}
 
 	Procs(int m) {
 		this->count = m;
 		procs.resize(m);
+		//value = new FirstValue();
 		//procs = new processor[m];
 	}
 
@@ -40,8 +30,9 @@ public:
 		procs = new processor[m];*/
 	}
 
-	int crit(int *arr, Jobs &jobs, int set) {
+	int crit(int *var, Jobs &jobs, int set) {
 		prepare();
+
 		if (set == 0)
 			return 0;
 		int workTime = 0, minWork = 0, f = 0, completeJob = 0;
@@ -51,34 +42,34 @@ public:
 		int nextJob = 0;
 		while (true) {
 			//if (nextJob < n) {
-				for (int i = 0; i < count; i++)
-					if (jobs.FindInFront(arr[nextJob]) && procs[i].workTime == 0) {
-						procs[i].workTime = jobs[arr[nextJob] - 1];//[]
-						procs[i].job = arr[nextJob];
-						nextJob++;
-						if (nextJob == n)
-							break;
-					}
+			for (int i = 0; i < count; i++)
+				if (jobs.FindInFront(var[nextJob]) && procs[i].mWork == 0) {
+				procs[i].mWork = jobs[var[nextJob] - 1];//[]
+				procs[i].mJob = var[nextJob];
+				nextJob++;
+				if (nextJob == n)
+					break;
+				}
 			//}
 
 
 			minWork = jobs[0];//[]
 
 			for (int i = 0; i < count; i++)
-				if (procs[i].workTime > 0 && minWork > procs[i].workTime)
-					minWork = procs[i].workTime;
+				if (procs[i].mWork > 0 && minWork > procs[i].mWork)
+					minWork = procs[i].mWork;
 
 			int res = 0;
 			for (int i = 0; i < count; i++) {
-				procs[i].bufTime += minWork;
+				procs[i].buf += minWork;
 
-				if (procs[i].workTime > 0) {
-					procs[i].workTime -= minWork;
-					procs[i].allTime += procs[i].bufTime;
-					procs[i].bufTime = 0;
+				if (procs[i].mWork > 0) {
+					procs[i].mWork -= minWork;
+					procs[i].mAll += procs[i].buf;
+					procs[i].buf = 0;
 
-					if (procs[i].workTime == 0) {
-						jobs.Complete(procs[i].job);
+					if (procs[i].mWork == 0) {
+						jobs.Complete(procs[i].mJob);
 
 						completeJob++;
 						if (completeJob == set) {
@@ -87,92 +78,38 @@ public:
 
 					}
 				}
-				else if (procs[i].workTime < 0)
+				else if (procs[i].mWork < 0)
 					std::cout << "\nProcNum Error!";
 			}
 
 			if (completeJob == set) {
-				return procs[res].allTime;
+				return procs[res].mAll;
 			}
 		}
 	}
 
-	//Complete set jobs and returns criterion value. In pointer save index of processor, where was
-	/*int CritWithProcPointer(int *arr, Jobs &jobs, int set, int &pointer) {
-		prepare();
-		if (set == 0)
-			return 0;
-		int workTime = 0, minWork = 0, f = 0, completeJob = 0;
-		int n = jobs.get_count();
-
-		jobs.refresh();
-		int nextJob = 0;
-		while (true) {
-			//if (nextJob < n) {
-			for (int i = 0; i < count; i++)
-				if (jobs.FindInFront(arr[nextJob]) && procs[i].workTime == 0) {
-					procs[i].workTime = jobs[arr[nextJob] - 1];//[]
-					procs[i].job = arr[nextJob];
-					nextJob++;
-					if (nextJob == n)
-						break;
-				}
-			//}
-
-
-			minWork = jobs[0];//[]
-
-			for (int i = 0; i < count; i++)
-				if (procs[i].workTime > 0 && minWork > procs[i].workTime)
-					minWork = procs[i].workTime;
-
-			for (int i = 0; i < count; i++) {
-				procs[i].bufTime += minWork;
-
-				if (procs[i].workTime > 0) {
-					procs[i].workTime -= minWork;
-					procs[i].allTime += procs[i].bufTime;
-					procs[i].bufTime = 0;
-
-					if (procs[i].workTime == 0) {
-						jobs.Complete(procs[i].job);
-
-						completeJob++;
-						if (completeJob == set)
-							return procs[i].allTime;
-
-					}
-				}
-				else if (procs[i].workTime < 0)
-					std::cout << "\nProcNum Error!";
-			}
-		}
-	}*/
-
-	//������(adjustment - ��������). ������� ������������ ��� �������� ������ ������: ���������� � ������
-	//������� ���������� ��� k ����� � ����������� �������������
+	//Set count jobs in schedule with duration == jobTime. It's for calculate SimpleMin mark
 	int adjustment(int jobTime, int count) {
 		int minNum = 0, maxNum = 0;
 
 		while (count != 0) {
 			for (int i = 0; i < this->count; i++)
-				if (procs[i].allTime < procs[minNum].allTime)
+				if (procs[i].mAll < procs[minNum].mAll)
 					minNum = i;
-			procs[minNum].allTime += jobTime;
+			procs[minNum].mAll += jobTime;
 			count--;
 		}
 
 		for (int i = 0; i < this->count; i++)
-			if (procs[i].allTime > procs[maxNum].allTime)
+			if (procs[i].mAll > procs[maxNum].mAll)
 				maxNum = i;
-		return procs[maxNum].allTime;
+		return procs[maxNum].mAll;
 	}
 
-	//������ ���������� � ����������� ����������
-	int minTime() {
+	int MinBusy() {
 		int min = 0;
 		for (int i = 0; i < count; i++)
-			if (procs[min].allTime > procs[i].allTime)
+			if (procs[min].mAll > procs[i].mAll)
 				min = i;
 		return min;
 	}
@@ -181,14 +118,22 @@ public:
 	int maxTime() {
 		int max = 0;
 		for (int i = 0; i < count; i++)
-			if (procs[max].allTime < procs[i].allTime)
+			if (procs[max].mAll < procs[i].mAll)
 				max = i;
 		return max;
+	}
+
+	int GetMaxTime() {
+		return procs[maxTime()].mAll;
+	}
+
+	int GetTime(int index) {
+		return procs[index].mAll;
 	}
 	
 	void prepare() {
 		for (int i = 0; i < count; i++)
-			procs[i].prepare();
+			procs[i].reset();
 	}
 
 	int getCount() {

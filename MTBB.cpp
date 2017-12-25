@@ -1,23 +1,24 @@
 #pragma once
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "BBreal.cpp"
 #include "FrontAlg.cpp"
 #include "threadpool.cpp"
 #include <vector>
 #include <mutex>
-#include "transport.cpp"
+#include "help.cpp"
 #include "MarkFactory.cpp"
 
 //template <class T>
 class MTBB : public AMethod {
 private:
 	struct data {
-		//std::mutex max_mutex;
 		int maximum;
 		int *var;
 		int set;
+		int countVar;
 		Task *task;
 		Marks *marks;
+
 		~data() {
 			delete marks;
 			delete task;
@@ -49,6 +50,7 @@ public:
 			elem->task->CloneFrom(task);
 			elem->set = 0;
 			elem->var = new int[task.n];
+			elem->countVar = 0;
 			ArrFunctions::clearArr(elem->var, task.n);
 
 			stack.push(elem);
@@ -59,8 +61,18 @@ public:
 		delete elem;
 		Prepare(task);
 		data->maximum = minF;
+
 		search(data, false);
 		threadpool_.join();
+		
+		countVar = 0;
+		ObjectStack<MTBB::data>::Iterator *i = stack.GetIterator();
+		if (i == nullptr) {
+			return;
+		}
+		do {
+			countVar += i->current_->info->countVar;
+		} while(i->get_next());
 	}
 
 	void search(data *data, bool save_data) {
@@ -69,8 +81,8 @@ public:
 			stack.push(data);
 			return;
 		}
-		//std::cout << std::endl << data->set;
-		//countVar++;
+		data->countVar++;
+
 		if (data->set < data->task->n) {
 			int j = 0;
 			for (int i = 0; i < n; i++) {
