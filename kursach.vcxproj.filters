@@ -50,6 +50,9 @@
     <ClCompile Include="FastValue.cpp" />
     <ClCompile Include="FirstValue.cpp" />
     <ClCompile Include="processor.cpp" />
+    <ClCompile Include="IFMod.cpp" />
+    <ClCompile Include="INextComp.cpp" />
+    <ClCompile Include="NextComp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

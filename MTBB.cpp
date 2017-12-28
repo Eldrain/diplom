@@ -60,6 +60,7 @@ public:
 		elem->info = nullptr;
 		delete elem;
 		Prepare(task);
+		std::cout << "\nMTBB: prepare minimum = " << minF;
 		data->maximum = minF;
 
 		search(data, false);
@@ -103,8 +104,14 @@ public:
 					int mn = data->marks->minB(data->var, data->set + 1, *data->task);
 
 					
-					if (mx < data->maximum)
+					if (mx < data->maximum) {
 						data->maximum = mx;
+						/*std::unique_lock<std::mutex> locker(min_mutex);
+						if (mx < minF) {
+							minF = mx;
+							ArrFunctions::copyArr(best_, data->var, data->task->n);
+						}*/
+					}
 					
 					if (mn == mx) {
 						min_mutex.lock();
@@ -114,6 +121,9 @@ public:
 							for (int i = 0; i < n; i++)
 								best_[i] = data->var[i];
 						}
+						/*else {
+							data->maximum = minF;
+						}*/
 						min_mutex.unlock();
 						/*std::unique_lock<std::mutex> locker1(stack_mutex_);
 						stack.push(data);*/

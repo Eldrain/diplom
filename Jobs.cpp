@@ -6,56 +6,7 @@
 using namespace sort;
 
 class Jobs {//Class for work and store jobs
-private:
-	int count;
-	class job {//Inner class for store data about concrete job
-	public:
-		/*
-		int nowPrev - previous uncomleted jobs at the moment
-		int countPrev - previous jobs
-		int time - lead time
-		bool complete - variable for fix fulfilment of job
-		Stack<int> follow - stack for store next jobs
-		*/
-		int nowPrev;
-		int countPrev;
-		int time;
-		bool complete;
-		Stack<int> follow;
-
-		job() {
-			countPrev = nowPrev = 0;
-			complete = false;
-		}
-
-		job(int time, int countPrev) {
-			this->time = time;
-			this->countPrev = countPrev;
-			nowPrev = 0;
-			complete = false;
-		}
-
-		void AddFollow(int n) {
-			follow.push(n);
-		}
-
-		void deleteFollows() {
-			follow.clear();
-		}
-
-		Stack<int>::Iterator *GetFollowIterator() {
-			return follow.GetIterator();
-		}
-
-		//Reset counter previous jobs and make job unfulfiled
-		void refresh() {
-			nowPrev = countPrev;
-			complete = false;
-		}
-
-		~job() {
-		}
-	};
+public:
 	class Front {//Inner class for store unfulfilmed jobs from front
 	private:
 		/*
@@ -77,9 +28,9 @@ private:
 				if (jobs[max - 1] < jobs[i->current_->info - 1])
 					max = i->current_->info;
 			} while (i->get_next());
-			
+
 			return max;
-			
+
 		}
 
 		//Method returns index of job with min time in front
@@ -147,7 +98,61 @@ private:
 				pool_.push(stack_.pop());
 		}
 
+		Stack<int>::Iterator* GetIterator() {
+			return stack_.GetIterator();
+		}
+
 		~Front() {
+		}
+	};
+private:
+	int count;
+	class job {//Inner class for store data about concrete job
+	public:
+		/*
+		int nowPrev - previous uncomleted jobs at the moment
+		int countPrev - previous jobs
+		int time - lead time
+		bool complete - variable for fix fulfilment of job
+		Stack<int> follow - stack for store next jobs
+		*/
+		int nowPrev;
+		int countPrev;
+		int time;
+		bool complete;
+		Stack<int> follow;
+
+		job() {
+			countPrev = nowPrev = 0;
+			complete = false;
+		}
+
+		job(int time, int countPrev) {
+			this->time = time;
+			this->countPrev = countPrev;
+			nowPrev = 0;
+			complete = false;
+		}
+
+		void AddFollow(int n) {
+			follow.push(n);
+		}
+
+		void deleteFollows() {
+			follow.clear();
+		}
+
+		Stack<int>::Iterator *GetFollowIterator() {
+			return follow.GetIterator();
+		}
+
+		//Reset counter previous jobs and make job unfulfiled
+		void refresh() {
+			nowPrev = countPrev;
+			complete = false;
+		}
+
+		~job() {
 		}
 	};
 
@@ -231,12 +236,12 @@ public:
 	//Fulfilling n jobs with min time from front. Returns pointer on current unfulfited job in var
 	int CompleteJobs(int n, int *var, int &pointer) {
 		int minJob = 0;
-		int minTime = jobs_[front_.FindMin(*this) - 1].time;
+		int minTime = jobs_[front_.FindMax(*this) - 1].time;
 
 		while (n != 0 && front_.size() != 0)
 		{
 			if (var[pointer] == 0) {
-				minJob = front_.FindMin(*this);
+				minJob = front_.FindMax(*this);
 			}
 			else {
 				minJob = var[pointer];
@@ -403,6 +408,20 @@ public:
 			} while (it->get_next());
 		}
 		refresh();
+	}
+
+	Stack<int>::Iterator* GetFrontIterator() {
+		return front_.GetIterator();
+	}
+
+	Stack<int>::Iterator* GetFollowIterator(int n) {
+		return jobs_[n - 1].GetFollowIterator();
+	}
+
+	void RemoveFollow(int from, int num) {
+		jobs_[num - 1].countPrev--;
+		jobs_[from - 1].follow.remove(num);
+
 	}
 
 	~Jobs() {

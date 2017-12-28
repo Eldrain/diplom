@@ -22,7 +22,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -102,7 +102,9 @@
     <ClCompile Include="FastValue.cpp" />
     <ClCompile Include="FirstValue.cpp" />
     <ClCompile Include="FrontAlg.cpp" />
+    <ClCompile Include="IFMod.cpp" />
     <ClCompile Include="IMethod.cpp" />
+    <ClCompile Include="INextComp.cpp" />
     <ClCompile Include="IProcs.cpp" />
     <ClCompile Include="IValue.cpp" />
     <ClCompile Include="Jobs.cpp" />
@@ -118,6 +120,7 @@
     <ClCompile Include="MinSimple.cpp" />
     <ClCompile Include="MTBB.cpp" />
     <ClCompile Include="MultiSearch.cpp" />
+    <ClCompile Include="NextComp.cpp" />
     <ClCompile Include="NextMT.cpp" />
     <ClCompile Include="ObjectStack.cpp" />
     <ClCompile Include="processor.cpp" />

@@ -178,6 +178,19 @@ public:
 		}	
 	}
 
+	//remove element with particular info
+	bool remove(T info) {
+		elem *e = nullptr;
+		e = pop(info);
+
+		if (e == nullptr) {
+			return false;
+		}
+		delete e;
+
+		return true;
+	}
+
 	~Stack() {
 		clear();
 	}
