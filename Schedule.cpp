@@ -155,8 +155,8 @@ public:
 		initStat();
 
 		met_[0] = new StatMethod(&stat[0], new SortOut());//CreateStat<SortOut>(&stat[0]);
-		met_[1] = new StatMethod(&stat[1], new BB(MarkFactory::CreateBestMarks())); //CreateStatWithMarks<BB>(&stat[1]);
-		met_[2] = new StatMethod(&stat[2], new BBreal(MarkFactory::CreateBestMarks())); //CreateStatWithMarks<BBreal>(&stat[2]);
+		met_[1] = new StatMethod(&stat[1], new BB(MarkFactory::CreateStatMarks(&stat[1]))); //CreateStatWithMarks<BB>(&stat[1]);
+		met_[2] = new StatMethod(&stat[2], new BBreal(MarkFactory::CreateStatMarks(&stat[1]))); //CreateStatWithMarks<BBreal>(&stat[2]);
 		met_[3] = new StatMethod(&stat[3], new FrontAlg()); //CreateStat<FrontAlg>(&stat[3]);
 		met_[4] = new StatMethod(&stat[4], new NextMT<BB, MozMarks>()); //CreateStatNextMT<BB, MozMarks>(&stat[4]);//CreateStat<FastMS>(&stat[4]);
 		met_[5] = new MTBB(5);

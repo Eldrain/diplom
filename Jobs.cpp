@@ -5,8 +5,9 @@
 
 using namespace sort;
 
-class Jobs {//Class for work and store jobs
-public:
+class Jobs {//Class for work and store jobs	
+private:
+	int count;
 	class Front {//Inner class for store unfulfilmed jobs from front
 	private:
 		/*
@@ -105,8 +106,6 @@ public:
 		~Front() {
 		}
 	};
-private:
-	int count;
 	class job {//Inner class for store data about concrete job
 	public:
 		/*
@@ -366,15 +365,28 @@ public:
 
 	void defineCountPrev() {
 		for (int i = 0; i < this->count; i++)
-			jobs_[i].countPrev = countPrevs(i + 1);
+			jobs_[i].countPrev = CountPrev(i + 1);
 	}
 
-	int countPrevs(int num) {
+	//returns count of previous jobs
+	int CountPrev(int num) {
 		int count = 0;
 		for (int i = 0; i < this->count; i++)
 			if (jobs_[i].follow.find(num))
 				count++;
 		return count;
+	}
+
+	//Returns next previous job for job with num == n. cur - current number of previous job
+	int GetNextPrev(int n, int cur) {
+		cur--;
+		while (cur != n) {
+			if (jobs_[cur - 1].follow.find(n)) {
+				return cur;
+			}
+			cur--;
+		}
+		return 0;
 	}
 
 	void clear() {

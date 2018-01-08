@@ -22,7 +22,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -93,34 +93,33 @@
     <ClCompile Include="Ant.cpp" />
     <ClCompile Include="AProcs.cpp" />
     <ClCompile Include="ArrFunctions.cpp" />
+    <ClCompile Include="BackModule.cpp" />
     <ClCompile Include="BB.cpp" />
     <ClCompile Include="BBMarks.cpp" />
     <ClCompile Include="BBreal.cpp" />
     <ClCompile Include="ErrorMarks.cpp" />
     <ClCompile Include="FastMS.cpp" />
-    <ClCompile Include="FastProcs.cpp" />
-    <ClCompile Include="FastValue.cpp" />
-    <ClCompile Include="FirstValue.cpp" />
+    <ClCompile Include="FModuleFactory.cpp" />
     <ClCompile Include="FrontAlg.cpp" />
-    <ClCompile Include="IFMod.cpp" />
+    <ClCompile Include="IFModule.cpp" />
     <ClCompile Include="IMethod.cpp" />
-    <ClCompile Include="INextComp.cpp" />
     <ClCompile Include="IProcs.cpp" />
-    <ClCompile Include="IValue.cpp" />
     <ClCompile Include="Jobs.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Mark.cpp" />
     <ClCompile Include="MarkFactory.cpp" />
     <ClCompile Include="MarkMethod.cpp" />
     <ClCompile Include="Marks.cpp" />
-    <ClCompile Include="MaxSimple.cpp" />
+    <ClCompile Include="MaxMaxFront.cpp" />
+    <ClCompile Include="MaxMinFront.cpp" />
+    <ClCompile Include="MaxModule.cpp" />
     <ClCompile Include="MinMingozzi.cpp" />
+    <ClCompile Include="MinModule.cpp" />
     <ClCompile Include="MozMarks.cpp" />
     <ClCompile Include="MinMoz.cpp" />
     <ClCompile Include="MinSimple.cpp" />
     <ClCompile Include="MTBB.cpp" />
     <ClCompile Include="MultiSearch.cpp" />
-    <ClCompile Include="NextComp.cpp" />
     <ClCompile Include="NextMT.cpp" />
     <ClCompile Include="ObjectStack.cpp" />
     <ClCompile Include="processor.cpp" />
@@ -140,7 +139,7 @@
     </ClCompile>
     <ClCompile Include="test.cpp" />
     <ClCompile Include="threadpool.cpp" />
-    <ClCompile Include="help.cpp" />
+    <ClCompile Include="transport.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UnitTests.cpp" />
     <ClCompile Include="vector.cpp" />

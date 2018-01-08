@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
-#include "FastValue.cpp"
-#include "FirstValue.cpp"
+#include "Jobs.cpp"
+#include "processor.cpp"
 
 class Procs {
 private:

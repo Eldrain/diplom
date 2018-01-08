@@ -112,7 +112,9 @@ namespace eld  {
 			return add(std::bind(fn, args...));
 		}
 
-		~threadpool() {}
+		~threadpool() {
+			join();
+		}
 
 	private:
 		ptr get_free_thread() {

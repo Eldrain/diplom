@@ -38,7 +38,7 @@ int main()
 	setlocale(0, "");	
 
 	test test1;
-	test1.timeTest(15, 25, 3, 50, 10);
+	test1.timeTest(15, 30, 3, 50, 10);
 	
 	getchar();
 	return 0;

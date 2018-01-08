@@ -1,22 +1,25 @@
 #pragma once
 #include "stdafx.h"
 #include "AMethod.cpp"
+#include "FModuleFactory.cpp"
 
 class FrontAlg : public AMethod {
 private:
 	std::string add_info_;
+	sort::vector<IFModule*> modules_;
 public:
 	//vector<int> sol1, sol2, sol3;
-	int *sol1, *sol2, *sol3;
-	int f1, f2, f3;
+	//int *sol1, *sol2, *sol3;
+	//int f1, f2, f3;
 	
 	FrontAlg() {
-		f1 = 0;
+		FModuleFactory::CreateSet(modules_);
+		/*f1 = 0;
 		f2 = 0;
 		f3 = 0;
 		sol1 = NULL;
 		sol2 = NULL;
-		sol3 = NULL;
+		sol3 = NULL;*/
 	}
 
 	void GetRes(std::ostringstream &res) {
@@ -32,17 +35,27 @@ public:
 		/*sol1.resize(n);
 		sol2.resize(n);
 		sol3.resize(n);*/
-		delete[] sol1;
+		/*delete[] sol1;
 		delete[] sol2;
 		delete[] sol3;
 
 		sol1 = new int[n];
 		sol2 = new int[n];
-		sol3 = new int[n];
+		sol3 = new int[n];*/
 	}
 
 	void Start(Task &task, int set) {
-		alg1(task, set);
+		int f = 0;
+		for (int i = 0; i < modules_.size(); i++) {
+			modules_[i]->update(task.jobs);
+			f = Alg(modules_[i], task, set);
+			if (f < minF) {
+				minF = f;
+				ArrFunctions::copyArr(best_, var_, n);
+				add_info_ = "FModule " + (i + 1);
+			}
+		}
+		/*alg1(task, set);
 		alg2(task, set);
 
 		if (f1 > f2) {
@@ -58,23 +71,26 @@ public:
 
 		if (f1 = f2) {
 			add_info_ = "met12";
-		}
+		}*/
 	}
 
-	int alg1(Task &task, int set) {
+	int Alg(IFModule *mod, Task &task, int set) {
 		int index = 0;
 		task.jobs.refresh();
-
-		for (int i = set; i < n; i++) {
-			index = task.jobs.FindMaxInFront();
-			task.jobs.Complete(index);
-			sol1[i] = index;
+		for (int i = 0; i < set; i++) {
+			task.jobs.Complete(var_[i]);
 		}
-		f1 = task.procs.crit(sol1, task.jobs, n);
-		return f1;
+		for (int i = set; i < n; i++) {
+			index = mod->next(task.jobs);
+			task.jobs.Complete(index);
+			var_[i] = index;
+		}
+		//std::cout << std::endl;
+		//ArrFunctions::printArr(var_, n);
+		return task.procs.crit(var_, task.jobs, n);
 	}
 
-	int alg2(Task &task, int set) {
+	/*int alg2(Task &task, int set) {
 		int index = 0;
 		task.jobs.refresh();
 		for (int i = set; i < n; i++) {
@@ -111,7 +127,7 @@ public:
 		return f3;
 	}*/
 
-	int getMin(int diff, Task &task) {
+	/*int getMin(int diff, Task &task) {
 		int min = 0;// jobs->front.stack.first->info;
 
 		for (int i = 0; i < n; i++) {
@@ -120,7 +136,7 @@ public:
 				min = i + 1;
 		}
 		return min;
-	}
+	}*/
 
 	int abs(int a) {
 		if(a > 0)
@@ -129,27 +145,10 @@ public:
 			return -a;
 	}
 
-	void printBest1() {
-		std::cout << std::endl << "Best sol1: ";
-		for (int i = 0; i < n; i++)
-			std::cout << sol1[i] << ", ";
-	}
-
-	void printBest2() {
-		std::cout << std::endl << "Best sol2: ";
-		for (int i = 0; i < n; i++)
-			std::cout << sol2[i] << ", ";
-	}
-
-	void printBest3() {
-		std::cout << std::endl << "Best sol3: ";
-		for (int i = 0; i < n; i++)
-			std::cout << sol3[i] << ", ";
-	}
-
 	~FrontAlg() {
-		delete[] sol1;
+		FModuleFactory::Release(modules_);
+		/*delete[] sol1;
 		delete[] sol2;
-		delete[] sol3;
+		delete[] sol3;*/
 	}
 };

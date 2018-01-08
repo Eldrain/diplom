@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "Mark.cpp"
 
-class MaxSimple : public Mark {
+class MaxMaxFront : public Mark {
 public:
 	//Returns value of max mark
 	int bound(int *var, int set, Task &task , int *buf) {
