@@ -1,9 +1,8 @@
 #pragma once
-#include "stdafx.h"
-#include "IFModule.cpp"
+#include "Module.cpp"
 #include "ArrFunctions.cpp"
 
-class BackModule : public IFModule {
+class BackModule : public Module {
 public:
 	BackModule() : pairs_(nullptr) {}
 	
@@ -11,7 +10,6 @@ public:
 		delete[] pairs_;
 		pairs_ = new int[jobs.get_count()];
 		calc_hook hook(jobs, 1, 0, pairs_);
-		//ArrFunctions::printArr(pairs_, jobs.get_count());
 	}
 
 	int next(Jobs &jobs) {

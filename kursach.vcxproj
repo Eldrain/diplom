@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,12 +22,12 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -49,11 +49,13 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -63,12 +65,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -85,63 +89,36 @@
     <Text Include="data1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AMethod.cpp" />
-    <ClCompile Include="Ant.cpp" />
-    <ClCompile Include="AProcs.cpp" />
     <ClCompile Include="ArrFunctions.cpp" />
+    <ClCompile Include="AbBound.cpp" />
     <ClCompile Include="BackModule.cpp" />
-    <ClCompile Include="BB.cpp" />
-    <ClCompile Include="BBMarks.cpp" />
     <ClCompile Include="BBreal.cpp" />
-    <ClCompile Include="ErrorMarks.cpp" />
-    <ClCompile Include="FastMS.cpp" />
-    <ClCompile Include="FModuleFactory.cpp" />
-    <ClCompile Include="FrontAlg.cpp" />
-    <ClCompile Include="IFModule.cpp" />
-    <ClCompile Include="IMethod.cpp" />
-    <ClCompile Include="IProcs.cpp" />
-    <ClCompile Include="Jobs.cpp" />
-    <ClCompile Include="log.cpp" />
+    <ClCompile Include="Generator.cpp" />
     <ClCompile Include="Mark.cpp" />
     <ClCompile Include="MarkFactory.cpp" />
     <ClCompile Include="MarkMethod.cpp" />
-    <ClCompile Include="Marks.cpp" />
-    <ClCompile Include="MaxMaxFront.cpp" />
-    <ClCompile Include="MaxMinFront.cpp" />
     <ClCompile Include="MaxModule.cpp" />
-    <ClCompile Include="MinMingozzi.cpp" />
     <ClCompile Include="MinModule.cpp" />
-    <ClCompile Include="MozMarks.cpp" />
-    <ClCompile Include="MinMoz.cpp" />
-    <ClCompile Include="MinSimple.cpp" />
+    <ClCompile Include="Module.cpp" />
     <ClCompile Include="MTBB.cpp" />
-    <ClCompile Include="MultiSearch.cpp" />
-    <ClCompile Include="NextMT.cpp" />
+    <ClCompile Include="Solution.cpp" />
+    <ClCompile Include="IMethod.cpp" />
+    <ClCompile Include="IProcs.cpp" />
+    <ClCompile Include="Jobs.cpp" />
     <ClCompile Include="ObjectStack.cpp" />
     <ClCompile Include="processor.cpp" />
-    <ClCompile Include="Schedule.cpp" />
+    <ClCompile Include="MethodSet.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Procs.cpp" />
     <ClCompile Include="SortOut.cpp" />
-    <ClCompile Include="Statistics.cpp" />
-    <ClCompile Include="StatMarks.cpp" />
-    <ClCompile Include="StatMethod.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="IOFile.cpp" />
     <ClCompile Include="multSch.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="test.cpp" />
-    <ClCompile Include="threadpool.cpp" />
-    <ClCompile Include="transport.cpp" />
-    <ClCompile Include="Tree.cpp" />
-    <ClCompile Include="UnitTests.cpp" />
     <ClCompile Include="vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

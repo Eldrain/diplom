@@ -1,14 +1,18 @@
 #pragma once
-#include "stdafx.h"
-#include "Marks.cpp"
-#include "BBMarks.cpp"
-#include "MozMarks.cpp"
-#include "StatMarks.cpp"
-#include "ErrorMarks.cpp"
+#include "MaxMaxFront.cpp"
+#include "MinMingozzi.cpp"
 
 class MarkFactory {
 public:
-	static Marks *CreateSimpleMarks() {
+	static Mark* createBestMax() {
+		return new MaxMaxFront();
+	}
+
+	static Mark* createBestMin() {
+		return new MinMingozzi();
+	}
+
+	/*static Marks *CreateSimpleMarks() {
 		return create<BBMarks>();
 	}
 
@@ -28,6 +32,6 @@ public:
 	template<class T>
 	static Marks *create() {
 		return new T();
-	}
+	}*/
 };
 

@@ -3,7 +3,7 @@
 #include "Stack.cpp"
 #include "vector.cpp"
 
-using namespace sort;
+using namespace eld;
 
 class Jobs {//Class for work and store jobs	
 private:

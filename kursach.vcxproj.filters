@@ -2,14 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="multSch.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="test.cpp" />
-    <ClCompile Include="threadpool.cpp" />
-    <ClCompile Include="UnitTests.cpp" />
     <ClCompile Include="vector.cpp" />
-    <ClCompile Include="AProcs.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
     <ClCompile Include="ArrFunctions.cpp">
       <Filter>framework</Filter>
     </ClCompile>
@@ -22,9 +15,6 @@
     <ClCompile Include="Jobs.cpp">
       <Filter>framework</Filter>
     </ClCompile>
-    <ClCompile Include="log.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectStack.cpp">
       <Filter>framework</Filter>
     </ClCompile>
@@ -34,117 +24,39 @@
     <ClCompile Include="Procs.cpp">
       <Filter>framework</Filter>
     </ClCompile>
-    <ClCompile Include="Schedule.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
     <ClCompile Include="Stack.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Statistics.cpp">
       <Filter>framework</Filter>
     </ClCompile>
     <ClCompile Include="Task.cpp">
       <Filter>framework</Filter>
     </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
     <ClCompile Include="AMethod.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="Ant.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="BB.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="BBreal.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="FastMS.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="FrontAlg.cpp">
       <Filter>framework\method</Filter>
     </ClCompile>
     <ClCompile Include="IMethod.cpp">
       <Filter>framework\method</Filter>
     </ClCompile>
-    <ClCompile Include="MTBB.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiSearch.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="NextMT.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="StatMethod.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="MarkMethod.cpp">
-      <Filter>framework\method</Filter>
-    </ClCompile>
-    <ClCompile Include="BBMarks.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="ErrorMarks.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="Mark.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="Marks.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MaxMaxFront.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MaxMinFront.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MinMingozzi.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MinMoz.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MozMarks.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MinSimple.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="StatMarks.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
-    <ClCompile Include="MarkFactory.cpp">
-      <Filter>framework\marks</Filter>
-    </ClCompile>
     <ClCompile Include="SortOut.cpp">
       <Filter>framework\method</Filter>
     </ClCompile>
-    <ClCompile Include="transport.cpp">
+    <ClCompile Include="Solution.cpp" />
+    <ClCompile Include="MethodSet.cpp">
       <Filter>framework</Filter>
     </ClCompile>
-    <ClCompile Include="IFModule.cpp">
-      <Filter>framework\front_module</Filter>
-    </ClCompile>
-    <ClCompile Include="MaxModule.cpp">
-      <Filter>framework\front_module</Filter>
-    </ClCompile>
-    <ClCompile Include="FModuleFactory.cpp">
-      <Filter>framework\front_module</Filter>
-    </ClCompile>
-    <ClCompile Include="MinModule.cpp">
-      <Filter>framework\front_module</Filter>
-    </ClCompile>
-    <ClCompile Include="BackModule.cpp">
-      <Filter>framework\front_module</Filter>
-    </ClCompile>
+    <ClCompile Include="Generator.cpp" />
+    <ClCompile Include="MarkMethod.cpp" />
+    <ClCompile Include="Mark.cpp" />
+    <ClCompile Include="AbBound.cpp" />
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="BBreal.cpp" />
+    <ClCompile Include="MTBB.cpp" />
+    <ClCompile Include="MarkFactory.cpp" />
+    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="MaxModule.cpp" />
+    <ClCompile Include="MinModule.cpp" />
+    <ClCompile Include="BackModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>

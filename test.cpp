@@ -1,29 +1,35 @@
 #pragma once
 #include "stdafx.h"
-#include "Schedule.cpp"
+#include "Generator.cpp"
+#include "MethodSet.cpp"
 #include "stdlib.h"
 //#include <vld.h>
 
-using namespace std;
 class test {
+private:
+	Generator gen;
 public:
 	test() {
 		//srand(time(0));
 	}
 
-	void timeTest(int startN, int finishN, int m, int maxTime, int retry) {
-		Schedule sch;
-		sch.CreateBestMethod();
-		double averangeF = 0;
+	void timeTest(int startN, int finishN, int m, int maxTime, int retry, void callback(Solution*) ) {
+		Task task;
+		MethodSet set;
 
-		for (int i = startN; i < finishN + 1; i++) {		
-			sch.Generate(i, m, maxTime, retry);
-			sch.PrintJobs();
-			//cout << endl << endl << i << " JOBS:\nTimes: ";	
-			sch.Solve();
+		//set.addSortOut();
+		//set.addAbBound();
+		//set.addBaB();
+		set.addFrontAlg();
+		set.addMtBab();
+		task.ResizeProcs(m);
+
+		for (int i = startN; i < finishN + 1; i++) {
+			std::cout << "======================== " << i << " Jobs ========================";
+			gen.GenerateTree(task, i, maxTime, retry);
+			set.solve(callback, task);
+			std::cout << std::endl << std::endl;
 		}
-		cout << endl << "print in test.cpp";
-		sch.PrintStat();
 	}
 
 

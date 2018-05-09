@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 
-namespace sort {
+namespace eld {
 	template <typename T>
 	class vector {
 	private:
@@ -16,6 +16,17 @@ namespace sort {
 		vector(int n) {
 			n_ = n;
 			arr_ = new T[n];
+		}
+
+		// Increase array on 'num' elements
+		void increase(int num) {
+			T *newArr = new T[n_ + num];
+			for (int i = 0; i < n_; i++) {
+				newArr[i] = arr_[i];
+			}
+			delete[] arr_;
+			arr_ = newArr;
+			n_ += num;
 		}
 
 		void resize(int n) {

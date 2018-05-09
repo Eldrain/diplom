@@ -1,15 +1,28 @@
 #pragma once
-#include "stdafx.h"
 #include "AMethod.cpp"
 #include "Marks.cpp"
 
 class MarkMethod : public AMethod {
 protected:
-	Marks * marks;
+	int *buf;
+	Mark *min;
+	Mark *max;
 public:
-	MarkMethod(Marks *marks) : marks(marks) {}
+	MarkMethod(int metId, std::string metName) : AMethod(metId, metName), buf(NULL), min(NULL), max(NULL) {}
+
+	int setMark(Mark *min, Mark *max) {
+		int rc = -1;
+		if ( (min != NULL) && (max != NULL) ) {
+			this->min = min;
+			this->max = max;
+			rc = 0;
+		}
+		return rc;
+	}
 
 	virtual ~MarkMethod() {
-		delete marks;
+		delete[] buf;
+		delete min;
+		delete max;
 	}
 };

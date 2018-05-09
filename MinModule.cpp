@@ -1,8 +1,7 @@
 #pragma once
-#include "stdafx.h"
-#include "IFModule.cpp"
+#include "Module.cpp"
 
-class MinModule : public IFModule {
+class MinModule : public Module {
 
 	void update(Jobs &jobs) {
 	}

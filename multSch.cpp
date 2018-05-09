@@ -1,44 +1,34 @@
-// kursach.cpp: ���������� ����� ����� ��� ����������� ����������.
-//
-
-#include "stdafx.h"
+#include <clocale>
+#include "MethodSet.cpp"
+#include "Generator.cpp"
 #include "test.cpp"
-//#include <conio.h>
 #include "threadpool.cpp"
-//#include "stdlib.cpp"
-
 
 using namespace std;
 
-void clearArr(int *arr) {
-	delete[] arr;
-	arr = NULL;
-}
-
-void printArr(int *arr, int n) {
-	for (int i = 0; i < n; i++)
-		cout << arr[i] << ", ";
-}
-
-void print(int i) {
-	for (int k = 0; k < i; k++)
-		cout << endl << k + 1;
-}
-
-void printr(int t) {
-	for (int i = 0; i < 50; i++) {
-		cout << endl << t;
-	}
-}
-
-int Statistics::etalonMinF = 1;
+void innerPrint(Solution *res) {
+	cout << endl;
+	res->Print();
+};
 
 int main()
 {
 	setlocale(0, "");	
+	test testModule;
+	testModule.timeTest(10, 30, 3, 50, 7, innerPrint);
+	/*Task task;
+	Generator gen;
+	MethodSet set;
 
-	test test1;
-	test1.timeTest(15, 30, 3, 50, 10);
+	set.addSortOut();
+	set.addAbBound();
+	gen.GenerateTree(task, 10, 50, 6);
+	task.ResizeProcs(3);
+
+	cout << endl;
+	set.solve(innerPrint, task);*/
+	//test test1;
+	//test1.timeTest(15, 30, 3, 50, 10);
 	
 	getchar();
 	return 0;

@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include <iostream>
 
-namespace sort {
+namespace eld {
 	class log {
 	private:
 		int cur;

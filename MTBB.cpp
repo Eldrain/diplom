@@ -1,26 +1,28 @@
 #pragma once
 #include "stdafx.h"
-#include "BBreal.cpp"
+#include "ObjectStack.cpp"
 #include "FrontAlg.cpp"
 #include "threadpool.cpp"
 #include <vector>
 #include <mutex>
-#include "transport.cpp"
 #include "MarkFactory.cpp"
 
-//template <class T>
 class MTBB : public AMethod {
 private:
-	struct data {
+	class solution {
+	public:
 		int maximum;
 		int *var;
 		int set;
 		int countVar;
 		Task *task;
-		Marks *marks;
+		Mark *min;
+		Mark *max;
+		int *buf;
 
-		~data() {
-			delete marks;
+		~solution() {
+			delete max;
+			delete min;
 			delete task;
 			delete[] var;
 		}
@@ -30,9 +32,9 @@ private:
 	std::mutex stack_mutex_;
 	std::mutex min_mutex;
 	int thread_count_;
-	ObjectStack<data> stack;	
+	ObjectStack<solution> stack;	
 public:
-	MTBB(int thread_count = 10) : threadpool_(thread_count), thread_count_(thread_count){}
+	MTBB(int thread_count = 10) : AMethod(4, "Multi-Thread B&B"), threadpool_(thread_count), thread_count_(thread_count){}
 
 	void Update() {
 		stack.clear();
@@ -41,33 +43,34 @@ public:
 	void Start(Task &task, int set)
 	{	
 		for (int i = 0; i < thread_count_; i++) {
-			data *elem = new data();
+			solution *sol = new solution();
 			
-			elem->maximum = INT32_MAX;
-			elem->marks = MarkFactory::CreateBestMarks();
-			elem->marks->init(task.n);
-			elem->task = new Task();
-			elem->task->CloneFrom(task);
-			elem->set = 0;
-			elem->var = new int[task.n];
-			elem->countVar = 0;
-			ArrFunctions::clearArr(elem->var, task.n);
+			sol->maximum = INT32_MAX;
+			sol->max = MarkFactory::createBestMax();
+			sol->min = MarkFactory::createBestMin();
+			sol->buf = new int[task.n];
+			sol->task = new Task();
+			sol->task->CloneFrom(task);
+			sol->set = 0;
+			sol->var = new int[task.n];
+			sol->countVar = 0;
+			ArrFunctions::clearArr(sol->var, task.n);
 
-			stack.push(elem);
+			stack.push(sol);
 		}
-		ObjectStack<data>::elem *elem = stack.pop();
-		data *data = elem->info;
+		ObjectStack<solution>::elem *elem = stack.pop();
+		solution *data = elem->info;
 		elem->info = nullptr;
 		delete elem;
 		Prepare(task);
-		std::cout << "\nMTBB: prepare minimum = " << minF;
+		//std::cout << "\nMTBB: prepare minimum = " << minF;
 		data->maximum = minF;
 
 		search(data, false);
 		threadpool_.join();
 		
 		countVar = 0;
-		ObjectStack<MTBB::data>::Iterator *i = stack.GetIterator();
+		ObjectStack<MTBB::solution>::Iterator *i = stack.GetIterator();
 		if (i == nullptr) {
 			return;
 		}
@@ -76,7 +79,7 @@ public:
 		} while(i->get_next());
 	}
 
-	void search(data *data, bool save_data) {
+	void search(solution *data, bool save_data) {
 		if (!data->task->jobs.Check(data->var, data->set)) {
 			std::unique_lock<std::mutex> locker(stack_mutex_);
 			stack.push(data);
@@ -100,44 +103,32 @@ public:
 						continue;
 					}
 
-					int mx = data->marks->maxB(data->var, data->set + 1, *data->task);
-					int mn = data->marks->minB(data->var, data->set + 1, *data->task);
-
+					int mx = data->max->bound(data->var, data->set + 1, *data->task, data->buf);
+					int mn = data->min->bound(data->var, data->set + 1, *data->task, data->buf);
 					
 					if (mx < data->maximum) {
 						data->maximum = mx;
-						/*std::unique_lock<std::mutex> locker(min_mutex);
-						if (mx < minF) {
-							minF = mx;
-							ArrFunctions::copyArr(best_, data->var, data->task->n);
-						}*/
 					}
 					
 					if (mn == mx) {
 						min_mutex.lock();
-
 						if (mn < minF) {
 							minF = mn;
 							for (int i = 0; i < n; i++)
-								best_[i] = data->var[i];
+								best[i] = data->var[i];
 						}
-						/*else {
-							data->maximum = minF;
-						}*/
 						min_mutex.unlock();
-						/*std::unique_lock<std::mutex> locker1(stack_mutex_);
-						stack.push(data);*/
 					}
 					else {		
 						if (mn <= data->maximum) {
-							ObjectStack<MTBB::data>::elem *elem = nullptr;
+							ObjectStack<solution>::elem *elem = nullptr;
 							
 							stack_mutex_.lock();
 							elem = stack.pop();
 							stack_mutex_.unlock();
 							
 							if (elem != nullptr) {
-								MTBB::data *new_data = elem->info;
+								solution *new_data = elem->info;
 								elem->info = nullptr;
 								delete elem;
 
@@ -176,31 +167,22 @@ public:
 			else if (f < minF) {
 				minF = f;
 				for (int i = 0; i < n; i++)
-					best_[i] = var_[i];
+					best[i] = var[i];
 			}
 		}
 		if (!save_data) {
 			std::unique_lock<std::mutex> locker(stack_mutex_);
 			stack.push(data);
 		}
-		//return minF;
 	}
 
 	void Prepare(Task &task) {
 		FrontAlg front;
-		front.Solve(task);
-		minF = front.GetMin();
-		ArrFunctions::copyArr(best_, front.GetBest(), n);
+		Solution *sol = front.Solve(task);
+		minF = sol->getMin();
+		ArrFunctions::copyArr(best, sol->getArr(), n);
+		delete sol;
 	}
-
-	void GetRes(std::ostringstream &res) {
-		res << "\nMTBB (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
-	}
-
-	/*void PrintRes() {
-		std::cout << "\nMTBB (" << n << " jobs): f = " << minF << "; time = " << time_ << " s.; countVar = " << countVar;
-		PrintBest();
-	}*/
 
 	~MTBB() {
 	}

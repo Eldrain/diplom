@@ -1,8 +1,7 @@
 #pragma once
-#include "stdafx.h"
-#include "IFModule.cpp"
+#include "Module.cpp"
 
-class MaxModule : public IFModule {
+class MaxModule : public Module {
 
 	void update(Jobs &jobs) {
 	}

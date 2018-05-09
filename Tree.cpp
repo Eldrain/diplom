@@ -1,9 +1,8 @@
 #pragma once
-#include "stdafx.h"
+#include "Task.cpp"
+#include "Mark.cpp"
 #include "ObjectStack.cpp"
-#include "Marks.cpp"
 #include "ArrFunctions.cpp"
-#include "log.cpp"
 
 class Tree {
 public:
@@ -66,7 +65,6 @@ public:
 	int count, n;
 	ObjectStack<leaf> pool, tree, wave;
 	leaf *best, *prsp;
-	sort::log logger;
 
 	Tree() {
 		count = 0;
@@ -144,18 +142,16 @@ public:
 		return count;
 	}
 
-	void marks(Marks &mark, Task &task) {
+	void marks(Mark *max, Mark *min, int *buf, Task &task) {
 		ObjectStack<leaf>::elem *l = wave.first;
 		if (!l)
 			return;
 
 		while (l) {
-			l->info->max = mark.maxB(l->info->arr_, l->info->set, task);
-			l->info->min = mark.minB(l->info->arr_, l->info->set, task);
-			logger.doLog(l->info->min);
+			l->info->max = max->bound(l->info->arr_, l->info->set, task, buf);
+			l->info->min = min->bound(l->info->arr_, l->info->set, task, buf);
 			l = l->next;
 		}
-		//logger.print();
 	}
 
 	void cut(int &maximum) {

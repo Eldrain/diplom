@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include "Procs.cpp"
 
 class Task {
@@ -11,12 +10,7 @@ public:
 	Task() {
 		m = 0;
 		n = 0;
-		//procs = new FastProcs();
 	}
-
-	/*int crit(int *var, int set) {
-		return procs->crit(var, jobs, set);
-	}*/
 
 	void ResizeProcs(int m) {
 		this->m = m;
@@ -40,6 +34,5 @@ public:
 	}
 
 	~Task() {
-		//delete procs;
 	}
 };

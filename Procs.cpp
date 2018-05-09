@@ -8,7 +8,7 @@ private:
 	//IValue *value;
 	int count;
 public:
-	sort::vector<processor> procs;
+	eld::vector<processor> procs;
 
 	Procs() {
 		count = 0;
