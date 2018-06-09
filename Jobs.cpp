@@ -18,7 +18,7 @@ private:
 		Stack<int> pool_;
 
 	public:
-		//Method returns index of job with max time in front
+		//Method returns number of job with max time in front
 		int FindMax(Jobs &jobs) {
 			if (stack_.size() == 0)
 				return 0;
@@ -34,7 +34,7 @@ private:
 
 		}
 
-		//Method returns index of job with min time in front
+		//Method returns number of job with min time in front
 		int FindMin(Jobs &jobs) {
 			if (stack_.size() == 0)
 				return 0;
@@ -48,7 +48,7 @@ private:
 			return min;
 		}
 
-		//Add job with index == n in front. If front contains this job, not add it again
+		//Add job with number == n in front. If front contains this job, not add it again
 		void Add(int n) {
 			if (Find(n)) {
 				return;
@@ -64,7 +64,7 @@ private:
 			stack_.push(el);
 		}
 
-		//Remove from front job with index == n if it's having here
+		//Remove from front job with number == n if it's having here
 		bool Remove(int n) {
 			Stack<int>::elem *el = stack_.pop(n);
 			if (el) {
@@ -274,7 +274,8 @@ public:
 		return minTime;
 	}
 
-	//Returns index - 1 of job with min time fulfiting
+	//Returns index of job in array
+	// with min time fulfiting
 	int MinTime() {
 		int min = 0;
 		bool set = false;
@@ -363,21 +364,35 @@ public:
 		}
 	}
 
+	// returns count uncompleted jobs
+	int getUncompleteCount() {
+		int count = 0;
+		for (int i = 0; i < this->count; i++) {
+			if (!jobs_[i].complete) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	void defineCountPrev() {
 		for (int i = 0; i < this->count; i++)
 			jobs_[i].countPrev = CountPrev(i + 1);
 	}
 
-	//returns count of previous jobs
+	// Returns count of previous jobs
 	int CountPrev(int num) {
 		int count = 0;
-		for (int i = 0; i < this->count; i++)
-			if (jobs_[i].follow.find(num))
+		for (int i = 0; i < this->count; i++) {
+			if (jobs_[i].follow.find(num)) {
 				count++;
+			}
+		}
 		return count;
 	}
 
-	//Returns next previous job for job with num == n. cur - current number of previous job
+	// Returns number of next previous job for job with num == n.
+	// cur - current number of previous job
 	int GetNextPrev(int n, int cur) {
 		cur--;
 		while (cur != n) {
@@ -387,6 +402,10 @@ public:
 			cur--;
 		}
 		return 0;
+	}
+
+	bool isComplete(int num) {
+		return jobs_[num - 1].complete;
 	}
 
 	void clear() {

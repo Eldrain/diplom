@@ -22,6 +22,6 @@ public:
 			task.jobs.Complete(maxNum);
 		}
 
-		return task.procs.crit(buf, task.jobs, task.n);
+		return task.procs->crit(buf, task.jobs, task.n);
 	}
 };

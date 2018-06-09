@@ -10,12 +10,14 @@ private:
 	int f;
 	int n;
 	int m;
+	// Statistics
 	double time;
+	int countVar;
 public:
-	Solution(int metId, std::string metName, int *arr, int n, int m, int f, double time) 
-		:methodId(metId), methodName(metName), arr(arr), f(f), n(n), m(m), time(time) {}
+	Solution(int metId, std::string metName, int *arr, int n, int m, int f, double time, int countVar) 
+		:methodId(metId), methodName(metName), arr(arr), f(f), n(n), m(m), time(time), countVar(countVar) {}
 
-	void Print() {
+	void print() {
 		std::cout << "Solution by " << methodName << "(" << methodId << "): ";
 		for (int i = 0; i < n; i++) {
 			std::cout << arr[i];
@@ -23,7 +25,7 @@ public:
 				std::cout << ", ";
 			}
 		}
-		std::cout << std::endl << "f = " << f << "; time = " << time << " s.";
+		std::cout << std::endl << "f: " << f << ", time: " << time << " s, countVar: " << countVar;
 	}
 
 	int getMin() {

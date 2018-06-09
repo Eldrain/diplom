@@ -8,14 +8,15 @@ using namespace std;
 
 void innerPrint(Solution *res) {
 	cout << endl;
-	res->Print();
+	res->print();
 };
 
 int main()
 {
 	setlocale(0, "");	
 	test testModule;
-	testModule.timeTest(10, 30, 3, 50, 7, innerPrint);
+	testModule.timeTest(10, 21, 3, 50, 7, innerPrint);
+	//testModule.testHook();
 	/*Task task;
 	Generator gen;
 	MethodSet set;

@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include "ObjectStack.cpp"
 #include "FrontAlg.cpp"
 #include "threadpool.cpp"
@@ -33,6 +32,7 @@ private:
 	std::mutex min_mutex;
 	int thread_count_;
 	ObjectStack<solution> stack;	
+	MarkFactory markFactory;
 public:
 	MTBB(int thread_count = 10) : AMethod(4, "Multi-Thread B&B"), threadpool_(thread_count), thread_count_(thread_count){}
 
@@ -46,8 +46,8 @@ public:
 			solution *sol = new solution();
 			
 			sol->maximum = INT32_MAX;
-			sol->max = MarkFactory::createBestMax();
-			sol->min = MarkFactory::createBestMin();
+			sol->max = markFactory.createSecondMax();//createBestMax();
+			sol->min = markFactory.createMinPath();//createMinPath();
 			sol->buf = new int[task.n];
 			sol->task = new Task();
 			sol->task->CloneFrom(task);
@@ -158,7 +158,7 @@ public:
 		}
 		else {
 			int f = 0;
-			f = data->task->procs.crit(data->var, data->task->jobs, data->set);
+			f = data->task->procs->crit(data->var, data->task->jobs, data->set);
 
 			std::unique_lock<std::mutex> locker(min_mutex);
 			if (minF < f) {
@@ -180,6 +180,8 @@ public:
 		FrontAlg front;
 		Solution *sol = front.Solve(task);
 		minF = sol->getMin();
+		// TODO: delete this log
+		std::cout << std::endl << "prepare minimum: " << minF;
 		ArrFunctions::copyArr(best, sol->getArr(), n);
 		delete sol;
 	}

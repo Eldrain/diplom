@@ -41,7 +41,7 @@ public:
 		}
 		else {
 			int f = 0;
-			f = task.procs.crit(var, task.jobs, set);
+			f = task.procs->crit(var, task.jobs, set);
 
 			if (f < minF) {
 				minF = f;

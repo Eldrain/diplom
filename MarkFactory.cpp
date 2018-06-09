@@ -1,37 +1,43 @@
 #pragma once
 #include "MaxMaxFront.cpp"
+#include "MaxMinFront.cpp"
 #include "MinMingozzi.cpp"
+#include "MinPathMark.cpp"
+#include "MinSimple.cpp"
+#include "StatMark.cpp"
 
 class MarkFactory {
 public:
-	static Mark* createBestMax() {
+	Mark* createBestMax() {
 		return new MaxMaxFront();
 	}
 
-	static Mark* createBestMin() {
+	Mark* createFirstMax() {
+		return new MaxMaxFront();
+	}
+
+	Mark* createSecondMax() {
+		return new MaxMinFront();
+	}
+
+	Mark* createBestMin() {
+		return new MinPathMark();
+	}
+
+	Mark* createSimpleMin() {
+		return new MinSimple();
+	}
+
+	Mark* createMingozzi() {
 		return new MinMingozzi();
 	}
 
-	/*static Marks *CreateSimpleMarks() {
-		return create<BBMarks>();
+	Mark* createMinPath() {
+		return new MinPathMark();
 	}
 
-	static Marks *CreateBestMarks() {
-		return create<MozMarks>();
+	Mark* createStatMark(Stats *stats, Mark *mark, bool type) {
+		return new StatMark(stats, mark, type);
 	}
-
-	static Marks* CreateStatMarks(Statistics *stat) {
-		StatMarks<MozMarks> *marks = new StatMarks<MozMarks>(stat);
-		return marks;
-	}
-
-	static Marks* CreateErrorMarks() {
-		return new ErrorMarks();
-	}
-
-	template<class T>
-	static Marks *create() {
-		return new T();
-	}*/
 };
 

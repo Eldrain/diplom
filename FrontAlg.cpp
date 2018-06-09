@@ -10,10 +10,10 @@ private:
 public:
 	
 	FrontAlg() : AMethod(3, "FrontAlg") {
-		modules_.resize(3);
+		modules_.resize(1);
 		modules_[0] = new MaxModule();
-		modules_[1] = new MinModule();
-		modules_[2] = new BackModule();
+		//modules_[0] = new MinModule();
+		//modules_[0] = new BackModule();
 	}
 
 	void Update() {
@@ -43,7 +43,7 @@ public:
 			var[i] = index;
 		}
 
-		return task.procs.crit(var, task.jobs, n);
+		return task.procs->crit(var, task.jobs, n);
 	}
 
 	/*int alg3(Task &task) {

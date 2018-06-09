@@ -5,16 +5,17 @@ class Task {
 public:
 	int n, m;
 	Jobs jobs;
-	Procs procs;
+	IProcs *procs;
 	
 	Task() {
 		m = 0;
 		n = 0;
+		procs = new Procs();
 	}
 
 	void ResizeProcs(int m) {
 		this->m = m;
-		procs.resize(m);
+		procs->resize(m);
 	}
 
 
@@ -34,5 +35,6 @@ public:
 	}
 
 	~Task() {
+		delete procs;
 	}
 };

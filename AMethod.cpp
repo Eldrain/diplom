@@ -13,6 +13,8 @@ protected:
 	double time;
 	int countVar;
 
+	// Statistics
+	Stats *stats;
 private:
 	int methodId;
 	std::string methodName;
@@ -26,7 +28,7 @@ private:
 		ArrFunctions::clearArr(var, n);
 	}
 public:
-	AMethod(int metId, std::string metName) : methodId(metId), methodName(metName), var(NULL), best(NULL) {}
+	AMethod(int metId, std::string metName) : methodId(metId), methodName(metName), var(NULL), best(NULL), stats(NULL) {}
 
 	virtual Solution* Solve(Task &task) {
 		n = task.n;
@@ -41,14 +43,22 @@ public:
 		Start(task, 0);
 		time = (clock() - time) / CLOCKS_PER_SEC;
 
-		Solution *sol = new Solution(methodId, methodName, best, task.n, task.m, minF, time);
+		Solution *sol = new Solution(methodId, methodName, best, task.n, task.m, minF, time, countVar);
 		best = NULL;
+
+		if (stats) {
+			stats->add(minF, time, countVar);
+		}
 		return sol;
 	}
 
 	virtual void Update() = 0;
 
 	virtual void Start(Task &task, int set) = 0;
+
+	void setStats(Stats *stats) {
+		this->stats = stats;
+	}
 
 	virtual ~AMethod() {
 		delete[] var;

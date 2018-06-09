@@ -1,4 +1,48 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (diplom.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  AMethod.cpp
+  ArrFunctions.cpp
+  AbBound.cpp
+  BackModule.cpp
+  BBreal.cpp
+  FastProcs.cpp
+  FrontAlg.cpp
+  Generator.cpp
+  Hook.cpp
+  Mark.cpp
+  MarkFactory.cpp
+  MarkMethod.cpp
+  MaxMaxFront.cpp
+  MaxMinFront.cpp
+  MaxModule.cpp
+  MinMingozzi.cpp
+  MinModule.cpp
+  MinPathMark.cpp
+  MinSimple.cpp
+  Module.cpp
+  Создание кода...
+  Компиляция...
+  MTBB.cpp
+s:\diplom\kursach\kursach\threadpool.cpp(121): warning C4018: <: несоответствие типов со знаком и без знака
+  Procs.cpp
+  Solution.cpp
+  IMethod.cpp
+  IProcs.cpp
+  Jobs.cpp
+  ObjectStack.cpp
+  processor.cpp
+  MethodSet.cpp
+s:\diplom\kursach\kursach\threadpool.cpp(121): warning C4018: <: несоответствие типов со знаком и без знака
+  Stack.cpp
+  SortOut.cpp
+  StatMark.cpp
+  Stats.cpp
+  Task.cpp
+  IOFile.cpp
   multSch.cpp
 s:\diplom\kursach\kursach\threadpool.cpp(121): warning C4018: <: несоответствие типов со знаком и без знака
+  test.cpp
+s:\diplom\kursach\kursach\threadpool.cpp(121): warning C4018: <: несоответствие типов со знаком и без знака
+  Tree.cpp
+  vector.cpp
+  Создание кода...
   kursach.vcxproj -> S:\Diplom\kursach\Debug\multSch.exe

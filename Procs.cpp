@@ -1,33 +1,68 @@
 #pragma once
-#include "stdafx.h"
-#include "Jobs.cpp"
-#include "processor.cpp"
+#include "IProcs.cpp"
+#include "ArrFunctions.cpp"
 
-class Procs {
+class Procs : public IProcs {
 private:
-	//IValue *value;
+	struct processor {
+		int mJob; // number of processing job
+		int mWork; //
+		int buf;
+		int mAll; // All time
+		bool busy; // flag bussines	
+	};
+
+	int maxTime() {
+		int max = 0;
+		for (int i = 0; i < count; i++)
+			if (procs[max].mAll < procs[i].mAll)
+				max = i;
+		return max;
+	}
+
+	void reset(processor *pr) {
+		pr->mJob = pr->mWork = pr->mAll = pr->buf = 0;
+		pr->busy = false;
+	}
+
+	bool work(processor *pr, int time) {
+		if (pr->mWork <= time) {
+			pr->mWork = 0;
+			pr->busy = false;
+		}
+		else {
+			pr->mWork -= time;
+		}
+
+		return !pr->busy;
+	}
+
+	void prepare() {
+		for (int i = 0; i < count; i++) {
+			reset(&procs[i]);
+		}
+	}
+
 	int count;
 public:
 	eld::vector<processor> procs;
 
 	Procs() {
 		count = 0;
-		//value = new FirstValue();
-		//procs = NULL;
 	}
 
 	Procs(int m) {
 		this->count = m;
 		procs.resize(m);
-		//value = new FirstValue();
-		//procs = new processor[m];
+	}
+
+	int size() {
+		return count;
 	}
 
 	void resize(int m) {
 		this->count = m;
 		procs.resize(m);
-		/*delete procs;
-		procs = new processor[m];*/
 	}
 
 	int crit(int *var, Jobs &jobs, int set) {
@@ -88,59 +123,28 @@ public:
 		}
 	}
 
-	//Set count jobs in schedule with duration == jobTime. It's for calculate SimpleMin mark
-	int adjustment(int jobTime, int count) {
-		int minNum = 0, maxNum = 0;
-
-		while (count != 0) {
-			for (int i = 0; i < this->count; i++)
-				if (procs[i].mAll < procs[minNum].mAll)
-					minNum = i;
-			procs[minNum].mAll += jobTime;
-			count--;
-		}
-
-		for (int i = 0; i < this->count; i++)
-			if (procs[i].mAll > procs[maxNum].mAll)
-				maxNum = i;
-		return procs[maxNum].mAll;
-	}
-
-	int MinBusy() {
+	int getMinTime() {
 		int min = 0;
-		for (int i = 0; i < count; i++)
-			if (procs[min].mAll > procs[i].mAll)
+		for (int i = 0; i < count; i++) {
+			if (procs[min].mAll > procs[i].mAll) {
 				min = i;
+			}
+		}
 		return min;
 	}
 
-	//������ ���������� � ������������ ����������
-	int maxTime() {
-		int max = 0;
-		for (int i = 0; i < count; i++)
-			if (procs[max].mAll < procs[i].mAll)
-				max = i;
-		return max;
-	}
-
-	int GetMaxTime() {
+	int getMaxTime() {
 		return procs[maxTime()].mAll;
 	}
 
-	int GetTime(int index) {
+	int getTime(int index) {
 		return procs[index].mAll;
 	}
-	
-	void prepare() {
-		for (int i = 0; i < count; i++)
-			procs[i].reset();
-	}
 
-	int getCount() {
-		return count;
+	int getJobNum(int procIndex) {
+		return procs[procIndex].mJob;
 	}
 
 	~Procs() {
-		//delete[] procs;
 	}
 };

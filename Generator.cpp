@@ -52,7 +52,8 @@ public:
 				del = !del;
 			}
 		}
-
+		task.jobs.defineCountPrev();
+		task.jobs.refresh();
 	}
 
 	//recursive method for find vertex with number == num

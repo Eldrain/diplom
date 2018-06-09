@@ -13,6 +13,8 @@ public:
 	int setMark(Mark *min, Mark *max) {
 		int rc = -1;
 		if ( (min != NULL) && (max != NULL) ) {
+			delete this->min;
+			delete this->max;
 			this->min = min;
 			this->max = max;
 			rc = 0;

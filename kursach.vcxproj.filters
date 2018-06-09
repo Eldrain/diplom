@@ -21,9 +21,6 @@
     <ClCompile Include="processor.cpp">
       <Filter>framework</Filter>
     </ClCompile>
-    <ClCompile Include="Procs.cpp">
-      <Filter>framework</Filter>
-    </ClCompile>
     <ClCompile Include="Stack.cpp">
       <Filter>framework</Filter>
     </ClCompile>
@@ -55,6 +52,18 @@
     <ClCompile Include="MaxModule.cpp" />
     <ClCompile Include="MinModule.cpp" />
     <ClCompile Include="BackModule.cpp" />
+    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="Stats.cpp" />
+    <ClCompile Include="StatMark.cpp" />
+    <ClCompile Include="MinPathMark.cpp" />
+    <ClCompile Include="MinSimple.cpp" />
+    <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="FastProcs.cpp" />
+    <ClCompile Include="MaxMaxFront.cpp" />
+    <ClCompile Include="MaxMinFront.cpp" />
+    <ClCompile Include="MinMingozzi.cpp" />
+    <ClCompile Include="Procs.cpp" />
+    <ClCompile Include="FrontAlg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h" />

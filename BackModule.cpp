@@ -1,58 +1,36 @@
 #pragma once
 #include "Module.cpp"
-#include "ArrFunctions.cpp"
+#include "Hook.cpp"
 
 class BackModule : public Module {
+private:
+	int *pairs;
+	Hook hook;
+	int step;
 public:
-	BackModule() : pairs_(nullptr) {}
+	BackModule() : pairs(NULL) {}
 	
 	void update(Jobs &jobs) {
-		delete[] pairs_;
-		pairs_ = new int[jobs.get_count()];
-		calc_hook hook(jobs, 1, 0, pairs_);
+		delete[] pairs;
+		pairs = new int[jobs.get_count()];
+		hook.update(jobs.get_count());
+
+		jobs.refresh();
+		int orderCount = 0;
+		hook.calculateHooks(jobs, pairs, orderCount);
+		if (orderCount != jobs.get_count()) {
+			std::cout << "Back module error. Unexpected count of sorted jobs";
+		}
+		step = 0;
 	}
 
 	int next(Jobs &jobs) {
-		int i = 0;
-		int max = 0;
-		for (; i < jobs.get_count(); i++) {
-			if (pairs_[i] > pairs_[max]) {
-				max = i;
-			}
-		}
-		pairs_[max] = 0;
-		return max + 1;
+		int res = pairs[step];
+		step++;
+		return res;
 	}
 
 	virtual ~BackModule() {
-		delete[] pairs_;
+		delete[] pairs;
 	}
-
-private:
-	int *pairs_;
-
-	class calc_hook {
-	public:
-		calc_hook(Jobs &jobs, int n, int f, int *pairs) {
-			f += jobs[n - 1];
-			if (pairs[n - 1] < f) {
-				pairs[n - 1] = f;
-			}
-			else {
-				f = pairs[n - 1];
-			}
-			
-			if (jobs.CountPrev(n) != 0) {
-				int cur_prev = jobs.GetNextPrev(n, jobs.get_count() + 1);
-				
-				while (cur_prev != 0) {
-					calc_hook hook(jobs, cur_prev, f, pairs);
-					cur_prev = jobs.GetNextPrev(n, cur_prev);
-				} 
-			}
-		}
-
-		~calc_hook() {
-		}
-	};
 };

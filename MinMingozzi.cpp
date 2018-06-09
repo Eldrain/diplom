@@ -6,20 +6,19 @@ class MinMingozzi : public Mark {
 public:
 	//Returns value of min mark
 	int bound(int *var, int set, Task &task, int *buf) {
-
-		int crit = task.procs.crit(var, task.jobs, set);
-		int minProcTime = task.procs.GetTime(task.procs.MinBusy());
+		int crit = task.procs->crit(var, task.jobs, set);
+		int minProcTime = task.procs->getTime(task.procs->getMinTime());
 		int bound = 0;
 		int pointer = 0;
 		int lastProc = 0;
 
 		for (; lastProc < task.m; lastProc++) {
-			if (task.procs.procs[lastProc].mJob == var[set - 1]) {
+			if (task.procs->getJobNum(lastProc) == var[set - 1]) {
 				break;
 			}
 		}
 
-		if (task.procs.procs[lastProc].mAll == crit) {
+		if (task.procs->getTime(lastProc) == crit) {
 			if ((crit - task.jobs[var[set - 1] - 1]) >= minProcTime) {
 				crit -= task.jobs[var[set - 1] - 1];
 				task.jobs.Uncomplete(var[set - 1]);
@@ -31,7 +30,7 @@ public:
 			}
 		}
 		else {
-			int bound1 = task.procs.procs[lastProc].mAll - task.jobs[var[set - 1] - 1];
+			int bound1 = task.procs->getTime(lastProc) - task.jobs[var[set - 1] - 1];
 			if (minProcTime > bound1) {
 				//if (minProcTime < bound1 + task.jobs[var[set - 1]]) {
 				crit = minProcTime;
